@@ -1,6 +1,5 @@
 # price-book
-Enter and store items by state and zip to capture item price, sales tax, and total price.  
-The total price can then be used by a shopping cart to display price inclusive of sales tax.
+Enter and store items by state and zip to capture item price, sales tax, and total price.<br>The total price can then be used by a shopping cart to display price inclusive of sales tax.
 
 <b>Create a form with the following labels and attributes:</b>
 Item : text up to 10 characters
