@@ -29,7 +29,7 @@ Authorized users will be able to view, add, update and delete each entry in the 
 <b>Related</b><br>
 To calculate sales tax, make a call to AvaTax by implementing this code snippet  
 
-from client import AvaTaxClient
+import client from 'AvaTaxClient'
 
 #Create a new AvaTaxClient object 
 client = AvaTaxClient('my test app',    ‘ver 0.0',    'my test machine',    'production')
