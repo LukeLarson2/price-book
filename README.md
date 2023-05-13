@@ -3,7 +3,7 @@ Enter and store items by state and zip to capture item price, sales tax, and tot
 
 <b>Create a form with the following labels and attributes:</b><br>Item : text up to 10 characters<br>State : text up to 2 characters<br>Zip : number requiring 5 digits including leading 0<br>Item Price : round number
 
-<b>Create a list page with the following attributes and controls</b>
+<b>Create a list page with the following attributes and controls</b><br>
 Item | State | Zip | Item Price | Sales Tax | Total Price | Update Delete
 
 
@@ -15,18 +15,18 @@ Item | State | Zip | Item Price | Sales Tax | Total Price | Update Delete
 
 Authorized users will be able to view, add, update and delete each entry in the price book
 
-<b>Style</b>
+<b>Style</b><br>
 1. Entry form for adding and updating
 2. List form for viewing all the entries
 
-<b>Content</b>
+<b>Content</b><br>
 1. Validate the State is two characters
 2. Validate the item price is a numeric
 3. pass the current date, amount, zip, state to AvaTax 
 
 
 
-<b>Related</b>
+<b>Related</b><br>
 To calculate sales tax, make a call to AvaTax by implementing this code snippet  
 
 from client import AvaTaxClient
