@@ -1,46 +1,70 @@
-# price-book
-Enter and store items by state and zip to capture item price, sales tax, and total price.<br>The total price can then be used by a shopping cart to display price inclusive of sales tax.
+# Getting Started with Create React App
 
-<b>Create a form with the following labels and attributes:</b><br>Item : text up to 10 characters<br>State : text up to 2 characters<br>Zip : number requiring 5 digits including leading 0<br>Item Price : round number
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<b>Create a list page with the following attributes and controls</b><br>
-Item | State | Zip | Item Price | Sales Tax | Total Price | Update Delete
+## Available Scripts
 
+In the project directory, you can run:
 
+### `npm start`
 
-1. Form - On Posting the Form…Calculate the Sales Tax and add the Item Price + Sales Tax to Total Price, store all info in DB
-2. List Form - with the ability to Update Entry or Delete Entry
-3. Call to AvaTax https://pypi.org/project/Avalara/ to install SDK
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Authorized users will be able to view, add, update and delete each entry in the price book
+### `npm test`
 
-<b>Style</b><br>
-1. Entry form for adding and updating
-2. List form for viewing all the entries
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-<b>Content</b><br>
-1. Validate the State is two characters
-2. Validate the item price is a numeric
-3. pass the current date, amount, zip, state to AvaTax 
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-<b>Related</b><br>
-To calculate sales tax, make a call to AvaTax by implementing this code snippet  
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-import client from 'AvaTaxClient'
+### `npm run eject`
 
-#Create a new AvaTaxClient object 
-client = AvaTaxClient('my test app',    ‘ver 0.0',    'my test machine',    'production')
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-#Add your credentials
-client = client.add_credentials('USERNAME/ACCOUNT_ID', 'PASSWORD/LICENSE_KEY')
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-#Build your tax document
-tax_document = {    'addresses': {        'SingleLocation': {            'city': 'Irvine',            'country': 'US',            'line1': '2000 Main Street',            'postalCode': '{Variable}’,            'region': '{CA}'        }    },              'customerCode': 'GUEST',    'date': '{2017-04-12}',    'lines': [        {            'amount': '{40}',  'number': '1',  'taxCode': 'P0000000'        }    ],    'type': 'SalesOrder'}
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-#Create transaction
-transaction_response = client.create_transaction(tax_document)
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-#Parse the totalTax attribute value from transaction_response object and save this value for each item entry.  Use this value to calculate “total price” and also save with each item entry
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
