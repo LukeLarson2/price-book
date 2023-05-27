@@ -3,6 +3,28 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f1f1f1;
+}
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+.register-user-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+.add-item-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
 }
 
 /* -- Utilize below styling for custom form layout -- */
@@ -21,6 +43,26 @@ Form {
 .title-position {
   display: flex;
   justify-content: center;
+}
+
+.new-item-position {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 15px;
+}
+
+.add-item-title {
+  /* position: absolute; */
+  /* top: -70px; */
+  border: none;
+  /* border-radius: 5px;
+  padding-right: 20px;
+  padding-left: 20px; */
+  padding-bottom: 20px;
+  /* padding-top: 5px; */
+  font-size: 20px;
+  font-weight: bold;
+  color: #222222;
 }
 
 .title {
@@ -72,6 +114,10 @@ Form button {
   align-content: space-between;
 }
 
+.upload-cancel {
+  display: flex;
+  justify-content: center;
+}
 .or {
   display: flex;
   justify-content: center;
@@ -106,25 +152,67 @@ Form button {
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
-
-.sign-up {
+.login {
+  color: white;
+  background-color: rgb(206, 105, 10);
+  width: 100%;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background-color: rgb(206, 105, 10);
+  width: 100px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.create-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background-color: rgb(206, 105, 10);
+  width: 100px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   color: rgb(206, 105, 10);
   background-color: rgb(243, 243, 243);
-  width: 80%;
+  width: 100px;
+  margin-top: 25px;
+  margin-left: 20px;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
-.login:hover {
+.sign-up {
+  color: rgb(206, 105, 10);
+  background-color: rgb(243, 243, 243);
+  width: 100%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.login:hover,
+.upload:hover,
+.submit:hover,
+.create-user:hover {
   background-color: rgba(206, 105, 10, 0.808);
 }
 
+.cancel:hover,
 .sign-up:hover {
   background-color: rgba(255, 255, 255, 0.767);
-}
-
-.submit:hover {
-  background-color: rgba(206, 105, 10, 0.808);
 }
 /* -- Utilize above styling for custom buttons -- */
 
@@ -147,10 +235,16 @@ select {
 } */
 /* -- Utilize above styling for no hover fields -- */
 
+.state-zip {
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* -- Utilize below styling for hover fields -- */
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
+input[type="number"]:hover,
 textarea:hover,
 select:hover {
   background-color: #fafafa; /* Change to the desired hover background color */
@@ -160,6 +254,7 @@ select:hover {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
 textarea,
 select {
   display: block;
@@ -173,11 +268,35 @@ select {
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-select {
+#state {
   width: 100%;
 }
+/* #zip {
+  width: 117px;
+} */
+#account {
+  width: 100%;
+}
+
+.dollar {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.dollar-sign {
+  position: absolute;
+  top: 14px;
+  left: 7px;
+}
+
+/* select {
+  width: 100%;
+} */
 /* -- Utilize above styling for no hover fields -- */
 
 /* -- Utilize below styling for custom checkboxes -- */
