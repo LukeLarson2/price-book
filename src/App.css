@@ -5,6 +5,11 @@
   height: 100vh;
   background-color: #f1f1f1;
 }
+
+.home-container {
+  position: relative;
+  min-height: 100vh;
+}
 .login-form {
   display: flex;
   justify-content: center;
@@ -272,7 +277,7 @@ Form button {
   justify-content: space-evenly;
   color: white;
   background-color: rgb(206, 105, 10);
-  width: 120px;
+  width: 50px;
   margin-top: 25px;
   transition: background-color 0.3s ease;
   cursor: pointer;
@@ -281,6 +286,7 @@ Form button {
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
+  box-shadow: 5px 5px 5px #e2e2e2;
 }
 
 .create-user {
@@ -318,13 +324,22 @@ Form button {
 .login:hover,
 .upload:hover,
 .submit:hover,
-.create-user:hover {
+.create-user:hover,
+.add-item-btn:hover {
   background-color: rgba(206, 105, 10, 0.808);
 }
 
 .cancel:hover,
 .sign-up:hover {
   background-color: rgba(255, 255, 255, 0.767);
+}
+
+.edit-item:hover {
+  background-color: rgba(241, 241, 241, 0.767);
+}
+
+.delete-item:hover {
+  background-color: #bb2b2b;
 }
 /* CUSTOMIZE BUTTONS */
 
@@ -393,23 +408,118 @@ select {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 100px;
   width: 100vw;
 }
 
 .app-user {
   display: flexbox;
+  margin-left: 30px;
 }
 .logout-btn-layout {
   position: relative;
 }
 
 .logout {
-  border: 1px solid #bd0505;
+  border: 2px solid #bd0505;
   border-radius: 100%;
+  margin-right: 50px;
   padding: 5px;
   color: #bd0505;
+  box-shadow: 5px 5px 5px #e2e2e2;
 }
 
 /* NAVBAR COMPONENT CSS */
+
+/* PRODUCT DISPLAY CSS */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  flex-wrap: wrap;
+  border-radius: 77px;
+  background-color: #fdfdfd;
+  box-shadow: 5px 5px 5px #e2e2e2;
+  width: 95vw;
+  margin-bottom: 10px;
+}
+
+.delete-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 12px;
+  margin-left: 10px;
+  background-color: #f33939;
+  color: #fdfdfd;
+  box-shadow: 5px 5px 5px #e2e2e2;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.edit-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 12px;
+  margin-right: 10px;
+  background-color: #fdfdfd;
+  color: rgb(206, 105, 10);
+  box-shadow: 5px 5px 5px #e2e2e2;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-del-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  /* Adjust the height for viewport width up to 600px */
+  .product-info {
+    height: 170px;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+  /* Adjust the height for viewport width between 601px and 1200px */
+  .product-info {
+    height: 60px;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  /* Adjust the height for viewport width above 1200px */
+  .product-info {
+    height: 60px;
+    border-radius: 20px;
+  }
+}
+
+.add-item-placement {
+  position: fixed;
+  bottom: 20px; /* Adjust the bottom value as per your requirement */
+  left: 90%;
+  transform: translateX(-50%);
+}
+
+/* PRODUCT DISPLAY CSS */
