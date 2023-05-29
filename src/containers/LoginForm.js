@@ -1,9 +1,12 @@
 import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import FormikControl from "../components/FormikControl";
+import { userData } from "../backend/TempDB";
 
 function LoginForm() {
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -14,9 +17,9 @@ function LoginForm() {
     password: Yup.string().required("Required"),
   });
 
-  const onSubmit = (values, onSubmitProps) => {
-    console.log("Form data", values);
-    onSubmitProps.resetForm();
+  const onSubmit = (values) => {
+    userData.push(values);
+    navigate("/home");
   };
   return (
     <Formik
@@ -55,7 +58,11 @@ function LoginForm() {
                 </div>
                 <p className="or">or</p>
                 <div className="btn-placement">
-                  <button className="sign-up" type="button">
+                  <button
+                    className="sign-up"
+                    type="button"
+                    onClick={() => navigate("/user-registration")}
+                  >
                     Sign Up
                   </button>
                 </div>

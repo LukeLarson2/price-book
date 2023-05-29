@@ -1,20 +1,28 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
-import AddItem from "./containers/AddItem";
 import Home from "./containers/Home";
 import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
 
 function App() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const User =
+      localStorage.getItem("userData") !== "undefined"
+        ? JSON.parse(localStorage.getItem("userData"))
+        : localStorage.clear();
+    if (!User && window.location.pathname !== "/user-registration") {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <div>
       <Routes>
-        <Route path="login" element={<LoginForm />} />
-        <Route path="user-registration" element={<RegisterUser />} />
-        <Route path="add-product" element={<AddItem />} />
-        <Route path="/*" element={<Home />} />
+        <Route path="/*" element={<LoginForm />} />
+        <Route path="/user-registration" element={<RegisterUser />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );

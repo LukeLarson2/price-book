@@ -3,12 +3,12 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../components/FormikControl";
 import { useNavigate } from "react-router-dom";
-import { TempDB } from "../backend/TempDB";
 import { v4 as uuidv4 } from "uuid";
 
-function RegisterUser() {
+function RegisterUser({ onClose }) {
   const navigate = useNavigate();
   const initialValues = {
+    key: "",
     name: "",
     email: "",
     accountType: "",
@@ -37,10 +37,9 @@ function RegisterUser() {
   });
 
   const onSubmit = (values) => {
-    values.key = uuidv4();
-    console.log("Form data", values);
-    TempDB(values);
-    navigate("/");
+    const updatedValues = { ...values, key: uuidv4() };
+    localStorage.setItem("userData", JSON.stringify(updatedValues));
+    navigate("/home", { replace: true });
   };
   return (
     <Formik
@@ -51,7 +50,7 @@ function RegisterUser() {
       {(formik) => {
         return (
           <div className="register-user-form">
-            <Form>
+            <Form className="add-item-modal-shadow-control">
               <div className="title-position">
                 <label className="title">Create User</label>
               </div>
@@ -94,6 +93,13 @@ function RegisterUser() {
                   disabled={!formik.isValid}
                 >
                   Submit
+                </button>
+                <button
+                  className="cancel"
+                  type="button"
+                  onClick={() => navigate("/login")}
+                >
+                  Cancel
                 </button>
               </div>
             </Form>
