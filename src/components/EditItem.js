@@ -4,24 +4,11 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
-import usStateAbbreviations from "./StateAbbs";
-import { v4 as uuidv4 } from "uuid";
-import { userProducts } from "../utils/products";
 
-function EditItem({ onClose, ...props }) {
-  const [products, setProducts] = useState(userProducts);
-  const { product } = props;
-  const { name, state, zip, productPrice } = product;
-  const oldKey = product.key;
-  const initialValues = {
-    key: uuidv4(),
-    name: name,
-    state: state,
-    zip: zip,
-    productPrice: productPrice,
-    salesTax: 0,
-    totalPrice: 0,
-  };
+import usStateAbbreviations from "./StateAbbs";
+
+function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
+  const [editedProduct, setEditedProduct] = useState(product); // Use product as initial state
 
   const validationSchema = Yup.object({
     name: Yup.string().max(10, "Maximum of 10 characters").required("Required"),
@@ -36,35 +23,26 @@ function EditItem({ onClose, ...props }) {
       .required("Required"),
   });
 
-  const onSubmit = (values) => {
-    values.salesTax = function () {
-      return this.productPrice * 0.05;
+  const onSubmit = async (values) => {
+    const updatedValues = {
+      ...values,
+      salesTax: () => values.productPrice * 0.05,
+      totalPrice: () => values.productPrice + values.productPrice * 0.05,
     };
-    values.totalPrice = function () {
-      return this.productPrice + this.salesTax();
-    };
-    values.key = oldKey; // Keep the same key for the updated product
 
-    const updatedProducts = products.map((product) =>
-      product.key === oldKey ? values : product
-    );
-
-    setProducts(updatedProducts); // Update the state with the updated products
-    userProducts.splice(
-      userProducts.findIndex((product) => product.key === oldKey),
-      1,
-      values
-    ); // Replace the product in the userProducts array with the updated values
-    console.log(userProducts);
+    await setEditedProduct(updatedValues);
+    updateProduct(updatedValues); // Call the updateProduct function from Home component
+    updateUserProducts(updatedValues); // Call the updateUserProducts function from Home component
     onClose();
   };
 
   const onCancel = () => {
     onClose();
   };
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={editedProduct} // Use editedProduct as initialValues
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
@@ -76,7 +54,9 @@ function EditItem({ onClose, ...props }) {
                 <div className="add-item-form">
                   <Form className="add-item-modal-shadow-control">
                     <div className="new-item-position">
-                      <label className="add-item-title">Edit "{name}"</label>
+                      <label className="add-item-title">
+                        Edit "{product.name}"
+                      </label>
                     </div>
                     <FormikControl
                       control="input"

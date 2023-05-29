@@ -4,15 +4,16 @@ import { FiTrash2 } from "react-icons/fi";
 
 import NavBar from "../components/NavBar";
 import AddItem from "../components/AddItem";
-import EditItem from "../components/EditItem"; // Import the EditItem component
+import EditItem from "../components/EditItem";
 import { fetchUser } from "../utils/fetchUser";
-import { userProducts } from "../utils/products";
+import { userProducts as initialUserProducts } from "../utils/products";
 
 function Home() {
+  const [userProducts, setUserProducts] = useState(initialUserProducts);
+  const [products, setProducts] = useState(userProducts);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
-  const [products, setProducts] = useState(userProducts);
-  const [editProduct, setEditProduct] = useState(null); // Track the product being edited
+  const [editProduct, setEditProduct] = useState(null);
   const userInfo = fetchUser();
 
   const handleAddItemClick = () => {
@@ -21,17 +22,32 @@ function Home() {
 
   const handleEditItemClick = (product) => {
     setShowEditItem(true);
-    setEditProduct(product); // Set the product being edited
+    setEditProduct(product);
   };
 
   const handleCloseModal = () => {
     setShowAddItem(false);
     setShowEditItem(false);
-    setEditProduct(null); // Clear the edit product
+    setEditProduct(null);
   };
 
   const addProduct = (product) => {
     setProducts([...products, product]);
+    setUserProducts([...userProducts, product]);
+  };
+
+  const updateProduct = (updatedProduct) => {
+    const updatedProducts = products.map((p) =>
+      p.key === updatedProduct.key ? updatedProduct : p
+    );
+    setProducts(updatedProducts);
+  };
+
+  const updateUserProducts = (updatedProduct) => {
+    const updatedUserProducts = userProducts.map((p) =>
+      p.key === updatedProduct.key ? updatedProduct : p
+    );
+    setUserProducts(updatedUserProducts);
   };
 
   const handleRemove = (key) => {
@@ -46,12 +62,24 @@ function Home() {
           const { key, name, productPrice, state, zip } = product;
           return (
             <div key={key} className="product-info">
-              <h3>{name} | </h3>
-              <p>Product Price: ${productPrice} | </p>
-              <p>Sales Tax: ${product.salesTax()} | </p>
-              <p>Total Cost: ${product.totalPrice()} | </p>
-              <p>State: {state} | </p>
-              <p>Zip Code: {zip}</p>
+              <h2>{name}</h2>
+              <div className="product-details">
+                <p>
+                  Product Price: <b>${productPrice}</b>{" "}
+                </p>
+                <p>
+                  Sales Tax: <b>${product.salesTax().toFixed(2)}</b>{" "}
+                </p>
+                <p>
+                  Total Cost: <b>${product.totalPrice().toFixed(2)}</b>{" "}
+                </p>
+                <p>
+                  State: <b>{state}</b>{" "}
+                </p>
+                <p>
+                  Zip Code: <b>{zip}</b>
+                </p>
+              </div>
               <div className="edit-del-btns">
                 <AiFillEdit
                   className="edit-item"
@@ -72,17 +100,22 @@ function Home() {
           className="add-item-btn"
           onClick={handleAddItemClick}
         >
-          <AiOutlineFolderAdd className="add-item-icon" />
+          Add Item <AiOutlineFolderAdd className="add-item-icon" />
         </button>
       </div>
       {showAddItem && (
-        <AddItem onClose={handleCloseModal} addProduct={addProduct} />
+        <AddItem
+          onClose={handleCloseModal}
+          addProduct={addProduct}
+          updateUserProducts={setUserProducts}
+        />
       )}
       {showEditItem && (
         <EditItem
           onClose={handleCloseModal}
-          addProduct={addProduct}
-          product={editProduct} // Pass the editProduct as prop
+          product={editProduct}
+          updateProduct={updateProduct}
+          updateUserProducts={updateUserProducts}
         />
       )}
     </div>

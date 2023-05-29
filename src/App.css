@@ -3,12 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f1f1f1;
 }
 
 .home-container {
   position: relative;
   min-height: 100vh;
+  background-image: url("./assets/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 .login-form {
   display: flex;
@@ -277,7 +279,7 @@ Form button {
   justify-content: space-evenly;
   color: white;
   background-color: rgb(206, 105, 10);
-  width: 50px;
+  width: 120px;
   margin-top: 25px;
   transition: background-color 0.3s ease;
   cursor: pointer;
@@ -286,7 +288,7 @@ Form button {
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  box-shadow: 5px 5px 5px #e2e2e2;
+  box-shadow: 2px 2px 5px #707070bd;
 }
 
 .create-user {
@@ -321,6 +323,19 @@ Form button {
   cursor: pointer;
 }
 
+.logout {
+  border: 2px solid #bd0505;
+  background-color: #f1f1f1;
+  border-radius: 100%;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding: 8px;
+  color: #bd0505;
+  box-shadow: 5px 5px 5px #e2e2e2;
+  cursor: pointer;
+  transition: background-color 0.8s ease;
+}
+
 .login:hover,
 .upload:hover,
 .submit:hover,
@@ -336,6 +351,11 @@ Form button {
 
 .edit-item:hover {
   background-color: rgba(241, 241, 241, 0.767);
+}
+
+.logout:hover {
+  background-color: #bd0505;
+  color: #e2e2e2;
 }
 
 .delete-item:hover {
@@ -409,8 +429,27 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 120px;
   width: 100vw;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+  position: fixed;
+}
+.app-title {
+  display: flex;
+  align-items: center;
+}
+.username {
+  display: flex;
+  align-items: center;
+  top: 7%;
+  margin-left: 3px;
+}
+.book-icon {
+  margin-right: 5px;
+}
+.user-icon {
+  margin-right: 5px;
 }
 
 .app-user {
@@ -421,15 +460,6 @@ select {
   position: relative;
 }
 
-.logout {
-  border: 2px solid #bd0505;
-  border-radius: 100%;
-  margin-right: 50px;
-  padding: 5px;
-  color: #bd0505;
-  box-shadow: 5px 5px 5px #e2e2e2;
-}
-
 /* NAVBAR COMPONENT CSS */
 
 /* PRODUCT DISPLAY CSS */
@@ -437,20 +467,20 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-top: 140px;
 }
 
 .product-info {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   padding-left: 10px;
   padding-right: 10px;
   flex-wrap: wrap;
-  border-radius: 77px;
+  border-radius: 10px;
   background-color: #fdfdfd;
-  box-shadow: 5px 5px 5px #e2e2e2;
-  width: 95vw;
-  margin-bottom: 10px;
+  box-shadow: 2px 2px 2px #707070bd;
+  width: 90vw;
+  margin-right: 4px;
+  margin-bottom: 2px;
 }
 
 .delete-item {
@@ -462,7 +492,7 @@ select {
   margin-left: 10px;
   background-color: #f33939;
   color: #fdfdfd;
-  box-shadow: 5px 5px 5px #e2e2e2;
+  border: 0.05px solid #3333332f;
   justify-content: center;
   align-content: center;
   cursor: pointer;
@@ -477,7 +507,7 @@ select {
   margin-right: 10px;
   background-color: #fdfdfd;
   color: rgb(206, 105, 10);
-  box-shadow: 5px 5px 5px #e2e2e2;
+  border: 0.05px solid #33333341;
   justify-content: center;
   align-content: center;
   cursor: pointer;
@@ -494,31 +524,46 @@ select {
 @media screen and (max-width: 600px) {
   /* Adjust the height for viewport width up to 600px */
   .product-info {
-    height: 170px;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 350px;
+    width: 70vw;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
 }
 
 @media screen and (min-width: 601px) and (max-width: 1200px) {
   /* Adjust the height for viewport width between 601px and 1200px */
   .product-info {
-    height: 60px;
-    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 380px;
+    width: 250px;
+    border-radius: 5px;
+    margin-bottom: 15px;
   }
 }
 
 @media screen and (min-width: 1201px) {
   /* Adjust the height for viewport width above 1200px */
   .product-info {
-    height: 60px;
-    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 380px;
+    width: 250px;
+    border-radius: 5px;
   }
 }
 
 .add-item-placement {
   position: fixed;
   bottom: 20px; /* Adjust the bottom value as per your requirement */
-  left: 90%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
