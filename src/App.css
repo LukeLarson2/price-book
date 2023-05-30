@@ -349,17 +349,9 @@ Form button {
   background-color: rgba(255, 255, 255, 0.767);
 }
 
-.edit-item:hover {
-  background-color: rgba(241, 241, 241, 0.767);
-}
-
 .logout:hover {
   background-color: #bd0505;
   color: #e2e2e2;
-}
-
-.delete-item:hover {
-  background-color: #bb2b2b;
 }
 /* CUSTOMIZE BUTTONS */
 
@@ -468,57 +460,55 @@ select {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-top: 140px;
+  margin-right: 5px;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  background-color: rgb(206, 105, 10);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+}
+.product-title {
+  color: #fafafa;
+  margin-left: 15px;
 }
 
 .product-info {
   display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
   flex-wrap: wrap;
   border-radius: 10px;
   background-color: #fdfdfd;
   box-shadow: 2px 2px 2px #707070bd;
   width: 90vw;
   margin-right: 4px;
-  margin-bottom: 2px;
 }
 
 .delete-item {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 12px;
   margin-left: 10px;
-  background-color: #f33939;
   color: #fdfdfd;
-  border: 0.05px solid #3333332f;
   justify-content: center;
   align-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 .edit-item {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 12px;
-  margin-right: 10px;
-  background-color: #fdfdfd;
-  color: rgb(206, 105, 10);
-  border: 0.05px solid #33333341;
+  margin-right: 7px;
+  color: #fdfdfd;
   justify-content: center;
   align-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .edit-del-btns {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10px;
+  height: 100%;
+  align-items: center;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 600px) {
@@ -526,9 +516,9 @@ select {
   .product-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 350px;
+    justify-content: flex-start;
+    align-items: center;
+    height: 300px;
     width: 70vw;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -539,9 +529,9 @@ select {
   /* Adjust the height for viewport width between 601px and 1200px */
   .product-info {
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 380px;
+    height: 300px;
     width: 250px;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -552,9 +542,9 @@ select {
   /* Adjust the height for viewport width above 1200px */
   .product-info {
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 380px;
+    height: 40vh;
     width: 250px;
     border-radius: 5px;
   }

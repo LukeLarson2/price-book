@@ -10,10 +10,22 @@ function NavBar(props) {
     localStorage.clear();
     navigate("/login");
   };
+
+  const handleTitleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="navbar">
       <div className="app-user">
-        <h2 className="app-title">
+        <h2
+          className="app-title"
+          onClick={handleTitleClick}
+          style={{ cursor: "pointer" }}
+        >
           <BiBookBookmark className="book-icon" />
           Price Book
         </h2>

@@ -62,7 +62,19 @@ function Home() {
           const { key, name, productPrice, state, zip } = product;
           return (
             <div key={key} className="product-info">
-              <h2>{name}</h2>
+              <div className="product-header">
+                <h2 className="product-title">{name}</h2>
+                <div className="edit-del-btns">
+                  <AiFillEdit
+                    className="edit-item"
+                    onClick={() => handleEditItemClick(product)}
+                  />
+                  <FiTrash2
+                    className="delete-item"
+                    onClick={() => handleRemove(key)}
+                  />
+                </div>
+              </div>
               <div className="product-details">
                 <p>
                   Product Price: <b>${productPrice}</b>{" "}
@@ -79,16 +91,6 @@ function Home() {
                 <p>
                   Zip Code: <b>{zip}</b>
                 </p>
-              </div>
-              <div className="edit-del-btns">
-                <AiFillEdit
-                  className="edit-item"
-                  onClick={() => handleEditItemClick(product)}
-                />
-                <FiTrash2
-                  className="delete-item"
-                  onClick={() => handleRemove(key)}
-                />
               </div>
             </div>
           );
