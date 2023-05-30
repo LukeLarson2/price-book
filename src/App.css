@@ -544,7 +544,7 @@ select {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 40vh;
+    height: 300px;
     width: 250px;
     border-radius: 5px;
   }
