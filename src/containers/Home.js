@@ -5,16 +5,15 @@ import { FiTrash2 } from "react-icons/fi";
 import NavBar from "../components/NavBar";
 import AddItem from "../components/AddItem";
 import EditItem from "../components/EditItem";
-import { fetchUser } from "../utils/fetchUser";
 import { userProducts as initialUserProducts } from "../utils/products";
 
-function Home() {
+function Home({ userData }) {
   const [userProducts, setUserProducts] = useState(initialUserProducts);
   const [products, setProducts] = useState(userProducts);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
-  const userInfo = fetchUser();
+  const currentUser = userData.userData[0];
 
   const handleAddItemClick = () => {
     setShowAddItem(true);
@@ -54,11 +53,44 @@ function Home() {
     setProducts(products.filter((product) => product.key !== key));
   };
 
+  const userTestData = [
+    {
+      _id: {
+        $oid: "64779e61db541890fcb824be",
+      },
+      name: "Lucas",
+      email: "lucas.m.larson2@gmail.com",
+      password: "123456",
+      accountType: "Personal",
+      products: [
+        {
+          name: "Headphones",
+          state: "WA",
+          zip: "98513",
+          productPrice: 10,
+          date: "",
+        },
+        {
+          name: "Speaker",
+          state: "WA",
+          zip: "98513",
+          productPrice: 30,
+          date: "",
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="home-container">
-      <NavBar name={userInfo.name} />
+      <NavBar name={currentUser.name} />
       <div className="product-list">
-        {products.map((product) => {
+        {currentUser.products.map((product) => {
+          const salesTax = 0.05;
+
+          const totalPrice =
+            product.productPrice * salesTax + product.productPrice;
+
           const { key, name, productPrice, state, zip } = product;
           return (
             <div key={key} className="product-info">
@@ -80,10 +112,10 @@ function Home() {
                   Product Price: <b>${productPrice}</b>{" "}
                 </p>
                 <p>
-                  Sales Tax: <b>${product.salesTax().toFixed(2)}</b>{" "}
+                  Sales Tax: <b>{salesTax.toFixed(2)}%</b>{" "}
                 </p>
                 <p>
-                  Total Cost: <b>${product.totalPrice().toFixed(2)}</b>{" "}
+                  Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}
                 </p>
                 <p>
                   State: <b>{state}</b>{" "}

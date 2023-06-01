@@ -38,9 +38,26 @@ function RegisterUser({ onClose }) {
 
   const onSubmit = (values) => {
     const updatedValues = { ...values, key: uuidv4() };
-    localStorage.setItem("userData", JSON.stringify(updatedValues));
-    navigate("/home", { replace: true });
+
+    // Send the data to the backend
+    fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedValues),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Data sent to backend:", result);
+        localStorage.setItem("userData", JSON.stringify(result));
+        navigate("/home", { replace: true });
+      })
+      .catch((error) => {
+        console.error("Error sending data to backend:", error);
+      });
   };
+
   return (
     <Formik
       initialValues={initialValues}

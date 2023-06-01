@@ -3,7 +3,6 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import FormikControl from "../components/FormikControl";
-import { userData } from "../backend/TempDB";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -17,10 +16,45 @@ function LoginForm() {
     password: Yup.string().required("Required"),
   });
 
-  const onSubmit = (values) => {
-    userData.push(values);
-    navigate("/home");
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      if (response.ok) {
+        const userData = await response.json();
+
+        // Check if email and password match within backend data
+        const matchUser = await fetch("http://localhost:4000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+
+        if (matchUser.ok) {
+          // Match found
+          localStorage.setItem("user", JSON.stringify(userData));
+          navigate("/home");
+        } else {
+          // No match found
+          setSubmitting(false);
+        }
+      } else {
+        // Invalid credentials
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitting(false);
+    }
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -51,7 +85,8 @@ function LoginForm() {
                   <button
                     className="login"
                     type="submit"
-                    disabled={!formik.isValid}
+                    disabled={!formik.isValid || formik.isSubmitting}
+                    onClick={formik.handleSubmit}
                   >
                     Login
                   </button>

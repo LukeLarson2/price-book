@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import Home from "./containers/Home";
 import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
+import { fetchUser } from "./utils/fetchUser";
 
 function App() {
+  const [userData, setUserData] = useState([]);
+
   const navigate = useNavigate();
   useEffect(() => {
     const User =
@@ -17,12 +20,25 @@ function App() {
       navigate("/login");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const query = async () => {
+      const response = await fetchUser();
+      const data = await response;
+      setUserData(data);
+      // setUserData((prevData) => {
+      //   return { ...prevData, data };
+      // });
+    };
+    query();
+    // userInfo.then((res) => res.json()).then((data) => console.log(data));
+  }, []);
   return (
     <div>
       <Routes>
         <Route path="/*" element={<LoginForm />} />
         <Route path="/user-registration" element={<RegisterUser />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home userData={userData} />} />
       </Routes>
     </div>
   );
