@@ -24,17 +24,21 @@ router
         accountType: "Personal",
         products: [
           {
+            key: uuidv4(),
             name: "Headphones",
             state: "WA",
             zip: "98513",
             productPrice: 10,
+            salesTax: 0.065,
             date: "",
           },
           {
+            key: uuidv4(),
             name: "Speaker",
             state: "WA",
             zip: "98513",
             productPrice: 30,
+            salesTax: 0.065,
             date: "",
           },
         ],
@@ -49,17 +53,21 @@ router
         accountType: "Personal",
         products: [
           {
+            key: uuidv4(),
             name: "Games",
             state: "WA",
             zip: "98513",
             productPrice: 10,
+            salesTax: 0.065,
             date: "",
           },
           {
+            key: uuidv4(),
             name: "Keyboard",
             state: "WA",
             zip: "98513",
             productPrice: 30,
+            salesTax: 0.065,
             date: "",
           },
         ],

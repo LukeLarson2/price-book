@@ -16,37 +16,26 @@ function LoginForm() {
     password: Yup.string().required("Required"),
   });
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const response = await fetch("http://localhost:4000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch("http://localhost:4000/users");
       if (response.ok) {
         const userData = await response.json();
-
-        // Check if email and password match within backend data
-        const matchUser = await fetch("http://localhost:4000/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        });
-
-        if (matchUser.ok) {
-          // Match found
-          localStorage.setItem("user", JSON.stringify(userData));
+        // Find user data based on email and password match
+        const matchedUser = userData.userData.find(
+          (user) =>
+            user.email === values.email && user.password === values.password
+        );
+        if (matchedUser) {
+          // Match found, store user data in local storage
+          localStorage.setItem("userData", JSON.stringify(matchedUser));
           navigate("/home");
         } else {
           // No match found
-          setSubmitting(false);
+          setFieldError("password", "Invalid Email or Password");
         }
       } else {
-        // Invalid credentials
+        // Invalid response
         setSubmitting(false);
       }
     } catch (error) {
@@ -86,7 +75,6 @@ function LoginForm() {
                     className="login"
                     type="submit"
                     disabled={!formik.isValid || formik.isSubmitting}
-                    onClick={formik.handleSubmit}
                   >
                     Login
                   </button>

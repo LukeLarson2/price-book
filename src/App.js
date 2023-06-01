@@ -5,7 +5,6 @@ import "./App.css";
 import Home from "./containers/Home";
 import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
-import { fetchUser } from "./utils/fetchUser";
 
 function App() {
   const [userData, setUserData] = useState([]);
@@ -21,24 +20,24 @@ function App() {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    const query = async () => {
-      const response = await fetchUser();
-      const data = await response;
-      setUserData(data);
-      // setUserData((prevData) => {
-      //   return { ...prevData, data };
-      // });
-    };
-    query();
-    // userInfo.then((res) => res.json()).then((data) => console.log(data));
-  }, []);
+  // useEffect(() => {
+  //   const query = async () => {
+  //     const response = await fetchUser();
+  //     const data = await response;
+  //     setUserData(data);
+  //     // setUserData((prevData) => {
+  //     //   return { ...prevData, data };
+  //     // });
+  //   };
+  //   query();
+  //   // userInfo.then((res) => res.json()).then((data) => console.log(data));
+  // }, []);
   return (
     <div>
       <Routes>
         <Route path="/*" element={<LoginForm />} />
         <Route path="/user-registration" element={<RegisterUser />} />
-        <Route path="/home" element={<Home userData={userData} />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );
