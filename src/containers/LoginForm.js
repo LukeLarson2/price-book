@@ -18,28 +18,25 @@ function LoginForm() {
 
   const onSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const response = await fetch("http://localhost:4000/users");
+      const response = await fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
       if (response.ok) {
         const userData = await response.json();
-        // Find user data based on email and password match
-        const matchedUser = userData.userData.find(
-          (user) =>
-            user.email === values.email && user.password === values.password
-        );
-        if (matchedUser) {
-          // Match found, store user data in local storage
-          localStorage.setItem("userData", JSON.stringify(matchedUser));
-          navigate("/home");
-        } else {
-          // No match found
-          setFieldError("password", "Invalid Email or Password");
-        }
+        localStorage.setItem("userData", JSON.stringify(userData._id));
+        navigate("/home");
       } else {
-        // Invalid response
-        setSubmitting(false);
+        const errorMessage = await response.json();
+        setFieldError("password", errorMessage);
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
       setSubmitting(false);
     }
   };

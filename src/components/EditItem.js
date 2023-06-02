@@ -24,10 +24,15 @@ function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
   });
 
   const onSubmit = async (values) => {
+    const stateTax = usStateAbbreviations.find(
+      (stateInfo) => stateInfo.value === values.state
+    );
+    const totalPrice =
+      values.productPrice * stateTax.salesTax + values.productPrice;
     const updatedValues = {
       ...values,
-      salesTax: () => values.productPrice * 0.05,
-      totalPrice: () => values.productPrice + values.productPrice * 0.05,
+      salesTax: stateTax.salesTax,
+      totalPrice: totalPrice,
     };
 
     await setEditedProduct(updatedValues);

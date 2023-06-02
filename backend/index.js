@@ -3,6 +3,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const router = require("./routes/router");
+const mongoose = require("mongoose");
+require("dotenv/config");
 
 const app = express();
 
@@ -20,7 +22,13 @@ app.use(cors(corsOptions));
 app.use("/users", router);
 app.use("/", router);
 
-const port = 4000;
+const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+mongoose
+  .connect(process.env.DB_URI, dbOptions)
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log(err));
+
+const port = process.env.PORT;
 const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

@@ -2,30 +2,56 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineFolderAdd, AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { useMediaQuery } from "react-responsive";
-
 import NavBar from "../components/NavBar";
 import AddItem from "../components/AddItem";
 import EditItem from "../components/EditItem";
-import { userProducts as initialUserProducts } from "../utils/products";
 import { fetchUser } from "../utils/fetchUser";
 import { TailSpin } from "react-loader-spinner";
 
 function Home() {
-  const [userProducts, setUserProducts] = useState(initialUserProducts);
-  const [products, setProducts] = useState(userProducts);
+  const [user, setUser] = useState([]);
+  const [userProducts, setUserProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const userInfo = fetchUser();
+  const userId = fetchUser();
 
   useEffect(() => {
-    // Simulating API call to fetch user products
-    setTimeout(() => {
-      setProducts(userInfo.products);
-      setIsLoading(false);
-    }, 2000); // Simulating a 2-second delay
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/users", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const usersData = await response.json();
+          const currentUser = usersData.find((user) => user._id === userId);
+          if (currentUser) {
+            setUserProducts(currentUser.products);
+            setUser(currentUser);
+            setProducts(currentUser.products);
+          }
+          setIsLoading(false);
+        } else {
+          throw new Error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+
+  useEffect(() => {
+    setProducts(userProducts); // Update the products whenever userProducts change
+  }, [userProducts]);
 
   const handleAddItemClick = () => {
     setShowAddItem(true);
@@ -69,7 +95,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      <NavBar name={userInfo.name} />
+      <NavBar name={user.name} />
       {isLoading ? (
         <div className="loader-spinner-container">
           <TailSpin
@@ -87,10 +113,7 @@ function Home() {
         <div className="product-list">
           {products.map((product) => {
             const salesTax = product.salesTax;
-
-            const totalPrice =
-              product.productPrice * salesTax + product.productPrice;
-
+            const totalPrice = product.totalPrice;
             const { key, name, productPrice, state, zip } = product;
             return (
               <div key={key} className="product-info">

@@ -4,8 +4,12 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
-import usStateAbbreviations from "./StateAbbs";
 import { v4 as uuidv4 } from "uuid";
+import usStateAbbreviations from "./StateAbbs";
+import axios from "axios";
+
+const newProductKey = uuidv4();
+console.log(newProductKey);
 
 function AddItem({ onClose, addProduct }) {
   const initialValues = {
@@ -15,8 +19,8 @@ function AddItem({ onClose, addProduct }) {
     productPrice: 0,
     salesTax: 0,
     totalPrice: 0,
+    key: "",
   };
-
   const validationSchema = Yup.object({
     name: Yup.string().max(10, "Maximum of 10 characters").required("Required"),
     state: Yup.string().required("Required"),
@@ -31,14 +35,27 @@ function AddItem({ onClose, addProduct }) {
   });
 
   const onSubmit = (values) => {
-    values.salesTax = function () {
-      return this.productPrice * 0.05;
+    const stateTax = usStateAbbreviations.find(
+      (stateInfo) => stateInfo.value === values.state
+    );
+    const totalPrice =
+      values.productPrice * stateTax.salesTax + values.productPrice;
+    values.salesTax = stateTax.salesTax;
+    values.totalPrice = totalPrice;
+    values.key = newProductKey;
+    // addProduct(values);
+    const axiosPostData = async () => {
+      const postData = {
+        ...values,
+        _id: JSON.parse(localStorage.getItem("userData")),
+      };
+      console.log("postData", postData);
+      await axios
+        .post("http://localhost:4000/products", postData)
+        .then((res) => console.log("post success", res.data));
     };
-    values.totalPrice = function () {
-      return this.productPrice + this.salesTax();
-    };
-    values.key = uuidv4();
-    addProduct(values);
+
+    axiosPostData();
     onClose();
   };
   const onCancel = () => {

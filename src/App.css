@@ -292,23 +292,27 @@ Form button {
   font-weight: bold;
   box-shadow: 2px 2px 5px #707070bd;
 }
+.add-item-icon {
+  font-size: 20px;
+}
 
 .add-item-btn-small {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   color: white;
   background-color: rgb(206, 105, 10);
-  width: 120px;
+  width: 60px;
+  height: 60px;
   margin-top: 25px;
   transition: background-color 0.3s ease;
   cursor: pointer;
-  border: none;
-  border-radius: 25px;
-  padding: 10px;
-  font-size: 16px;
+  /* border: 1px solid rgb(221, 221, 221); */
+  border-radius: 100%;
+  /* padding: 10px; */
+  font-size: 30px;
   font-weight: bold;
-  box-shadow: 2px 2px 5px #707070bd;
+  box-shadow: 2px 2px 5px #4a4a4abd;
 }
 
 .create-user {
@@ -360,8 +364,9 @@ Form button {
 .upload:hover,
 .submit:hover,
 .create-user:hover,
-.add-item-btn:hover {
-  background-color: rgba(206, 105, 10, 0.808);
+.add-item-btn:hover,
+.add-item-btn-small:hover {
+  background-color: rgb(33, 92, 180);
 }
 
 .cancel:hover,
@@ -533,6 +538,7 @@ select {
   justify-content: center;
   align-content: center;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 .edit-item {
   margin-right: 7px;
@@ -540,6 +546,12 @@ select {
   justify-content: center;
   align-content: center;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edit-item:hover,
+.delete-item:hover {
+  color: rgb(33, 92, 180);
 }
 
 .edit-del-btns {
@@ -563,6 +575,12 @@ select {
     border-radius: 5px;
     margin-bottom: 10px;
   }
+  .add-item-placement {
+    position: fixed;
+    bottom: 20px; /* Adjust the bottom value as per your requirement */
+    left: 90%;
+    transform: translateX(-50%);
+  }
 }
 
 @media screen and (min-width: 601px) and (max-width: 1200px) {
@@ -571,10 +589,16 @@ select {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 400px;
+    height: 350px;
     width: 250px;
     border-radius: 5px;
     margin-bottom: 15px;
+  }
+  .add-item-placement {
+    position: fixed;
+    bottom: 20px; /* Adjust the bottom value as per your requirement */
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -588,13 +612,12 @@ select {
     width: 250px;
     border-radius: 5px;
   }
-}
-
-.add-item-placement {
-  position: fixed;
-  bottom: 20px; /* Adjust the bottom value as per your requirement */
-  left: 50%;
-  transform: translateX(-50%);
+  .add-item-placement {
+    position: fixed;
+    bottom: 20px; /* Adjust the bottom value as per your requirement */
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 /* PRODUCT DISPLAY CSS */
