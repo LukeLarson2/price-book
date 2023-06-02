@@ -84,73 +84,36 @@ router
         console.error(err);
         res.status(500).json("Server Error");
       });
-  });
-// const userData = [
-//   {
-//     _id: {
-//       $oid: "64779e61db541890fcb824be",
-//     },
-//     name: "Lucas",
-//     email: "lucas.m.larson2@gmail.com",
-//     password: "123456",
-//     accountType: "Personal",
-//     products: [
-//       {
-//         key: uuidv4(),
-//         name: "Headphones",
-//         state: "WA",
-//         zip: "98513",
-//         productPrice: 10,
-//         salesTax: 0.065,
-//         totalPrice: 0.065 * 10 + 10,
-//         date: "",
-//       },
-//       {
-//         key: uuidv4(),
-//         name: "Speaker",
-//         state: "WA",
-//         zip: "98513",
-//         productPrice: 30,
-//         salesTax: 0.065,
-//         totalPrice: 0.065 * 30 + 30,
-//         date: "",
-//       },
-//     ],
-//   },
-//   {
-//     _id: {
-//       $oid: "64779e61db541890fcb824bf",
-//     },
-//     name: "Bob",
-//     email: "email@email.com",
-//     password: "123456",
-//     accountType: "Personal",
-//     products: [
-//       {
-//         key: uuidv4(),
-//         name: "Games",
-//         state: "WA",
-//         zip: "98513",
-//         productPrice: 10,
-//         salesTax: 0.065,
-//         totalPrice: 0.065 * 10 + 10,
-//         date: "",
-//       },
-//       {
-//         key: uuidv4(),
-//         name: "Keyboard",
-//         state: "WA",
-//         zip: "98513",
-//         productPrice: 30,
-//         salesTax: 0.065,
-//         totalPrice: 0.065 * 30 + 30,
-//         date: "",
-//       },
-//     ],
-//   },
-// ];
+  })
+  .delete(async (req, res) => {
+    console.log(req.body);
+    const userId = req.body.userId;
+    const productId = req.body.productId;
 
-//     res.json({ userData });
-//   });
+    if (!userId || !productId) {
+      return res.status(400).json("Invalid request parameters");
+    }
+
+    try {
+      const user = await schemas.Users.findById(userId);
+      console.log(user);
+      if (!user) {
+        return res.status(404).json("User not found");
+      }
+
+      user.products = user.products.filter(
+        (product) => product.key !== productId
+      );
+
+      console.log("user products", user.products);
+
+      await user.save();
+
+      res.status(200).json("Product deleted successfully");
+    } catch (error) {
+      console.error(error);
+      res.status(500).json("Internal Server Error");
+    }
+  });
 
 module.exports = router;

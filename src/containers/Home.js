@@ -10,15 +10,16 @@ import { TailSpin } from "react-loader-spinner";
 
 function Home() {
   const [user, setUser] = useState([]);
-  const [userProducts, setUserProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   const userId = fetchUser();
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:4000/users", {
@@ -32,7 +33,6 @@ function Home() {
           const usersData = await response.json();
           const currentUser = usersData.find((user) => user._id === userId);
           if (currentUser) {
-            setUserProducts(currentUser.products);
             setUser(currentUser);
             setProducts(currentUser.products);
           }
@@ -48,10 +48,6 @@ function Home() {
 
     fetchData();
   }, [userId]);
-
-  useEffect(() => {
-    setProducts(userProducts); // Update the products whenever userProducts change
-  }, [userProducts]);
 
   const handleAddItemClick = () => {
     setShowAddItem(true);
@@ -70,7 +66,6 @@ function Home() {
 
   const addProduct = (product) => {
     setProducts([...products, product]);
-    setUserProducts([...userProducts, product]);
   };
 
   const updateProduct = (updatedProduct) => {
@@ -80,18 +75,36 @@ function Home() {
     setProducts(updatedProducts);
   };
 
-  const updateUserProducts = (updatedProduct) => {
-    const updatedUserProducts = userProducts.map((p) =>
-      p.key === updatedProduct.key ? updatedProduct : p
-    );
-    setUserProducts(updatedUserProducts);
-  };
-
-  const handleRemove = (key) => {
-    setProducts(products.filter((product) => product.key !== key));
+  // const handleRemove = (key) => {
+  //   setProducts(products.filter((product) => product.key !== key));
+  // };
+  const handleRemove = async (key) => {
+    try {
+      const response = await fetch("http://localhost:4000/users", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user._id,
+          productId: key,
+        }),
+      });
+      if (response.ok) {
+        setProducts(products.filter((product) => product.key !== key));
+      } else {
+        throw new Error("Failed to delete product");
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   const isSmallViewport = useMediaQuery({ maxWidth: 600 });
+
+  useEffect(() => {
+    setProducts(products); // Update the products whenever userProducts change
+  }, [products]);
 
   return (
     <div className="home-container">
@@ -175,7 +188,7 @@ function Home() {
         <AddItem
           onClose={handleCloseModal}
           addProduct={addProduct}
-          updateUserProducts={setUserProducts}
+          // updateProducts={setProducts}
         />
       )}
       {showEditItem && (
@@ -183,7 +196,6 @@ function Home() {
           onClose={handleCloseModal}
           product={editProduct}
           updateProduct={updateProduct}
-          updateUserProducts={updateUserProducts}
         />
       )}
     </div>

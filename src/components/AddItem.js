@@ -8,10 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
 
-const newProductKey = uuidv4();
-console.log(newProductKey);
-
 function AddItem({ onClose, addProduct }) {
+  const newProductKey = uuidv4();
   const initialValues = {
     name: "",
     state: "",
@@ -52,7 +50,15 @@ function AddItem({ onClose, addProduct }) {
       console.log("postData", postData);
       await axios
         .post("http://localhost:4000/products", postData)
-        .then((res) => console.log("post success", res.data));
+        .then((res) => {
+          console.log("post success", res.data);
+          addProduct(values); // Add the new product to the list
+          onClose(); // Close the modal
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+          onClose();
+        });
     };
 
     axiosPostData();
