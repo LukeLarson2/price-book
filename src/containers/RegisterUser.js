@@ -65,7 +65,6 @@ function RegisterUser() {
         return response.json();
       })
       .then((result) => {
-        console.log("Data sent to backend:", result);
         navigate("/login", { replace: true });
       })
       .catch((error) => {

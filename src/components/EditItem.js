@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./FormikControl";
@@ -8,7 +8,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import usStateAbbreviations from "./StateAbbs";
 
 function EditItem({ userKey, onClose, product, updateProduct }) {
-  const [editedProduct, setEditedProduct] = useState(product);
+  // const [editedProduct, setEditedProduct] = useState(product);
 
   //--FIELD VALIDATION--
   const validationSchema = Yup.object({
@@ -37,8 +37,7 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
     const updatedValues = {
       ...values,
     };
-
-    await setEditedProduct(updatedValues);
+    // await setEditedProduct(updatedValues);
     await updateProduct(updatedValues);
     onClose();
   };
@@ -49,7 +48,7 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
 
   return (
     <Formik
-      initialValues={editedProduct}
+      initialValues={product}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >

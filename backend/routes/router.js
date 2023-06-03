@@ -68,7 +68,7 @@ router
     const { userId, product } = req.body;
 
     schemas.Products.findOneAndUpdate(
-      { _id: product._id, userKey: userId },
+      { key: product.key, userKey: userId },
       { $set: product },
       { new: true } // This option returns the modified document
     )

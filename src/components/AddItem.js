@@ -40,7 +40,6 @@ function AddItem({ onClose, addProduct }) {
   //--HANDLE SUBMIT--
   const onSubmit = (values) => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    console.log("userdata", userData);
     const stateTax = usStateAbbreviations.find(
       (stateInfo) => stateInfo.value === values.state
     );
@@ -50,12 +49,10 @@ function AddItem({ onClose, addProduct }) {
     values.totalPrice = totalPrice;
     values.userKey = userData._id;
     values.key = uuidv4();
-    console.log("values", values);
     const axiosPostData = async () => {
       const postData = {
         ...values,
       };
-      console.log("post data", postData);
       await axios
         .post("http://localhost:4000/products", postData)
         .then((res) => {
