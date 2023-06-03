@@ -477,7 +477,7 @@ select {
   align-items: center;
 }
 .search-bar {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   display: flex;
   justify-items: center;
   padding-top: 13px;
@@ -486,6 +486,11 @@ select {
   padding-bottom: 10px;
   border: none;
   box-shadow: 1px 1px 1px #707070bd;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar:hover {
+  background-color: #fafafa;
 }
 .search-icon {
   position: absolute;
