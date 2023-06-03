@@ -36,9 +36,6 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
     values.userKey = userKey;
     const updatedValues = {
       ...values,
-      salesTax: stateTax.salesTax,
-      totalPrice,
-      userKey,
     };
 
     await setEditedProduct(updatedValues);

@@ -2,15 +2,9 @@ import React from "react";
 
 import { BiBookBookmark } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useNavigate } from "react-router";
 
 function NavBar(props) {
   const { onChange, value } = props;
-  const navigate = useNavigate();
-  // const logout = () => {
-  //   localStorage.clear();
-  //   navigate("/login");
-  // };
 
   const handleTitleClick = () => {
     window.scrollTo({
