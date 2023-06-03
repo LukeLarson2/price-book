@@ -326,17 +326,17 @@ Form button {
   justify-content: center;
   color: white;
   background-color: rgb(206, 105, 10);
-  width: 50px;
+  width: 170px;
   height: 50px;
   /* height: 60px; */
   margin-top: 15px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
   transition: background-color 0.3s ease;
   cursor: pointer;
   border: none;
-  border-radius: 100%;
+  border-radius: 8px;
   /* padding: 10px; */
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   box-shadow: 2px 2px 5px #4a4a4abd;
 }
@@ -374,17 +374,9 @@ Form button {
 }
 
 .logout {
-  /* border: 2px solid #bd0505;
-  background-color: #f1f1f1;
-  border-radius: 100%;
-  margin-right: 10px;
-  margin-top: 10px;
-  padding: 8px; */
   color: #bd0505;
-  margin-left: 10px;
-  /* box-shadow: 5px 5px 5px #e2e2e2; */
   cursor: pointer;
-  /* transition: background-color 0.8s ease; */
+  transition: transform 0.3s ease;
 }
 
 .login:hover,
@@ -402,10 +394,9 @@ Form button {
   background-color: rgba(255, 255, 255, 0.767);
 }
 
-/* .logout:hover {
-  background-color: #bd0505;
-  color: #e2e2e2;
-} */
+.logout:hover {
+  transform: scale(1.1);
+}
 /* CUSTOMIZE BUTTONS */
 
 /* -- Utilize below styling for no hover fields -- */
@@ -486,9 +477,10 @@ select {
   align-items: center;
 }
 .search-bar {
+  background-color: #fafafa;
   display: flex;
   justify-items: center;
-  padding-top: 10px;
+  padding-top: 13px;
   padding-left: 53px;
   padding-right: 13px;
   padding-bottom: 10px;
@@ -499,36 +491,17 @@ select {
   position: absolute;
   margin-left: 33px;
 }
-/* .app-title {
-  display: flex;
-  align-items: center;
-}
-.username {
-  display: flex;
-  align-items: center;
-  top: 7%;
-  margin-left: 3px;
-} */
 .book-icon {
   margin-right: 5px;
 }
 .user-icon {
   margin-right: 5px;
 }
-
-/* .app-user {
-  display: flexbox;
-  margin-left: 30px;
-} */
 .sort-select {
-  background-color: white;
-  border-radius: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 30px;
   padding-right: 30px;
-  border: none;
-  box-shadow: 1px 1px 1px #707070bd;
 }
 .sort-container {
   display: flex;
@@ -574,6 +547,7 @@ select {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   width: 100%;
+  transition: background-color 0.3s ease;
 }
 .product-title {
   color: #fafafa;
@@ -597,6 +571,10 @@ select {
   flex-direction: column;
   margin-left: 10px;
 }
+.product-info:hover .product-header {
+  background-color: rgb(33, 92, 180);
+}
+
 .delete-item {
   margin-left: 10px;
   color: #fdfdfd;
@@ -616,7 +594,7 @@ select {
 
 .edit-item:hover,
 .delete-item:hover {
-  color: rgb(33, 92, 180);
+  color: #979797;
 }
 
 .edit-del-btns {
@@ -641,25 +619,106 @@ select {
     margin-bottom: 30px;
   }
   .add-item-placement {
+    display: flex;
     position: fixed;
-    bottom: -1px;
+    bottom: 0px;
     height: 80px;
     width: 100%;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  .add-item-btn {
+    margin-bottom: 15px;
+  }
+  .logout-btn-placement {
+    display: flex;
+    position: fixed;
+    left: 90%;
+    bottom: 0px;
+    margin-bottom: 27px;
+    font-size: 25px;
+  }
+
+  .footer-placement {
+    position: fixed;
+    display: flex;
+    justify-content: center;
     background-color: #f1f1f1;
   }
   .search-container {
-    height: 230px;
+    height: 100%;
     align-items: center;
-    top: -40px;
-    /* left: 55%; */
-    margin-top: 60px;
+  }
+  .search-sort {
+    display: flex;
+    align-items: center;
+    margin-top: 130px;
+    width: 100vw;
   }
   .search-bar {
+    width: 70%;
+    height: 37.5px;
+  }
+  .app-title {
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    margin-bottom: 42px;
+  }
+  .welcome {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-bottom: -10px;
+  }
+  .app-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .name {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 20px;
+  }
+  .user-logout-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .name-logout-container {
+    display: flex;
+  }
+  .app-title {
+    margin-left: 20px;
+  }
+  .sort-container {
+    position: absolute;
+    justify-content: flex-start;
     width: 100vw;
+  }
+  .sort-select {
+    border: 0px;
+    width: 50%;
+    border-radius: 0px;
+    box-shadow: 1px 1px 1px #707070bd;
+  }
+  .sort-icon {
+    margin-left: 61%;
+  }
+  .add-item-btn {
+    margin-bottom: 16px;
   }
 }
 
-@media screen and (min-width: 601px) and (max-width: 1200px) {
+@media screen and (min-width: 601px) and (max-width: 1100px) {
   /* Adjust the height for viewport width between 601px and 1200px */
   .product-info {
     flex-direction: column;
@@ -671,28 +730,109 @@ select {
     margin-bottom: 30px;
   }
   .add-item-placement {
+    display: flex;
     position: fixed;
-    bottom: -1px;
-    height: 90px;
+    bottom: 0px;
+    height: 80px;
     width: 100%;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  .add-item-btn {
+    margin-bottom: 15px;
+  }
+  .logout-btn-placement {
+    display: flex;
+    position: fixed;
+    left: 95%;
+    bottom: 0px;
+    margin-bottom: 27px;
+    font-size: 25px;
+  }
+
+  .footer-placement {
+    position: fixed;
+    display: flex;
+    justify-content: center;
     background-color: #f1f1f1;
   }
   .search-container {
-    height: 230px;
+    height: 100%;
     align-items: center;
-    top: -40px;
-    /* left: 55%; */
-    margin-top: 60px;
+    /* top: -40px; */
+    /* margin-top: 60px; */
   }
-  .add-item-btn {
-    margin-left: 15px;
+  .search-sort {
+    display: flex;
+    align-items: center;
+    margin-top: 130px;
+    width: 100vw;
   }
   .search-bar {
+    width: 70%;
+    height: 37.5px;
+  }
+  .app-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .app-title {
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    margin-bottom: 42px;
+  }
+  .welcome {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-bottom: -10px;
+  }
+  .name {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 20px;
+  }
+  .user-logout-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .name-logout-container {
+    display: flex;
+  }
+  .app-title {
+    margin-left: 20px;
+  }
+  .sort-container {
+    position: absolute;
+    justify-content: flex-start;
     width: 100vw;
+    /* margin-left: 10px; */
+  }
+  .sort-select {
+    border: 0px;
+    width: 50%;
+    border-radius: 0px;
+    box-shadow: 1px 1px 1px #707070bd;
+  }
+  .sort-icon {
+    margin-left: 61%;
+  }
+  .add-item-btn {
+    margin-bottom: 16px;
   }
 }
 
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1101px) {
   /* Adjust the height for viewport width above 1200px */
   .product-info {
     flex-direction: column;
@@ -704,10 +844,31 @@ select {
     margin-bottom: 30px;
   }
   .add-item-placement {
+    display: flex;
     position: fixed;
-    margin-top: 16px;
-    left: 67%;
-    transform: translateX(-50%);
+    bottom: 0px;
+    height: 80px;
+    width: 100%;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  .add-item-btn {
+    margin-bottom: 15px;
+  }
+  .logout-btn-placement {
+    display: flex;
+    position: fixed;
+    left: 95%;
+    bottom: 0px;
+    margin-bottom: 27px;
+    font-size: 25px;
+  }
+
+  .footer-placement {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background-color: #f1f1f1;
   }
   .search-container {
     height: 100%;
@@ -721,26 +882,64 @@ select {
     margin-right: 10px;
   }
   .sort-select {
-    width: 150px;
+    width: 160px;
     margin-left: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    box-shadow: 1px 1px 1px #707070bd;
   }
-  .app-user {
+  .search-sort {
     display: flex;
-    justify-content: space-between;
+    margin-left: 170px;
     width: 100%;
   }
   .app-title {
     display: flex;
     align-items: center;
     font-size: 35px;
-    margin-left: 4%;
-    margin-bottom: 32px;
+    margin-bottom: 42px;
+    margin-left: 60px;
   }
-  .username {
+  .welcome {
     display: flex;
     align-items: center;
-    margin-right: 4.25%;
     font-size: 18px;
+    margin-right: 20px;
+    margin-bottom: -10px;
+  }
+  .app-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
+  .user-logout-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 40px;
+    margin-top: 20px;
+  }
+  .name-logout-container {
+    display: flex;
+  }
+  .sort-icon {
+    margin-left: 56.5%;
+    margin-top: 11px;
+  }
+  .search-icon {
+    margin-top: 12px;
   }
 }
 

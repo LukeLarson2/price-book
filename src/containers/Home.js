@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
-import { useMediaQuery } from "react-responsive";
 import { TailSpin } from "react-loader-spinner";
+import { MdLogout } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 //--INTERNAL IMPORTS--
 import NavBar from "../components/NavBar";
@@ -21,6 +22,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
 
+  const navigate = useNavigate();
   //--STORE USER ID FROM LOCAL STORAGE--
   const userData = fetchUser();
   const userDataValues = Object.values(userData).join();
@@ -60,8 +62,12 @@ function Home() {
     };
 
     fetchData();
-  }, [userDataValues, update, search, sortField]);
+  }, [userDataValues, update, search, sortField, userData._id]);
 
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   const handleSortFieldChange = (field) => {
     setSortField(field);
   };
@@ -153,7 +159,6 @@ function Home() {
   };
 
   //--TRACK VIEWPORT SIZE--
-  const isSmallViewport = useMediaQuery({ maxWidth: 600 });
 
   //--UPDATE RENDERED PRODUCTS EFFECT--
   useEffect(() => {
@@ -224,16 +229,8 @@ function Home() {
           })}
         </div>
       )}
-      <div className="add-item-placement">
-        {isSmallViewport ? (
-          <button
-            type="button"
-            className="add-item-btn-small"
-            onClick={handleAddItemClick}
-          >
-            <AiOutlinePlus className="add-item-icon-small" />
-          </button>
-        ) : (
+      <div className="footer-placement">
+        <div className="add-item-placement">
           <button
             type="button"
             className="add-item-btn"
@@ -241,7 +238,10 @@ function Home() {
           >
             Add Item <AiOutlinePlus className="add-item-icon" />
           </button>
-        )}
+        </div>
+        <div className="logout-btn-placement">
+          <MdLogout className="logout" onClick={logout} />
+        </div>
       </div>
       {showAddItem && (
         <AddItem
