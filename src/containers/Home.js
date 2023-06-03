@@ -13,6 +13,7 @@ import { fetchUser } from "../utils/fetchUser";
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [sortField, setSortField] = useState("");
   const [update, setUpdate] = useState(null);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
@@ -28,12 +29,15 @@ function Home() {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/products", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `http://localhost:4000/products?sortBy=${sortField}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           const products = await response.json();
@@ -56,7 +60,11 @@ function Home() {
     };
 
     fetchData();
-  }, [userDataValues, update, search]);
+  }, [userDataValues, update, search, sortField]);
+
+  const handleSortFieldChange = (field) => {
+    setSortField(field);
+  };
 
   //--ADD PRODUCT MODAL ONCLICK HANDLE--
   const handleAddItemClick = () => {
@@ -158,6 +166,7 @@ function Home() {
         name={userData.name}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        onSortChange={(e) => handleSortFieldChange(e.target.value)}
       />
       {isLoading ? (
         <div className="loader-spinner-container">

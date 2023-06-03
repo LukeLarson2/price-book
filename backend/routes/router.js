@@ -57,10 +57,13 @@ router
       .catch((err) => res.status(500).json(err));
   })
   .get((req, res) => {
+    const sortBy = req.query.sortBy || "";
     schemas.Products.find({})
+      .sort(sortBy)
       .then((products) => res.json(products))
       .catch((err) => res.status(500).json(err));
   })
+
   .put((req, res) => {
     const { userId, product } = req.body;
 

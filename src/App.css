@@ -310,8 +310,8 @@ Form button {
   transition: background-color 0.3s ease;
   cursor: pointer;
   border: none;
-  border-radius: 25px;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 9px;
   font-size: 16px;
   font-weight: bold;
   box-shadow: 2px 2px 5px #707070bd;
@@ -499,7 +499,7 @@ select {
   position: absolute;
   margin-left: 33px;
 }
-.app-title {
+/* .app-title {
   display: flex;
   align-items: center;
 }
@@ -508,7 +508,7 @@ select {
   align-items: center;
   top: 7%;
   margin-left: 3px;
-}
+} */
 .book-icon {
   margin-right: 5px;
 }
@@ -516,9 +516,28 @@ select {
   margin-right: 5px;
 }
 
-.app-user {
+/* .app-user {
   display: flexbox;
   margin-left: 30px;
+} */
+.sort-select {
+  background-color: white;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  box-shadow: 1px 1px 1px #707070bd;
+}
+.sort-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.sort-icon {
+  position: absolute;
+  margin-left: 25px;
 }
 
 /* NAVBAR COMPONENT CSS */
@@ -687,7 +706,7 @@ select {
   .add-item-placement {
     position: fixed;
     margin-top: 16px;
-    left: 61%;
+    left: 67%;
     transform: translateX(-50%);
   }
   .search-container {
@@ -699,6 +718,29 @@ select {
   .search-bar {
     border-radius: 8px;
     width: 375px;
+    margin-right: 10px;
+  }
+  .sort-select {
+    width: 150px;
+    margin-left: 10px;
+  }
+  .app-user {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .app-title {
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    margin-left: 4%;
+    margin-bottom: 32px;
+  }
+  .username {
+    display: flex;
+    align-items: center;
+    margin-right: 4.25%;
+    font-size: 18px;
   }
 }
 
