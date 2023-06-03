@@ -7,9 +7,10 @@ import { MdOutlineCancel } from "react-icons/md";
 
 import usStateAbbreviations from "./StateAbbs";
 
-function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
-  const [editedProduct, setEditedProduct] = useState(product); // Use product as initial state
+function EditItem({ userKey, onClose, product, updateProduct }) {
+  const [editedProduct, setEditedProduct] = useState(product);
 
+  //--FIELD VALIDATION--
   const validationSchema = Yup.object({
     name: Yup.string().max(10, "Maximum of 10 characters").required("Required"),
     state: Yup.string().required("Required"),
@@ -23,6 +24,7 @@ function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
       .required("Required"),
   });
 
+  //--FORM SUBMISSION--
   const onSubmit = async (values) => {
     const stateTax = usStateAbbreviations.find(
       (stateInfo) => stateInfo.value === values.state
@@ -32,12 +34,12 @@ function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
     const updatedValues = {
       ...values,
       salesTax: stateTax.salesTax,
-      totalPrice: totalPrice,
+      totalPrice,
+      userKey,
     };
 
     await setEditedProduct(updatedValues);
-    updateProduct(updatedValues); // Call the updateProduct function from Home component
-    updateUserProducts(updatedValues); // Call the updateUserProducts function from Home component
+    await updateProduct(updatedValues);
     onClose();
   };
 
@@ -47,7 +49,7 @@ function EditItem({ onClose, product, updateProduct, updateUserProducts }) {
 
   return (
     <Formik
-      initialValues={editedProduct} // Use editedProduct as initialValues
+      initialValues={editedProduct}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >

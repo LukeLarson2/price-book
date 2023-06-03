@@ -6,11 +6,12 @@ const userSchema = new Schema({
   email: { type: String },
   password: { type: String },
   accountType: { type: String },
-  products: { type: Array },
   joinDate: { type: Date, default: Date.now },
 });
 
 const addProduct = new Schema({
+  userKey: { type: String },
+  key: { type: String },
   name: { type: String },
   productPrice: { type: Number },
   salesTax: { type: Number },

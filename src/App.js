@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
@@ -7,8 +7,6 @@ import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
 
 function App() {
-  const [userData, setUserData] = useState([]);
-
   const navigate = useNavigate();
   useEffect(() => {
     const User =
@@ -20,18 +18,6 @@ function App() {
     }
   }, [navigate]);
 
-  // useEffect(() => {
-  //   const query = async () => {
-  //     const response = await fetchUser();
-  //     const data = await response;
-  //     setUserData(data);
-  //     // setUserData((prevData) => {
-  //     //   return { ...prevData, data };
-  //     // });
-  //   };
-  //   query();
-  //   // userInfo.then((res) => res.json()).then((data) => console.log(data));
-  // }, []);
   return (
     <div>
       <Routes>

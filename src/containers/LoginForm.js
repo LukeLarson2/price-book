@@ -1,24 +1,32 @@
+//--EXTERNAL IMPORTS--
 import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+
+//--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
 
 function LoginForm() {
+  //--SET USE NAVIGATE--
   const navigate = useNavigate();
+
+  //--SET FORM INITIAL VALUES--
   const initialValues = {
     email: "",
     password: "",
   };
 
+  //--VALIDATION--
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid Format").required("Required"),
     password: Yup.string().required("Required"),
   });
 
+  //--HANDLE SUBMIT OF LOGIN REQUEST--
   const onSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const response = await fetch("http://localhost:4000/users", {
+      const response = await fetch("http://localhost:4000/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,11 +36,11 @@ function LoginForm() {
 
       if (response.ok) {
         const userData = await response.json();
-        localStorage.setItem("userData", JSON.stringify(userData._id));
+        localStorage.setItem("userData", JSON.stringify(userData));
         navigate("/home");
       } else {
         const errorMessage = await response.json();
-        setFieldError("password", errorMessage);
+        setFieldError("password", errorMessage.message);
       }
     } catch (error) {
       console.error("Error:", error);

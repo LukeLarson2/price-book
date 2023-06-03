@@ -4,12 +4,14 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
-import { v4 as uuidv4 } from "uuid";
 import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 function AddItem({ onClose, addProduct }) {
-  const newProductKey = uuidv4();
+  //--CREATE NEW KEY FOR EACH PRODUCT--
+
+  //--SET INITIAL VALUES FOR FORM--
   const initialValues = {
     name: "",
     state: "",
@@ -17,8 +19,11 @@ function AddItem({ onClose, addProduct }) {
     productPrice: 0,
     salesTax: 0,
     totalPrice: 0,
+    userKey: "",
     key: "",
   };
+
+  //--VALIDATION--
   const validationSchema = Yup.object({
     name: Yup.string().max(10, "Maximum of 10 characters").required("Required"),
     state: Yup.string().required("Required"),
@@ -32,7 +37,10 @@ function AddItem({ onClose, addProduct }) {
       .required("Required"),
   });
 
+  //--HANDLE SUBMIT--
   const onSubmit = (values) => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    console.log("userdata", userData);
     const stateTax = usStateAbbreviations.find(
       (stateInfo) => stateInfo.value === values.state
     );
@@ -40,20 +48,19 @@ function AddItem({ onClose, addProduct }) {
       values.productPrice * stateTax.salesTax + values.productPrice;
     values.salesTax = stateTax.salesTax;
     values.totalPrice = totalPrice;
-    values.key = newProductKey;
-    // addProduct(values);
+    values.userKey = userData._id;
+    values.key = uuidv4();
+    console.log("values", values);
     const axiosPostData = async () => {
       const postData = {
         ...values,
-        _id: JSON.parse(localStorage.getItem("userData")),
       };
-      console.log("postData", postData);
+      console.log("post data", postData);
       await axios
         .post("http://localhost:4000/products", postData)
         .then((res) => {
-          console.log("post success", res.data);
-          addProduct(values); // Add the new product to the list
-          onClose(); // Close the modal
+          addProduct(values);
+          onClose();
         })
         .catch((error) => {
           console.error("Error adding product:", error);
@@ -64,6 +71,8 @@ function AddItem({ onClose, addProduct }) {
     axiosPostData();
     onClose();
   };
+
+  //--HANDLE CLOSE MODAL--
   const onCancel = () => {
     onClose();
   };

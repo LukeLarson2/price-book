@@ -1,14 +1,20 @@
+//--EXTERNAL IMPORTS--
 import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import FormikControl from "../components/FormikControl";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-function RegisterUser({ onClose }) {
+//--INTERNAL IMPORTS--
+import FormikControl from "../components/FormikControl";
+
+function RegisterUser() {
+  //--SET USE NAVIGATE--
   const navigate = useNavigate();
+
+  //--SET INITAL VALUES TO FORM--
   const initialValues = {
-    key: "",
+    key: uuidv4(),
     name: "",
     email: "",
     accountType: "",
@@ -16,12 +22,14 @@ function RegisterUser({ onClose }) {
     confirmPassword: "",
   };
 
+  //--ACCOUNT TYPES FOR SELECT LIST--
   const accountTypes = [
     { key: "Select account type", value: "" },
     { key: "Personal", value: "personal" },
     { key: "Commercial", value: "commercial" },
   ];
 
+  //--VALIDATION--
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
     email: Yup.string()
@@ -36,22 +44,27 @@ function RegisterUser({ onClose }) {
       .required("Required"),
   });
 
+  //--HANDLE SUBMIT FOR REGISTER USER--
   const onSubmit = (values) => {
-    const updatedValues = { ...values, key: uuidv4() };
+    const updatedValues = { ...values };
 
     // Send the data to the backend
-    fetch("http://localhost:4000/users", {
+    fetch("http://localhost:4000/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedValues),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((result) => {
         console.log("Data sent to backend:", result);
-        localStorage.setItem("userData", JSON.stringify(result));
-        navigate("/home", { replace: true });
+        navigate("/login", { replace: true });
       })
       .catch((error) => {
         console.error("Error sending data to backend:", error);
