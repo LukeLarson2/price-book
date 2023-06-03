@@ -1,6 +1,6 @@
 //-EXTERNAL IMPORTS--
 import React, { useState, useEffect } from "react";
-import { AiOutlineFolderAdd, AiFillEdit } from "react-icons/ai";
+import { AiOutlineFolderAdd, AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { useMediaQuery } from "react-responsive";
 import { TailSpin } from "react-loader-spinner";
@@ -18,6 +18,7 @@ function Home() {
   const [showEditItem, setShowEditItem] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   //--STORE USER ID FROM LOCAL STORAGE--
   const userData = fetchUser();
@@ -37,7 +38,9 @@ function Home() {
         if (response.ok) {
           const products = await response.json();
           const userProducts = products.filter(
-            (product) => userData._id === product.userKey
+            (product) =>
+              userData._id === product.userKey &&
+              product.name.toLowerCase().includes(search.toLowerCase())
           );
           if (userProducts.length > 0) {
             setProducts(userProducts);
@@ -53,7 +56,7 @@ function Home() {
     };
 
     fetchData();
-  }, [userDataValues, update]);
+  }, [userDataValues, update, search]);
 
   //--ADD PRODUCT MODAL ONCLICK HANDLE--
   const handleAddItemClick = () => {
@@ -151,7 +154,11 @@ function Home() {
 
   return (
     <div className="home-container">
-      <NavBar name={userData.name} />
+      <NavBar
+        name={userData.name}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       {isLoading ? (
         <div className="loader-spinner-container">
           <TailSpin
@@ -215,7 +222,7 @@ function Home() {
             className="add-item-btn-small"
             onClick={handleAddItemClick}
           >
-            <AiOutlineFolderAdd className="add-item-icon-small" />
+            <AiOutlinePlus className="add-item-icon-small" />
           </button>
         ) : (
           <button
@@ -223,7 +230,7 @@ function Home() {
             className="add-item-btn"
             onClick={handleAddItemClick}
           >
-            Add Item <AiOutlineFolderAdd className="add-item-icon" />
+            Add Item <AiOutlinePlus className="add-item-icon" />
           </button>
         )}
       </div>

@@ -1,10 +1,11 @@
 import React from "react";
 import { MdLogout } from "react-icons/md";
 import { BiBookBookmark } from "react-icons/bi";
-import { FaUserCircle } from "react-icons/fa";
+import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router";
 
 function NavBar(props) {
+  const { onChange, value } = props;
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -30,12 +31,20 @@ function NavBar(props) {
           Price Book
         </h2>
         <p className="username">
-          <FaUserCircle className="user-icon" />
-          {props.name}
+          {`Welcome, ${props.name}`}
+          <MdLogout className="logout" onClick={logout} />
+          {/* <FaUserCircle className="user-icon" /> */}
         </p>
       </div>
-      <div className="logout-btn-layout">
-        <MdLogout className="logout" onClick={logout} />
+      <div className="search-container">
+        <AiOutlineSearch className="search-icon" />
+        <input
+          type="search"
+          className="search-bar"
+          placeholder="Search products..."
+          value={value}
+          onChange={onChange}
+        />
       </div>
     </div>
   );

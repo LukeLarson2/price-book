@@ -325,17 +325,18 @@ Form button {
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: rgb(33, 92, 180);
-  width: 100px;
-  height: 100px;
+  background-color: rgb(206, 105, 10);
+  width: 50px;
+  height: 50px;
   /* height: 60px; */
-  margin-top: 25px;
+  margin-top: 15px;
+  margin-left: 15px;
   transition: background-color 0.3s ease;
   cursor: pointer;
   border: none;
   border-radius: 100%;
   /* padding: 10px; */
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
   box-shadow: 2px 2px 5px #4a4a4abd;
 }
@@ -373,16 +374,17 @@ Form button {
 }
 
 .logout {
-  border: 2px solid #bd0505;
+  /* border: 2px solid #bd0505;
   background-color: #f1f1f1;
   border-radius: 100%;
-  margin-right: 50px;
+  margin-right: 10px;
   margin-top: 10px;
-  padding: 8px;
+  padding: 8px; */
   color: #bd0505;
-  box-shadow: 5px 5px 5px #e2e2e2;
+  margin-left: 10px;
+  /* box-shadow: 5px 5px 5px #e2e2e2; */
   cursor: pointer;
-  transition: background-color 0.8s ease;
+  /* transition: background-color 0.8s ease; */
 }
 
 .login:hover,
@@ -400,10 +402,10 @@ Form button {
   background-color: rgba(255, 255, 255, 0.767);
 }
 
-.logout:hover {
+/* .logout:hover {
   background-color: #bd0505;
   color: #e2e2e2;
-}
+} */
 /* CUSTOMIZE BUTTONS */
 
 /* -- Utilize below styling for no hover fields -- */
@@ -478,6 +480,25 @@ select {
   margin-bottom: 20px;
   position: fixed;
 }
+.search-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.search-bar {
+  display: flex;
+  justify-items: center;
+  padding-top: 10px;
+  padding-left: 53px;
+  padding-right: 13px;
+  padding-bottom: 10px;
+  border: none;
+  box-shadow: 1px 1px 1px #707070bd;
+}
+.search-icon {
+  position: absolute;
+  margin-left: 33px;
+}
 .app-title {
   display: flex;
   align-items: center;
@@ -498,9 +519,6 @@ select {
 .app-user {
   display: flexbox;
   margin-left: 30px;
-}
-.logout-btn-layout {
-  position: relative;
 }
 
 /* NAVBAR COMPONENT CSS */
@@ -523,7 +541,8 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 140px;
+  padding-top: 170px;
+  padding-bottom: 90px;
   margin-right: 5px;
   margin-left: 5px;
 }
@@ -604,9 +623,20 @@ select {
   }
   .add-item-placement {
     position: fixed;
-    bottom: 8px; /* Adjust the bottom value as per your requirement */
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: -1px;
+    height: 80px;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  .search-container {
+    height: 230px;
+    align-items: center;
+    top: -40px;
+    /* left: 55%; */
+    margin-top: 60px;
+  }
+  .search-bar {
+    width: 100vw;
   }
 }
 
@@ -641,9 +671,19 @@ select {
   }
   .add-item-placement {
     position: fixed;
-    top: 18px; /* Adjust the bottom value as per your requirement */
-    left: 90%;
+    margin-top: 16px;
+    left: 61%;
     transform: translateX(-50%);
+  }
+  .search-container {
+    height: 100%;
+    align-items: center;
+    left: 44%;
+    transform: translateX(-50%);
+  }
+  .search-bar {
+    border-radius: 8px;
+    width: 375px;
   }
 }
 

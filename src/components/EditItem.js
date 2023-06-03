@@ -31,6 +31,9 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
     );
     const totalPrice =
       values.productPrice * stateTax.salesTax + values.productPrice;
+    values.totalPrice = totalPrice;
+    values.salesTax = stateTax.salesTax;
+    values.userKey = userKey;
     const updatedValues = {
       ...values,
       salesTax: stateTax.salesTax,

@@ -8,7 +8,7 @@ router.route("/users/login").post(async (req, res) => {
     const user = await schemas.Users.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "No user found with that email" });
     }
 
     bcrypt.compare(req.body.password, user.password, (err, result) => {
