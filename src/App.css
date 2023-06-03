@@ -619,7 +619,7 @@ select {
     height: 350px;
     width: 65vw;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
   .add-item-placement {
     position: fixed;
@@ -649,12 +649,27 @@ select {
     height: 350px;
     width: 250px;
     border-radius: 5px;
+    margin-bottom: 30px;
   }
   .add-item-placement {
     position: fixed;
-    bottom: 25px; /* Adjust the bottom value as per your requirement */
-    left: 86%;
-    transform: translateX(-50%);
+    bottom: -1px;
+    height: 90px;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  .search-container {
+    height: 230px;
+    align-items: center;
+    top: -40px;
+    /* left: 55%; */
+    margin-top: 60px;
+  }
+  .add-item-btn {
+    margin-left: 15px;
+  }
+  .search-bar {
+    width: 100vw;
   }
 }
 
@@ -667,7 +682,7 @@ select {
     height: 350px;
     width: 250px;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
   .add-item-placement {
     position: fixed;
