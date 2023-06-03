@@ -1,6 +1,6 @@
 //-EXTERNAL IMPORTS--
 import React, { useState, useEffect } from "react";
-import { AiOutlineFolderAdd, AiFillEdit, AiOutlinePlus } from "react-icons/ai";
+import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { useMediaQuery } from "react-responsive";
 import { TailSpin } from "react-loader-spinner";
