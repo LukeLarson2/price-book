@@ -1,0 +1,14 @@
+To run the Price Book App on your local machine, do the following:
+
+1. Download the enitre Price Book source code form this git hub (Both front and backend folders)
+2. Open the root folder "price-book" in Visual Studio
+3. In visual studio, open two command terminals and navigate to the "frontend" directory in one and the "backend" directory in the other
+4. In both directorys execute ```npm install``` and wait for all dependencies to install
+5. In the "backend" root folder create a new file and name it ".env"
+6. Within the .env file add two environment variables, the first will contain the MongoDB URI link with your login credentials stored in a variable named DB_URI and the second will be the default port set to 4000 store in a variable named PORT. It should look something like this:
+
+DB_URI=YOUR CONNECTION STRING HERE
+PORT=4000
+
+7. Save the file
+8. Execute ```npm start``` in both directories
