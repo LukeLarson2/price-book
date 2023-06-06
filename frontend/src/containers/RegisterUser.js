@@ -32,7 +32,7 @@ function RegisterUser() {
   //--VALIDATION--
   const validationSchema = Yup.object({
     name: Yup.string()
-      .max(10, "Please limit to 10 characters")
+      .max(20, "Please limit to 20 characters")
       .required("Required"),
     email: Yup.string()
       .email("Invalid Format (example@email.com)")
