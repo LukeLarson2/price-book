@@ -3,6 +3,21 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const schemas = require("../schemas/schemas");
 
+router.get("/tax-by-zip", async (req, res) => {
+  try {
+    const zipCode = req.query.Zip5Lo;
+    const taxData = await schemas.Taxes.find({
+      $or: [{ Zip5Lo: zipCode }, { Zip5Hi: zipCode }],
+    });
+    if (!taxData) {
+      return false;
+    }
+    res.json(taxData);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 router.route("/users/login").post(async (req, res) => {
   try {
     const user = await schemas.Users.findOne({ email: req.body.email });

@@ -14,6 +14,8 @@ const addProduct = new Schema({
   key: { type: String },
   name: { type: String },
   productPrice: { type: Number },
+  cityTax: { type: Number },
+  stateTax: { type: Number },
   salesTax: { type: Number },
   totalPrice: { type: Number },
   state: { type: String },
@@ -21,9 +23,31 @@ const addProduct = new Schema({
   dateAdded: { type: Date, default: Date.now },
 });
 
+const taxInfo = new Schema({
+  ZipEffDate: { type: String },
+  ZipEndDate: { type: String },
+  Zip5Lo: { type: String },
+  Zip5Hi: { type: String },
+  TaxRegionEffDate: { type: String },
+  TaxRegionEndDate: { type: String },
+  TaxRegionId: { type: String },
+  JurisdictionEffDate: { type: String },
+  JurisdictionEndDate: { type: String },
+  State: { type: String },
+  JurisdictionId: { type: String },
+  LongName: { type: String },
+  JurisdictionTypeId: { type: String },
+  TaxRateEffDate: { type: String },
+  TaxRateEndDate: { type: String },
+  TaxTypeId: { type: String },
+  RateTypeId: { type: String },
+  Rate: { type: String },
+});
+
 const Users = mongoose.model("Users", userSchema, "users");
 const Product = mongoose.model("Product", addProduct, "products");
+const Taxes = mongoose.model("Taxes", taxInfo, "tax-by-zip");
 
-const mySchemas = { Users: Users, Products: Product };
+const mySchemas = { Users: Users, Products: Product, Taxes: Taxes };
 
 module.exports = mySchemas;

@@ -13,6 +13,13 @@ function NavBar(props) {
     });
   };
 
+  const getFirstName = () => {
+    const nameArr = props.name.split(" ");
+    return nameArr[0];
+  };
+
+  const firstName = getFirstName();
+
   return (
     <div className="navbar">
       <div className="app-user">
@@ -30,7 +37,7 @@ function NavBar(props) {
           </p>
           <p className="username name">
             <span className="name-logout-container">
-              <b>{props.name}</b>
+              <b>{firstName}</b>
             </span>
           </p>
         </div>

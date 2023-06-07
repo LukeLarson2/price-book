@@ -535,6 +535,7 @@ select {
 
   /* Optional: Adds a semi-transparent background */
 }
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
@@ -555,6 +556,7 @@ select {
   width: 100%;
   transition: background-color 0.3s ease;
 }
+
 .product-title {
   color: #fafafa;
   margin-left: 15px;
@@ -569,7 +571,9 @@ select {
   width: 90vw;
   margin-right: 20px;
   margin-left: 20px;
+  height: 450px;
 }
+
 .product-details {
   display: flex;
   align-content: flex-start;
@@ -577,6 +581,7 @@ select {
   flex-direction: column;
   margin-left: 10px;
 }
+
 .product-info:hover .product-header {
   background-color: rgb(33, 92, 180);
 }
@@ -589,6 +594,7 @@ select {
   cursor: pointer;
   transition: color 0.3s ease;
 }
+
 .edit-item {
   margin-right: 7px;
   color: #fdfdfd;
@@ -612,6 +618,28 @@ select {
   margin-right: 15px;
 }
 
+.name-logout-container {
+  display: flex;
+  height: 80%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-icon {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-right: 18px;
+}
+
+.user-logout-container {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 600px) {
   /* Adjust the height for viewport width up to 600px */
   .product-info {
@@ -619,7 +647,6 @@ select {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 350px;
     width: 65vw;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -692,17 +719,7 @@ select {
     font-size: 16px;
     margin-right: 20px;
   }
-  .user-logout-container {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  .name-logout-container {
-    display: flex;
-  }
+
   .app-title {
     margin-left: 20px;
   }
@@ -731,7 +748,6 @@ select {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 350px;
     width: 250px;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -805,17 +821,7 @@ select {
     font-size: 16px;
     margin-right: 20px;
   }
-  .user-logout-container {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  .name-logout-container {
-    display: flex;
-  }
+
   .app-title {
     margin-left: 20px;
   }
@@ -845,7 +851,6 @@ select {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 350px;
     width: 250px;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -930,16 +935,7 @@ select {
   }
 
   .user-logout-container {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
-    flex-direction: column;
-    flex-wrap: wrap;
     margin-right: 40px;
-    margin-top: 20px;
-  }
-  .name-logout-container {
-    display: flex;
   }
   .sort-icon {
     margin-left: 56.5%;

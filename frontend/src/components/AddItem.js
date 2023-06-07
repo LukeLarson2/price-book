@@ -17,7 +17,8 @@ function AddItem({ onClose, addProduct }) {
     state: "",
     zip: "",
     productPrice: 0,
-    salesTax: 0,
+    cityTax: 0,
+    stateTax: 0,
     totalPrice: 0,
     userKey: "",
     key: "",
@@ -32,7 +33,6 @@ function AddItem({ onClose, addProduct }) {
       .max(5, "Must be at least 5 digits")
       .required("Required"),
     productPrice: Yup.number()
-      .integer("Please enter a whole number")
       .moreThan(0, "Price must be greater than zero")
       .required("Required"),
   });
@@ -40,33 +40,75 @@ function AddItem({ onClose, addProduct }) {
   //--HANDLE SUBMIT--
   const onSubmit = (values) => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const stateTax = usStateAbbreviations.find(
-      (stateInfo) => stateInfo.value === values.state
-    );
-    const totalPrice =
-      values.productPrice * stateTax.salesTax + values.productPrice;
-    values.salesTax = stateTax.salesTax;
-    values.totalPrice = totalPrice;
-    values.userKey = userData._id;
-    values.key = uuidv4();
-    const axiosPostData = async () => {
-      const postData = {
-        ...values,
-      };
-      await axios
-        .post("http://localhost:4000/products", postData)
-        .then((res) => {
-          addProduct(values);
-          onClose();
-        })
-        .catch((error) => {
-          console.error("Error adding product:", error);
-          onClose();
-        });
+    const fetchData = async (zipCode) => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/tax-by-zip?Zip5Lo=${zipCode}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const taxData = await response.json();
+        return taxData;
+      } catch (error) {
+        console.error("Error fetching tax data:", error);
+      }
     };
 
-    axiosPostData();
-    onClose();
+    const calculatePrice = async () => {
+      let productTax = 0;
+      const taxes = {};
+      const taxData = await fetchData(values.zip);
+      if (!taxData) {
+        console.log("No Tax");
+      } else {
+        taxData.map((tax) => {
+          if (
+            tax.JurisdictionTypeId === "STA" &&
+            (tax.Rate > taxes.stateTax || !taxes.stateTax)
+          ) {
+            return (taxes.stateTax = Number.parseFloat(tax.Rate));
+          } else if (
+            (tax.JurisdictionTypeId === "CTY" ||
+              tax.JurisdictionTypeId === "CIT") &&
+            (tax.Rate > taxes.cityTax || !taxes.cityTax)
+          ) {
+            return (taxes.cityTax = Number.parseFloat(tax.Rate));
+          }
+          return taxes;
+        });
+        productTax = taxes.cityTax + taxes.stateTax;
+      }
+      const totalPrice = values.productPrice * productTax + values.productPrice;
+      values.totalPrice = totalPrice;
+      values.salesTax = productTax;
+      values.userKey = userData._id;
+      values.cityTax = taxes.cityTax;
+      values.stateTax = taxes.stateTax;
+      values.key = uuidv4();
+
+      const axiosPostData = async () => {
+        const postData = {
+          ...values,
+        };
+        await axios
+          .post("http://localhost:4000/products", postData)
+          .then((res) => {
+            addProduct(values);
+            onClose();
+          })
+          .catch((error) => {
+            console.error("Error adding product:", error);
+            onClose();
+          });
+      };
+      axiosPostData();
+    };
+
+    calculatePrice();
   };
 
   //--HANDLE CLOSE MODAL--
