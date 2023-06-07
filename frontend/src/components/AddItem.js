@@ -60,9 +60,13 @@ function AddItem({ onClose, addProduct }) {
 
     const calculatePrice = async () => {
       let productTax = 0;
-      const taxes = {};
+      const taxes = {
+        stateTax: 0,
+        cityTax: 0,
+      };
+
       const taxData = await fetchData(values.zip);
-      if (!taxData) {
+      if (!taxData || taxData.length === 0) {
         console.log("No Tax");
       } else {
         taxData.map((tax) => {

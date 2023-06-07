@@ -15,7 +15,8 @@ import Loader from "../components/Loader";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const [toggleDetails, setToggleDetails] = useState({});
+  const [isDetailsShown, setDetailsShown] = useState({});
+
   const [sortField, setSortField] = useState("");
   const [update, setUpdate] = useState(null);
   const [showAddItem, setShowAddItem] = useState(false);
@@ -192,9 +193,28 @@ function Home() {
               stateTax,
             } = product;
             return (
-              <div key={key} className="product-info">
-                <div className="product-header">
-                  <h2 className="product-title">{name}</h2>
+              <div
+                key={key}
+                className="product-info"
+                style={{ height: isDetailsShown[key] ? "450px" : "80px" }}
+              >
+                <div
+                  className="product-header"
+                  onClick={() =>
+                    setDetailsShown({
+                      ...isDetailsShown,
+                      [key]: !isDetailsShown[key],
+                    })
+                  }
+                >
+                  <h2 className="product-title">
+                    <GoTriangleRight
+                      className={`toggle-product-details ${
+                        isDetailsShown[key] ? "rotated" : ""
+                      }`}
+                    />{" "}
+                    {name}
+                  </h2>
                   <div className="edit-del-btns">
                     <AiFillEdit
                       className="edit-item"
@@ -206,29 +226,31 @@ function Home() {
                     />
                   </div>
                 </div>
-                <div className="product-details">
-                  <p>
-                    Product Price: <b>${productPrice}</b>{" "}
-                  </p>
-                  <p>
-                    Total Tax: <b>{salesTax.toFixed(3) * 100}%</b>{" "}
-                  </p>
-                  <p>
-                    City Tax: <b>{cityTax.toFixed(3) * 100}%</b>{" "}
-                  </p>
-                  <p>
-                    State Tax: <b>{stateTax.toFixed(3) * 100}%</b>{" "}
-                  </p>
-                  <p>
-                    Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}
-                  </p>
-                  <p>
-                    State: <b>{state}</b>{" "}
-                  </p>
-                  <p>
-                    Zip Code: <b>{zip}</b>
-                  </p>
-                </div>
+                {isDetailsShown[key] && (
+                  <div className="product-details">
+                    <p>
+                      Product Price: <b>${productPrice}</b>{" "}
+                    </p>
+                    <p>
+                      Total Tax: <b>{salesTax.toFixed(3) * 100}%</b>{" "}
+                    </p>
+                    <p>
+                      City Tax: <b>{cityTax.toFixed(3) * 100}%</b>{" "}
+                    </p>
+                    <p>
+                      State Tax: <b>{stateTax.toFixed(3) * 100}%</b>{" "}
+                    </p>
+                    <p>
+                      Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}
+                    </p>
+                    <p>
+                      State: <b>{state}</b>{" "}
+                    </p>
+                    <p>
+                      Zip Code: <b>{zip}</b>
+                    </p>
+                  </div>
+                )}
               </div>
             );
           })}
