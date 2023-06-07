@@ -67,7 +67,8 @@ function AddItem({ onClose, addProduct }) {
 
       const taxData = await fetchData(values.zip);
       if (!taxData || taxData.length === 0) {
-        console.log("No Tax");
+        taxes.cityTax = 0;
+        taxes.stateTax = 0;
       } else {
         taxData.map((tax) => {
           if (
@@ -84,8 +85,8 @@ function AddItem({ onClose, addProduct }) {
           }
           return taxes;
         });
-        productTax = taxes.cityTax + taxes.stateTax;
       }
+      productTax = taxes.cityTax + taxes.stateTax;
       const totalPrice = values.productPrice * productTax + values.productPrice;
       values.totalPrice = totalPrice;
       values.salesTax = productTax;
