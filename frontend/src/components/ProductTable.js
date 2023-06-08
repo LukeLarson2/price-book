@@ -3,7 +3,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 function ProductTable({ products, handleEditItemClick, handleRemove }) {
   return (
-    <div>
+    <div className="table-placement">
       <div className="table-header">
         <h3>Name</h3>
         <h3>Price</h3>
@@ -14,8 +14,8 @@ function ProductTable({ products, handleEditItemClick, handleRemove }) {
         <h3>State</h3>
         <h3>Zip Code</h3>
       </div>
-      <div className="table-placement">
-        <div className="table-product-container">
+      <div className="table-product-container">
+        <div className="scrolling-content">
           {products.map((product) => {
             const totalPrice = product.totalPrice;
             const {

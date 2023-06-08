@@ -710,6 +710,7 @@ Form button {
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
 }
 .table-product-container {
   display: flex;
@@ -717,11 +718,13 @@ Form button {
   align-content: flex-start;
   flex-wrap: wrap;
   width: 92%;
-  height: 80%;
+  height: fit-content;
   justify-content: space-between;
-  background-color: #f1f1f1;
+  background-color: #d9d9d9;
   padding-top: 180px;
-  margin-bottom: 120px;
+  padding-bottom: 525px;
+
+  scroll-padding-top: 120px;
 }
 .table-each-product {
   display: flex;
@@ -731,7 +734,7 @@ Form button {
   display: flex;
   align-content: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   width: 100%;
 }
 .table-product-details p {
@@ -739,6 +742,15 @@ Form button {
   justify-content: flex-start;
   width: 130px;
   margin-left: 30px;
+}
+.table-edit-del-btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100px;
+  margin-top: 20px;
+}
+.table-edit-item {
+  margin-right: 15px;
 }
 /* TABLE PRODUCT DISPLAY CSS */
 
