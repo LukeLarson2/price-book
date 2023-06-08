@@ -3,7 +3,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
 
-function ProductList({
+function ProductCards({
   products,
   handleEditItemClick,
   handleRemove,
@@ -50,11 +50,17 @@ function ProductList({
               <div className="edit-del-btns">
                 <AiFillEdit
                   className="edit-item"
-                  onClick={() => handleEditItemClick(product)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEditItemClick(product);
+                  }}
                 />
                 <FiTrash2
                   className="delete-item"
-                  onClick={() => handleRemove(key)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemove(key);
+                  }}
                 />
               </div>
             </div>
@@ -64,13 +70,13 @@ function ProductList({
                   Product Price: <b>${productPrice}</b>{" "}
                 </p>
                 <p>
-                  Total Tax: <b>{salesTax.toFixed(3) * 100}%</b>{" "}
-                </p>
-                <p>
                   City Tax: <b>{cityTax.toFixed(3) * 100}%</b>{" "}
                 </p>
                 <p>
                   State Tax: <b>{stateTax.toFixed(3) * 100}%</b>{" "}
+                </p>
+                <p>
+                  Total Tax: <b>{salesTax.toFixed(3) * 100}%</b>{" "}
                 </p>
                 <p>
                   Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}
@@ -90,4 +96,4 @@ function ProductList({
   );
 }
 
-export default ProductList;
+export default ProductCards;

@@ -1,5 +1,6 @@
 /* Hide the scrollbar track */
 ::-webkit-scrollbar {
+  display: none;
   width: 6px;
 }
 ::-webkit-scrollbar-track {
@@ -186,6 +187,7 @@ Form button {
   font-size: 16px;
   font-weight: bold;
 }
+
 .login-signup {
   display: flex;
   flex-direction: column;
@@ -238,6 +240,8 @@ Form button {
   cursor: pointer;
 }
 .add-item-btn {
+  position: fixed;
+  left: 50%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -250,10 +254,33 @@ Form button {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  padding: 9px;
+  padding: 10px;
   font-size: 16px;
   font-weight: bold;
   box-shadow: 2px 2px 5px #707070bd;
+  transform: translateX(-50%);
+}
+.collapse-btn,
+.expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: grey;
+  background-color: rgb(243, 243, 243);
+  margin-top: 25px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 1px 1px 1px #707070bd;
+}
+.collapse-expand-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  height: 82px;
 }
 .add-item-icon {
   font-size: 20px;
@@ -289,9 +316,10 @@ Form button {
   cursor: pointer;
 }
 .logout {
-  color: #bd0505;
   cursor: pointer;
   transition: transform 0.3s ease;
+  margin-top: 4px;
+  margin-left: 7px;
 }
 .login:hover,
 .upload:hover,
@@ -304,12 +332,12 @@ Form button {
   background-color: rgb(206, 105, 10);
 }
 .cancel:hover,
-.sign-up:hover {
+.sign-up:hover,
+.collapse-btn:hover,
+.expand-btn:hover {
   background-color: rgba(255, 255, 255, 0.767);
 }
-.logout:hover {
-  transform: scale(1.1);
-}
+
 .state-zip {
   display: flex;
   justify-content: flex-start;
@@ -362,9 +390,11 @@ Form button {
   position: fixed;
 }
 .search-container {
-  position: absolute;
+  position: fixed;
   display: flex;
-  align-items: center;
+  align-content: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .search-bar {
   background-color: #f5f5f5;
@@ -391,6 +421,54 @@ Form button {
 .user-icon {
   margin-right: 5px;
 }
+.name-logout-container {
+  display: flex;
+  height: 80%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.user-dropdown {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.user-dropdown-menu {
+  position: fixed;
+  text-align: right;
+  justify-content: flex-end;
+  background-color: #f5f5f5;
+  color: grey;
+  width: 80px;
+  height: 50px;
+  padding: 20px;
+  margin-top: 70px;
+  margin-right: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px #707070bd;
+  z-index: 1;
+}
+.menu-settings {
+  display: flex;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.menu-logout {
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.menu-logout:hover,
+.menu-settings:hover {
+  color: rgb(90, 90, 90);
+}
+.settings {
+  margin-top: 3px;
+  margin-left: 5px;
+}
 .sort-select {
   background-color: #f5f5f5;
   padding-top: 10px;
@@ -407,9 +485,105 @@ Form button {
   position: absolute;
   margin-left: 25px;
 }
+.view-toggle-btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  height: 100%;
+}
+.table-view-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 38px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 1px 1px 1px #707070bd;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.table-view-btn,
+.card-view-btn {
+  color: gray;
+  font-size: 20px;
+}
+
+.table-view-btn-container:hover {
+  background-color: #fafafa;
+}
+.user-icon {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-right: 18px;
+}
+.user-logout-container {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.add-item-placement {
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  height: 80px;
+  width: 100%;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+.logout-btn-placement {
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  margin-bottom: 27px;
+  font-size: 25px;
+}
+.footer-placement {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  bottom: 0px;
+  width: 100%;
+}
+.search-container {
+  height: 100px;
+  align-items: center;
+}
+.app-title {
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: -10px;
+}
+.app-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.name {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.sort-container {
+  position: absolute;
+  justify-content: flex-start;
+  width: 100vw;
+}
 /* NAVBAR COMPONENT CSS */
 
-/* PRODUCT DISPLAY CSS */
+/* CARD PRODUCT DISPLAY CSS */
 .loader-spinner-container {
   display: flex;
   justify-content: center;
@@ -425,7 +599,7 @@ Form button {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  padding-top: 170px;
+  padding-top: 195px;
   padding-bottom: 90px;
   margin-right: 5px;
   margin-left: 5px;
@@ -510,79 +684,63 @@ Form button {
   align-items: center;
   margin-right: 15px;
 }
-.name-logout-container {
-  display: flex;
-  height: 80%;
-  align-items: center;
-  justify-content: flex-end;
-}
-.user-icon {
-  font-size: 20px;
-  margin-top: -10px;
-  margin-right: 18px;
-}
-.user-logout-container {
-  display: flex;
-  height: 100%;
-  align-items: flex-end;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-.add-item-placement {
+/* CARD PRODUCT DISPLAY CSS */
+
+/* TABLE PRODUCT DISPLAY CSS */
+.table-header {
   display: flex;
   position: fixed;
-  bottom: 0px;
-  height: 80px;
-  width: 100%;
-  justify-content: center;
-  background-color: #f1f1f1;
-}
-.logout-btn-placement {
-  display: flex;
-  position: fixed;
-  bottom: 0px;
-  margin-bottom: 27px;
-  font-size: 25px;
-}
-.footer-placement {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  background-color: #f1f1f1;
-}
-.search-container {
-  height: 100%;
-  align-items: center;
-}
-.app-title {
-  display: flex;
-  align-items: center;
-  font-size: 35px;
-}
-.welcome {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  margin-bottom: -10px;
-}
-.app-user {
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 88%;
+  left: 50%;
+  height: 50px;
+  margin-top: 120px;
+  padding-left: 30px;
+  padding-right: 30px;
+  transform: translateX(-50%);
+  background-color: #f1f1f1;
+  border-bottom: 3px solid #555;
 }
-.name {
+.table-header h3 {
+  width: 153px;
+}
+.table-placement {
   display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-.sort-container {
-  position: absolute;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100vw;
+  height: 100vh;
 }
+.table-product-container {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 92%;
+  height: 80%;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  padding-top: 180px;
+  margin-bottom: 120px;
+}
+.table-each-product {
+  display: flex;
+  width: 100%;
+}
+.table-product-details {
+  display: flex;
+  align-content: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.table-product-details p {
+  display: flex;
+  justify-content: flex-start;
+  width: 130px;
+  margin-left: 30px;
+}
+/* TABLE PRODUCT DISPLAY CSS */
 
 /* SMALL VIEWPORT DISPLAY*/
 @media screen and (max-width: 600px) {
@@ -625,6 +783,16 @@ Form button {
   }
   .sort-icon {
     margin-left: 61%;
+  }
+  .collapse-btn {
+    width: 40px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  .expand-btn {
+    width: 40px;
+    margin-left: 5px;
+    margin-right: 15px;
   }
 }
 
@@ -669,6 +837,16 @@ Form button {
   .sort-icon {
     margin-left: 61%;
   }
+  .collapse-btn {
+    width: 40px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  .expand-btn {
+    width: 40px;
+    margin-left: 5px;
+    margin-right: 15px;
+  }
 }
 
 /* LARGE VIEWPORT DISPLAY*/
@@ -680,13 +858,13 @@ Form button {
   }
   .product-list {
     justify-content: flex-start;
+    margin-left: 40px;
   }
   .logout-btn-placement {
     left: 95%;
   }
   .search-container {
     left: 44%;
-    transform: translateX(-50%);
   }
   .search-bar {
     border-radius: 8px;
@@ -724,6 +902,16 @@ Form button {
   }
   .search-icon {
     margin-top: 12px;
+  }
+  .collapse-btn {
+    width: 110px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .expand-btn {
+    width: 110px;
+    margin-left: 10px;
+    margin-right: 60px;
   }
 }
 /* PRODUCT DISPLAY CSS */

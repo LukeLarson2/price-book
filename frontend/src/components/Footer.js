@@ -1,22 +1,75 @@
 import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { MdLogout } from "react-icons/md";
+import { TbArrowsDiagonalMinimize, TbArrowsDiagonal } from "react-icons/tb";
 
-function Footer({ handleAddItemClick, logout }) {
+import { useMediaQuery } from "react-responsive";
+
+function Footer({ handleAddItemClick, isDetailsShown, setDetailsShown }) {
+  const isMediumSmallScreen = useMediaQuery({ maxWidth: 1100 });
+  const handleCollapseAll = () => {
+    // Create a new object where every property is set to false
+    const updatedIsDetailsShown = Object.keys(isDetailsShown).reduce(
+      (acc, curr) => ({ ...acc, [curr]: false }),
+      {}
+    );
+    setDetailsShown(updatedIsDetailsShown);
+  };
+
+  const handleExpandAll = () => {
+    // Create a new object where every property is set to true
+    const updatedIsDetailsShown = Object.keys(isDetailsShown).reduce(
+      (acc, curr) => ({ ...acc, [curr]: true }),
+      {}
+    );
+    setDetailsShown(updatedIsDetailsShown);
+  };
+
   return (
     <div className="footer-placement">
-      <div className="add-item-placement">
-        <button
-          type="button"
-          className="add-item-btn"
-          onClick={handleAddItemClick}
-        >
-          Add Item <AiOutlinePlus className="add-item-icon" />
-        </button>
-      </div>
-      <div className="logout-btn-placement">
-        <MdLogout className="logout" onClick={logout} />
-      </div>
+      <button
+        type="button"
+        className="add-item-btn"
+        onClick={handleAddItemClick}
+      >
+        Add Item <AiOutlinePlus className="add-item-icon" />
+      </button>
+      {isMediumSmallScreen ? (
+        <div className="collapse-expand-container">
+          <button
+            type="button"
+            className="collapse-btn"
+            onClick={handleCollapseAll}
+          >
+            <TbArrowsDiagonalMinimize className="col-exp-icons" />
+          </button>
+          <button
+            type="button"
+            className="expand-btn"
+            onClick={handleExpandAll}
+          >
+            <TbArrowsDiagonal className="col-exp-icons" />
+          </button>
+        </div>
+      ) : (
+        <div className="collapse-expand-container">
+          <button
+            type="button"
+            className="collapse-btn"
+            onClick={handleCollapseAll}
+          >
+            <TbArrowsDiagonalMinimize className="col-exp-icons" />
+            Collapse
+          </button>
+          <button
+            type="button"
+            className="expand-btn"
+            onClick={handleExpandAll}
+          >
+            <TbArrowsDiagonal className="col-exp-icons" />
+            Expand
+          </button>
+        </div>
+      )}
     </div>
   );
 }

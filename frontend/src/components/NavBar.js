@@ -1,10 +1,24 @@
-import React from "react";
-
-import { BiBookBookmark } from "react-icons/bi";
+import React, { useState } from "react";
+import { BiBookBookmark, BiTable, BiSpreadsheet } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
+import { GoTriangleDown } from "react-icons/go";
 
-function NavBar(props) {
-  const { onChange, value } = props;
+import UserDropdown from "./UserDropdown";
+
+function NavBar({
+  name,
+  value,
+  onChange,
+  onSortChange,
+  setProductCardView,
+  productCardView,
+}) {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleDropdownClick = (e) => {
+    e.stopPropagation();
+    setDropdownOpen(!isDropdownOpen);
+  };
 
   const handleTitleClick = () => {
     window.scrollTo({
@@ -14,7 +28,7 @@ function NavBar(props) {
   };
 
   const getFirstName = () => {
-    const nameArr = props.name.split(" ");
+    const nameArr = name.split(" ");
     return nameArr[0];
   };
 
@@ -36,10 +50,20 @@ function NavBar(props) {
             <b>Welcome,</b>
           </p>
           <p className="username name">
-            <span className="name-logout-container">
+            <span
+              className="name-logout-container"
+              onClick={handleDropdownClick}
+            >
               <b>{firstName}</b>
+              <GoTriangleDown className="user-dropdown" />
             </span>
           </p>
+          {isDropdownOpen && (
+            <UserDropdown
+              onClose={() => setDropdownOpen(!isDropdownOpen)}
+              className="user-dropdown-menu"
+            />
+          )}
         </div>
       </div>
       <div className="search-container">
@@ -53,15 +77,34 @@ function NavBar(props) {
             onChange={onChange}
           />
           {/* <BiSortAlt2 className="sort-icon" /> */}
-          <select onChange={props.onSortChange} className="sort-select">
+          <select onChange={onSortChange} className="sort-select">
             <option value="">Sort by...</option>
             <option value="name">Name</option>
             <option value="productPrice">Product Price</option>
+            <option value="cityTax">City Tax</option>
+            <option value="stateTax">State Tax</option>
+            <option value="salesTax">Total Tax</option>
             <option value="totalPrice">Total Price</option>
-            <option value="salesTax">Sales Tax</option>
             <option value="state">State</option>
             <option value="zip">Zip code</option>
           </select>
+          <div className="view-toggle-btn-container">
+            {productCardView ? (
+              <div
+                className="table-view-btn-container"
+                onClick={() => setProductCardView(false)}
+              >
+                <BiTable className="table-view-btn" />
+              </div>
+            ) : (
+              <div
+                className="table-view-btn-container"
+                onClick={() => setProductCardView(true)}
+              >
+                <BiSpreadsheet className="card-view-btn" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-function AddItem({ onClose, addProduct }) {
+function AddItem({ onClose, addProduct, setDetailsShown }) {
   //--CREATE NEW KEY FOR EACH PRODUCT--
 
   //--SET INITIAL VALUES FOR FORM--
@@ -71,6 +71,10 @@ function AddItem({ onClose, addProduct }) {
         taxes.stateTax = 0;
       } else {
         taxData.map((tax) => {
+          console.log("tax data", taxData);
+          // if (taxData.State && values.state !== taxData.State) {
+          //   values.state = taxData.State;
+          // }
           if (
             tax.JurisdictionTypeId === "STA" &&
             (tax.Rate > taxes.stateTax || !taxes.stateTax)
@@ -95,6 +99,8 @@ function AddItem({ onClose, addProduct }) {
       values.stateTax = taxes.stateTax;
       values.key = uuidv4();
 
+      setDetailsShown((prevState) => ({ ...prevState, [values.key]: false }));
+
       const axiosPostData = async () => {
         const postData = {
           ...values,
@@ -116,7 +122,11 @@ function AddItem({ onClose, addProduct }) {
     calculatePrice();
   };
 
-  //--HANDLE CLOSE MODAL--
+  const handleOuterClick = (e) => {
+    e.stopPropagation();
+    onClose();
+  };
+
   const onCancel = () => {
     onClose();
   };
@@ -128,8 +138,8 @@ function AddItem({ onClose, addProduct }) {
     >
       {(formik) => {
         return (
-          <div className="modal-container">
-            <div className="modal-content">
+          <div className="modal-container" onClick={handleOuterClick}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <div className="add-item-form">
                 <div className="add-item-form">
                   <Form className="add-item-modal-shadow-control">

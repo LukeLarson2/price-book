@@ -1,6 +1,5 @@
 //-EXTERNAL IMPORTS--
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 //--INTERNAL IMPORTS--
 import NavBar from "../components/NavBar";
@@ -8,8 +7,9 @@ import AddItem from "../components/AddItem";
 import EditItem from "../components/EditItem";
 import { fetchUser } from "../utils/fetchUser";
 import Loader from "../components/Loader";
-import ProductList from "../components/ProductList";
+import ProductCards from "../components/ProductCards";
 import Footer from "../components/Footer";
+import ProductTable from "../components/ProductTable";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -21,8 +21,7 @@ function Home() {
   const [editProduct, setEditProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-
-  const navigate = useNavigate();
+  const [productCardView, setProductCardView] = useState(true);
   //--STORE USER ID FROM LOCAL STORAGE--
   const userData = fetchUser();
   const userDataValues = Object.values(userData).join();
@@ -64,10 +63,6 @@ function Home() {
     fetchData();
   }, [userDataValues, update, search, sortField, userData._id]);
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
   const handleSortFieldChange = (field) => {
     setSortField(field);
   };
@@ -170,11 +165,21 @@ function Home() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onSortChange={(e) => handleSortFieldChange(e.target.value)}
+        onClose={handleCloseModal}
+        setProductCardView={setProductCardView}
+        productCardView={productCardView}
       />
-      {isLoading ? (
-        <Loader />
+      {isLoading && <Loader />}
+      {productCardView ? (
+        <ProductCards
+          products={products}
+          handleEditItemClick={handleEditItemClick}
+          handleRemove={handleRemove}
+          isDetailsShown={isDetailsShown}
+          setDetailsShown={setDetailsShown}
+        />
       ) : (
-        <ProductList
+        <ProductTable
           products={products}
           handleEditItemClick={handleEditItemClick}
           handleRemove={handleRemove}
@@ -182,12 +187,17 @@ function Home() {
           setDetailsShown={setDetailsShown}
         />
       )}
-      <Footer handleAddItemClick={handleAddItemClick} logout={logout} />
+      <Footer
+        handleAddItemClick={handleAddItemClick}
+        isDetailsShown={isDetailsShown}
+        setDetailsShown={setDetailsShown}
+      />
       {showAddItem && (
         <AddItem
           onClose={handleCloseModal}
           addProduct={addProduct}
           userKey={userData._id}
+          setDetailsShown={setDetailsShown}
         />
       )}
       {showEditItem && (
