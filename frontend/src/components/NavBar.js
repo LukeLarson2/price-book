@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BiBookBookmark, BiTable, BiSpreadsheet } from "react-icons/bi";
+import { BiBookBookmark } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { GoTriangleDown } from "react-icons/go";
+import { BsList } from "react-icons/bs";
+import { RiFileListLine } from "react-icons/ri";
 
 import UserDropdown from "./UserDropdown";
 
@@ -105,14 +107,14 @@ function NavBar({
                   className="table-view-btn-container"
                   onClick={() => setProductCardView(false)}
                 >
-                  <BiTable className="table-view-btn" />
+                  <BsList className="table-view-btn" />
                 </div>
               ) : (
                 <div
                   className="table-view-btn-container"
                   onClick={() => setProductCardView(true)}
                 >
-                  <BiSpreadsheet className="card-view-btn" />
+                  <RiFileListLine className="card-view-btn" />
                 </div>
               )}
             </div>
