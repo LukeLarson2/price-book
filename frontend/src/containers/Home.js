@@ -22,10 +22,21 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [productCardView, setProductCardView] = useState(true);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
   //--STORE USER ID FROM LOCAL STORAGE--
   const userData = fetchUser();
   const userDataValues = Object.values(userData).join();
   //--UPDATE USER DATA --
+  useEffect(() => {
+    const handleWindowResize = () => setViewportWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleWindowResize);
+
+    // Cleanup function:
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []); // Empty array ensures effect runs only on mount and unmount
+
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
@@ -170,7 +181,7 @@ function Home() {
         productCardView={productCardView}
       />
       {isLoading && <Loader />}
-      {productCardView ? (
+      {productCardView || viewportWidth <= 1045 ? (
         <ProductCards
           products={products}
           handleEditItemClick={handleEditItemClick}

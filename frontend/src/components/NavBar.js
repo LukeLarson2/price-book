@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiBookBookmark, BiTable, BiSpreadsheet } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { GoTriangleDown } from "react-icons/go";
@@ -13,7 +13,17 @@ function NavBar({
   setProductCardView,
   productCardView,
 }) {
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleWindowResize = () => setViewportWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleWindowResize);
+
+    // Cleanup function:
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []); // Empty array ensures effect runs only on mount and unmount
 
   const handleDropdownClick = (e) => {
     e.stopPropagation();
@@ -88,23 +98,25 @@ function NavBar({
             <option value="state">State</option>
             <option value="zip">Zip code</option>
           </select>
-          <div className="view-toggle-btn-container">
-            {productCardView ? (
-              <div
-                className="table-view-btn-container"
-                onClick={() => setProductCardView(false)}
-              >
-                <BiTable className="table-view-btn" />
-              </div>
-            ) : (
-              <div
-                className="table-view-btn-container"
-                onClick={() => setProductCardView(true)}
-              >
-                <BiSpreadsheet className="card-view-btn" />
-              </div>
-            )}
-          </div>
+          {viewportWidth >= 1044 && (
+            <div className="view-toggle-btn-container">
+              {productCardView ? (
+                <div
+                  className="table-view-btn-container"
+                  onClick={() => setProductCardView(false)}
+                >
+                  <BiTable className="table-view-btn" />
+                </div>
+              ) : (
+                <div
+                  className="table-view-btn-container"
+                  onClick={() => setProductCardView(true)}
+                >
+                  <BiSpreadsheet className="card-view-btn" />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

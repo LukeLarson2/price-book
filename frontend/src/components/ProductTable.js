@@ -13,6 +13,7 @@ function ProductTable({ products, handleEditItemClick, handleRemove }) {
         <h3>Total Price</h3>
         <h3>State</h3>
         <h3>Zip Code</h3>
+        <h3>Edit/Delete</h3>
       </div>
       <div className="table-product-container">
         <div className="scrolling-content">
@@ -30,18 +31,16 @@ function ProductTable({ products, handleEditItemClick, handleRemove }) {
             } = product;
             return (
               <div className="table-each-product" key={key}>
-                <div className="table-product-details">
-                  <p>
-                    <b>{name}</b>
-                  </p>
-                  <p>${productPrice}</p>
-                  <p>{cityTax.toFixed(3) * 100}%</p>
-                  <p>{stateTax.toFixed(3) * 100}%</p>
-                  <p>{salesTax.toFixed(3) * 100}%</p>
-                  <p>${totalPrice.toFixed(2)}</p>
-                  <p>{state}</p>
-                  <p>{zip}</p>
+                <div>
+                  <b>{name}</b>
                 </div>
+                <div>${productPrice}</div>
+                <div>{cityTax.toFixed(3) * 100}%</div>
+                <div>{stateTax.toFixed(3) * 100}%</div>
+                <div>{salesTax.toFixed(3) * 100}%</div>
+                <div>${totalPrice.toFixed(2)}</div>
+                <div>{state}</div>
+                <div>{zip}</div>
                 <div className="table-edit-del-btns">
                   <AiFillEdit
                     className="table-edit-item"
