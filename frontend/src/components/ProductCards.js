@@ -70,13 +70,13 @@ function ProductCards({
                   Product Price: <b>${productPrice}</b>{" "}
                 </p>
                 <p>
-                  City Tax: <b>{cityTax.toFixed(3) * 100}%</b>{" "}
+                  City Tax: <b>{(cityTax * 100).toFixed(2)}%</b>{" "}
                 </p>
                 <p>
-                  State Tax: <b>{stateTax.toFixed(3) * 100}%</b>{" "}
+                  State Tax: <b>{(stateTax * 100).toFixed(2)}%</b>{" "}
                 </p>
                 <p>
-                  Total Tax: <b>{salesTax.toFixed(3) * 100}%</b>{" "}
+                  Total Tax: <b>{(salesTax * 100).toFixed(2)}%</b>{" "}
                 </p>
                 <p>
                   Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}

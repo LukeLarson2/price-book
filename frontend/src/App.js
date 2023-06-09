@@ -5,6 +5,7 @@ import "./stylesheets/App.css";
 import Home from "./containers/Home";
 import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
+import Settings from "./containers/Settings";
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/*" element={<LoginForm />} />
         <Route path="/user-registration" element={<RegisterUser />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </div>
   );

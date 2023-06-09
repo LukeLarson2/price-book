@@ -29,15 +29,18 @@ function ProductTable({ products, handleEditItemClick, handleRemove }) {
               cityTax,
               stateTax,
             } = product;
+            const cityTaxPercent = (cityTax * 100).toFixed(2);
+            const stateTaxPercent = (stateTax * 100).toFixed(2);
+            const totalTaxPercent = (salesTax * 100).toFixed(2);
             return (
               <div className="table-each-product" key={key}>
                 <div>
                   <b>{name}</b>
                 </div>
                 <div>${productPrice}</div>
-                <div>{cityTax.toFixed(3) * 100}%</div>
-                <div>{stateTax.toFixed(3) * 100}%</div>
-                <div>{salesTax.toFixed(3) * 100}%</div>
+                <div>{cityTaxPercent}%</div>
+                <div>{stateTaxPercent}%</div>
+                <div>{totalTaxPercent}%</div>
                 <div>${totalPrice.toFixed(2)}</div>
                 <div>{state}</div>
                 <div>{zip}</div>

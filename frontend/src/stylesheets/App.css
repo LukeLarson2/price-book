@@ -77,6 +77,13 @@ Form {
   display: flex;
   justify-content: center;
 }
+.title {
+  border: none;
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #222222;
+}
 .new-item-position {
   display: flex;
   justify-content: flex-start;
@@ -86,13 +93,6 @@ Form {
   border: none;
   padding-bottom: 20px;
   font-size: 20px;
-  font-weight: bold;
-  color: #222222;
-}
-.title {
-  border: none;
-  padding-bottom: 20px;
-  font-size: 30px;
   font-weight: bold;
   color: #222222;
 }
@@ -223,7 +223,7 @@ Form button {
 .login {
   color: white;
   background-color: rgb(206, 105, 10);
-  width: 80%;
+  width: 100%;
   margin-top: 25px;
   transition: background-color 0.3s ease;
   cursor: pointer;
@@ -388,6 +388,7 @@ Form button {
   background-color: #f1f1f1;
   margin-bottom: 20px;
   position: fixed;
+  z-index: 999;
 }
 .search-container {
   position: fixed;
@@ -427,6 +428,7 @@ Form button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
 }
 .user-dropdown {
   font-size: 15px;
@@ -434,7 +436,8 @@ Form button {
   margin-top: 3px;
 }
 .user-dropdown-menu {
-  position: fixed;
+  display: block;
+  position: absolute;
   text-align: right;
   justify-content: flex-end;
   background-color: #f5f5f5;
@@ -446,7 +449,7 @@ Form button {
   margin-right: 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 2px #707070bd;
-  z-index: 1;
+  z-index: 10;
 }
 .menu-settings {
   display: flex;
@@ -685,7 +688,7 @@ Form button {
 .table-header {
   display: grid;
   grid-template-columns: repeat(9, 1fr); /* Assuming you have 8 columns */
-  background-color: #f9f9f9; /* Any color you like */
+  background-color: #ffffff; /* Any color you like */
   position: sticky;
   margin-bottom: 10px; /* Adjust as needed */
   width: 80vw;
@@ -695,7 +698,7 @@ Form button {
 }
 .table-product-container {
   padding-bottom: 450px;
-  background-color: #b9b9b99f;
+  background-color: #b1b1b15e;
 }
 .table-product-container .scrolling-content .table-each-product {
   display: grid;
@@ -707,9 +710,12 @@ Form button {
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+  transition: background-color 0.3s ease;
   /* Add any other styling as you wish */
 }
-
+.table-product-container .scrolling-content .table-each-product:hover {
+  background-color: #efefefdc;
+}
 .table-product-container
   .scrolling-content
   .table-each-product
@@ -726,7 +732,50 @@ Form button {
   align-items: center;
   margin-right: 30px;
 }
+.table-edit-item:hover,
+.table-delete-item:hover {
+  color: #050505;
+}
+
+.table-edit-item,
+.table-delete-item {
+  cursor: pointer;
+  color: #393939;
+}
 /* TABLE PRODUCT DISPLAY CSS */
+
+/* USER SETTINGS FORM */
+.user-settings-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background-image: url("../assets/christopher-gower-vjMgqUkS8q8-unsplash.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  overscroll-behavior: contain;
+}
+.settings-title-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+.settings-title {
+  border: none;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #222222;
+}
+.settings-gear-icon {
+  margin-right: 10px;
+}
+/* USER SETTINGS FORM */
 
 /* SMALL VIEWPORT DISPLAY*/
 @media screen and (max-width: 600px) {

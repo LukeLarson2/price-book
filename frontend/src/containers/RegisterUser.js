@@ -25,8 +25,9 @@ function RegisterUser() {
   //--ACCOUNT TYPES FOR SELECT LIST--
   const accountTypes = [
     { key: "Select account type", value: "" },
-    { key: "Personal", value: "personal" },
-    { key: "Commercial", value: "commercial" },
+    { key: "Free Trial", value: "Free Trial" },
+    { key: "Personal", value: "Personal" },
+    { key: "Commercial", value: "Commercial" },
   ];
 
   //--VALIDATION--

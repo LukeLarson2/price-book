@@ -61,11 +61,8 @@ function NavBar({
           <p className="username welcome">
             <b>Welcome,</b>
           </p>
-          <p className="username name">
-            <span
-              className="name-logout-container"
-              onClick={handleDropdownClick}
-            >
+          <p className="username name" onClick={handleDropdownClick}>
+            <span className="name-logout-container">
               <b>{firstName}</b>
               <GoTriangleDown className="user-dropdown" />
             </span>

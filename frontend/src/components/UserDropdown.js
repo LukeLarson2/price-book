@@ -16,6 +16,9 @@ function UserDropdown({ onClose }) {
     localStorage.clear();
     navigate("/login");
   };
+  const settings = () => {
+    navigate("/settings");
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -26,12 +29,12 @@ function UserDropdown({ onClose }) {
 
   return (
     <div ref={dropdownRef} className="user-dropdown-menu">
-      <div className="menu-settings">
+      <div className="menu-settings" onClick={settings}>
         Settings
         <BsFillGearFill className="settings" />
       </div>
-      <div className="menu-logout">
-        Logout <MdLogout className="logout" onClick={logout} />
+      <div className="menu-logout" onClick={logout}>
+        Logout <MdLogout className="logout" />
       </div>
     </div>
   );
