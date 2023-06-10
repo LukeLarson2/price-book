@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 
 import fetchUser from "../utils/fetchUser";
 
 import "../stylesheets/SettingsProfile.css";
-
-const userFetcher = fetchUser();
-const userData = userFetcher();
+import { useNavigate } from "react-router";
 
 const SettingsProfile = () => {
+  const navigate = useNavigate;
+  const userFetcher = fetchUser();
+  const userData = userFetcher();
+  useEffect(() => {
+    userFetcher(navigate);
+  }, []);
   return (
     <div className="profile-container">
       <div className="profile-title">
