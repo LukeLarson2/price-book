@@ -47,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #f1f1f1;
 }
 .add-item-form {
@@ -61,14 +61,14 @@ Form {
   padding: 28px;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 7px 7px 11px #b1b1b1, -7px -7px 11px #ffffff;
+  box-shadow: 4px 4px 4px #515151;
 }
 .add-item-modal-shadow-control {
   position: relative;
   padding: 28px;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: none;
+  box-shadow: 2px 2px 3px #515151;
 }
 .form-control {
   margin-bottom: 20px;
@@ -182,10 +182,11 @@ select {
 }
 Form button {
   border: none;
-  border-radius: 25px;
+  border-radius: 8px;
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
 }
 
 .login-signup {
@@ -214,15 +215,14 @@ Form button {
 }
 .submit {
   color: white;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   padding-left: 17px;
   padding-right: 17px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 .login {
   color: white;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   width: 100%;
   margin-top: 25px;
   transition: background-color 0.3s ease;
@@ -233,10 +233,9 @@ Form button {
   align-items: center;
   justify-content: space-evenly;
   color: white;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   width: 100px;
   margin-top: 25px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 .add-item-btn {
@@ -246,18 +245,17 @@ Form button {
   align-items: center;
   justify-content: space-evenly;
   color: white;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   width: 120px;
   margin-top: 25px;
   margin-bottom: 20px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
   border: none;
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  box-shadow: 2px 2px 5px #707070bd;
+  box-shadow: 2px 2px 2px #707070bd;
   transform: translateX(-50%);
 }
 .collapse-btn,
@@ -290,26 +288,24 @@ Form button {
   align-items: center;
   justify-content: space-evenly;
   color: white;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   width: 100px;
   margin-top: 25px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 .cancel {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: rgb(206, 105, 10);
+  color: #ff6600;
   background-color: rgb(243, 243, 243);
   width: 100px;
   margin-top: 25px;
   margin-left: 20px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 .sign-up {
-  color: rgb(206, 105, 10);
+  color: #ff6600;
   background-color: rgb(243, 243, 243);
   width: 100%;
   transition: background-color 0.3s ease;
@@ -326,10 +322,10 @@ Form button {
 .submit:hover,
 .create-user:hover,
 .add-item-btn:hover {
-  background-color: rgb(33, 92, 180);
+  background-color: #0587be;
 }
 .add-item-btn-small:hover {
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
 }
 .cancel:hover,
 .sign-up:hover,
@@ -367,7 +363,7 @@ Form button {
   margin-right: 8px;
 }
 .checkbox-container input[type="checkbox"]:checked + label::before {
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
 }
 
 /* CUSTOM CHECK BOXES */
@@ -466,7 +462,7 @@ Form button {
 
 .menu-logout:hover,
 .menu-settings:hover {
-  color: rgb(90, 90, 90);
+  color: #0587be;
 }
 .settings {
   margin-top: 3px;
@@ -606,22 +602,31 @@ Form button {
   display: flex;
   justify-content: space-between;
   align-content: flex-start;
-  background-color: rgb(206, 105, 10);
+  background-color: #ff6600;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   width: 100%;
-  transition: background-color 0.3s ease;
 }
 .product-title {
   display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #fafafa;
   margin-left: 15px;
-  height: 100%;
+  height: 35px;
+  width: 70%;
   align-content: center;
+}
+.product-title b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 5px;
 }
 .toggle-product-details {
   margin-top: 4px;
-  margin-right: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
   transition: transform 0.3s ease;
 }
 .toggle-product-details.rotated {
@@ -651,7 +656,7 @@ Form button {
   margin-left: 10px;
 }
 .product-info:hover .product-header {
-  background-color: rgb(33, 92, 180);
+  background-color: #0587be;
   cursor: pointer;
 }
 .delete-item {
@@ -683,99 +688,6 @@ Form button {
   margin-right: 15px;
 }
 /* CARD PRODUCT DISPLAY CSS */
-
-/* TABLE PRODUCT DISPLAY CSS */
-.table-header {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr); /* Assuming you have 8 columns */
-  background-color: #ffffff; /* Any color you like */
-  position: sticky;
-  margin-bottom: 10px; /* Adjust as needed */
-  width: 80vw;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* Add any other styling as you wish */
-}
-.table-product-container {
-  padding-bottom: 450px;
-  background-color: #b1b1b15e;
-}
-.table-product-container .scrolling-content .table-each-product {
-  display: grid;
-  grid-template-columns: repeat(
-    9,
-    1fr
-  ); /* The number of columns should match with the header */
-  border-bottom: 1px solid #ddd; /* Add border to separate each row */
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  transition: background-color 0.3s ease;
-  /* Add any other styling as you wish */
-}
-.table-product-container .scrolling-content .table-each-product:hover {
-  background-color: #efefefdc;
-}
-.table-product-container
-  .scrolling-content
-  .table-each-product
-  .table-product-details
-  p {
-  /* Style for your p tags in each cell. Adjust as needed */
-  margin: 0;
-  padding: 5px 10px; /* Add padding to give some space */
-}
-
-.table-edit-del-btns {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-right: 30px;
-}
-.table-edit-item:hover,
-.table-delete-item:hover {
-  color: #050505;
-}
-
-.table-edit-item,
-.table-delete-item {
-  cursor: pointer;
-  color: #393939;
-}
-/* TABLE PRODUCT DISPLAY CSS */
-
-/* USER SETTINGS FORM */
-.user-settings-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  background-image: url("../assets/christopher-gower-vjMgqUkS8q8-unsplash.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  overscroll-behavior: contain;
-}
-.settings-title-position {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-}
-.settings-title {
-  border: none;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: bold;
-  color: #222222;
-}
-.settings-gear-icon {
-  margin-right: 10px;
-}
-/* USER SETTINGS FORM */
 
 /* SMALL VIEWPORT DISPLAY*/
 @media screen and (max-width: 600px) {
@@ -839,7 +751,7 @@ Form button {
 }
 
 /* MEDIUM VIEWPORT DISPLAY*/
-@media screen and (min-width: 601px) and (max-width: 1100px) {
+@media screen and (min-width: 601px) and (max-width: 1166px) {
   .product-info {
     width: 250px;
     border-radius: 5px;
@@ -896,16 +808,10 @@ Form button {
     height: 38px;
     width: 38px;
   }
-  .table-product-container {
-    margin-top: 145px;
-  }
-  .table-header {
-    top: 144.5px;
-  }
 }
 
 /* LARGE VIEWPORT DISPLAY*/
-@media screen and (min-width: 1101px) {
+@media screen and (min-width: 1167px) {
   .product-info {
     width: 250px;
     border-radius: 5px;
@@ -976,12 +882,6 @@ Form button {
     height: 38px;
     width: 38px;
     border-radius: 8px;
-  }
-  .table-header {
-    top: 120px;
-  }
-  .table-product-container {
-    margin-top: 120px;
   }
 }
 /* PRODUCT DISPLAY CSS */

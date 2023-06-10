@@ -26,7 +26,7 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
 
   //--VALIDATION--
   const validationSchema = Yup.object({
-    name: Yup.string().max(10, "Maximum of 10 characters").required("Required"),
+    name: Yup.string().required("Required"),
     state: Yup.string().required("Required"),
     zip: Yup.string()
       .min(5, "Must be at least 5 digits")

@@ -1,0 +1,112 @@
+.table-header {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(9, 1fr);
+  background-color: #ffffff;
+  position: sticky;
+  margin-bottom: 10px; /* Adjust as needed */
+  width: 90vw;
+  padding-left: 20px;
+}
+.table-product-container {
+  padding-bottom: 450px;
+  background-color: #b1b1b15e;
+}
+.table-product-container .scrolling-content .table-each-product {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(
+    9,
+    1fr
+  ); /* The number of columns should match with the header */
+  border-bottom: 1px solid #ddd; /* Add border to separate each row */
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 90vw;
+  transition: background-color 0.3s ease;
+  font-size: 15px;
+  cursor: pointer;
+}
+.table-each-product.table-each-product-details-shown {
+  grid-template-rows: auto auto; /* creates two rows when details are shown */
+}
+.table-each-product.table-each-product-details-shown .table-name {
+  grid-row: 1 / span 2 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  text-overflow: clip !important;
+  overflow: visible !important;
+}
+.table-product-container .scrolling-content .table-each-product .table-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  width: 75%;
+  margin: 0px;
+}
+.table-product-container .scrolling-content .table-each-product:hover {
+  background-color: #efefefdc;
+}
+.table-toggle-details {
+  margin-top: 4px;
+  margin-right: 5px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+.table-toggle-details.rotated {
+  transform: rotate(90deg);
+}
+.table-name {
+  white-space: nowrap;
+}
+
+.table-each-product .table-name b {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.table-product-container
+  .scrolling-content
+  .table-each-product
+  .table-product-details
+  p {
+  margin: 0;
+  padding: 5px 10px; /* Add padding to give some space */
+}
+
+.table-edit-del-btns {
+  align-items: center;
+}
+.table-edit-item:hover,
+.table-delete-item:hover {
+  color: #050505;
+}
+
+.table-edit-item,
+.table-delete-item {
+  cursor: pointer;
+  color: #393939;
+  margin-left: 22px;
+}
+
+/* MEDIUM VIEWPORT DISPLAY*/
+@media screen and (min-width: 601px) and (max-width: 1166px) {
+  .table-product-container {
+    margin-top: 145px;
+  }
+  .table-header {
+    top: 144.5px;
+  }
+}
+
+/* LARGE VIEWPORT DISPLAY*/
+@media screen and (min-width: 1167px) {
+  .table-header {
+    top: 120px;
+  }
+  .table-product-container {
+    margin-top: 120px;
+  }
+}

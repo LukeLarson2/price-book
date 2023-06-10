@@ -4,8 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: { type: String },
   email: { type: String },
-  password: { type: String },
+  phone: { type: String },
   accountType: { type: String },
+  company: { type: String },
+  role: { type: String },
+  password: { type: String },
   joinDate: { type: Date, default: Date.now },
 });
 

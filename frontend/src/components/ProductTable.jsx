@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
-function ProductTable({ products, handleEditItemClick, handleRemove }) {
+import { GoTriangleRight } from "react-icons/go";
+import "../stylesheets/Table.css";
+function ProductTable({
+  products,
+  handleEditItemClick,
+  handleRemove,
+  isDetailsShown,
+  setDetailsShown,
+}) {
+  useEffect(() => {
+    const newDetailsShownState = products.reduce(
+      (acc, product) => {
+        if (acc[product.key] === undefined) {
+          acc[product.key] = false;
+        }
+        return acc;
+      },
+      { ...isDetailsShown }
+    );
+
+    // check if the state is different
+    if (
+      JSON.stringify(newDetailsShownState) !== JSON.stringify(isDetailsShown)
+    ) {
+      setDetailsShown(newDetailsShownState);
+    }
+  }, [products]);
   return (
     <div className="table-placement">
       <div className="table-header">
@@ -32,9 +58,27 @@ function ProductTable({ products, handleEditItemClick, handleRemove }) {
             const cityTaxPercent = (cityTax * 100).toFixed(2);
             const stateTaxPercent = (stateTax * 100).toFixed(2);
             const totalTaxPercent = (salesTax * 100).toFixed(2);
+
             return (
-              <div className="table-each-product" key={key}>
-                <div>
+              <div
+                className={`table-each-product ${
+                  isDetailsShown[key] ? "table-each-product-details-shown" : ""
+                }`}
+                key={key}
+                onClick={() =>
+                  setDetailsShown({
+                    ...isDetailsShown,
+                    [key]: !isDetailsShown[key],
+                  })
+                }
+              >
+                <div className="table-name">
+                  <GoTriangleRight
+                    className={`table-toggle-details ${
+                      isDetailsShown[key] ? "rotated" : ""
+                    }`}
+                  />
+                  {isDetailsShown[key] && <br></br>}
                   <b>{name}</b>
                 </div>
                 <div>${productPrice}</div>

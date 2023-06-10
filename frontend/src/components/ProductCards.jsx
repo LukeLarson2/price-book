@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
@@ -10,6 +10,24 @@ function ProductCards({
   isDetailsShown,
   setDetailsShown,
 }) {
+  useEffect(() => {
+    const newDetailsShownState = products.reduce(
+      (acc, product) => {
+        if (acc[product.key] === undefined) {
+          acc[product.key] = false;
+        }
+        return acc;
+      },
+      { ...isDetailsShown }
+    );
+
+    // check if the state is different
+    if (
+      JSON.stringify(newDetailsShownState) !== JSON.stringify(isDetailsShown)
+    ) {
+      setDetailsShown(newDetailsShownState);
+    }
+  }, [products]);
   return (
     <div className="product-list">
       {products.map((product) => {
@@ -28,7 +46,7 @@ function ProductCards({
           <div
             key={key}
             className="product-info"
-            style={{ height: isDetailsShown[key] ? "450px" : "80px" }}
+            style={{ height: isDetailsShown[key] ? "460px" : "80px" }}
           >
             <div
               className="product-header"
@@ -45,7 +63,7 @@ function ProductCards({
                     isDetailsShown[key] ? "rotated" : ""
                   }`}
                 />{" "}
-                {name}
+                <b>{name}</b>
               </h2>
               <div className="edit-del-btns">
                 <AiFillEdit

@@ -97,7 +97,7 @@ function NavBar({
             <option value="state">State</option>
             <option value="zip">Zip code</option>
           </select>
-          {viewportWidth >= 1044 && (
+          {viewportWidth >= 937 && (
             <div className="view-toggle-btn-container">
               {productCardView ? (
                 <div

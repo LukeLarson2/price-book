@@ -5,7 +5,7 @@ import { TbArrowsDiagonalMinimize, TbArrowsDiagonal } from "react-icons/tb";
 import { useMediaQuery } from "react-responsive";
 
 function Footer({ handleAddItemClick, isDetailsShown, setDetailsShown }) {
-  const isMediumSmallScreen = useMediaQuery({ maxWidth: 1100 });
+  const isMediumSmallScreen = useMediaQuery({ maxWidth: 1166 });
   const handleCollapseAll = () => {
     // Create a new object where every property is set to false
     const updatedIsDetailsShown = Object.keys(isDetailsShown).reduce(

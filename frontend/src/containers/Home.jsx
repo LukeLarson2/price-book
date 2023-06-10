@@ -1,11 +1,12 @@
 //-EXTERNAL IMPORTS--
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //--INTERNAL IMPORTS--
 import NavBar from "../components/NavBar";
 import AddItem from "../components/AddItem";
 import EditItem from "../components/EditItem";
-import { fetchUser } from "../utils/fetchUser";
+import fetchUser from "../utils/fetchUser";
 import Loader from "../components/Loader";
 import ProductCards from "../components/ProductCards";
 import Footer from "../components/Footer";
@@ -25,8 +26,13 @@ function Home() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   //--STORE USER ID FROM LOCAL STORAGE--
-  const userData = fetchUser();
-  const userDataValues = Object.values(userData).join();
+  const navigate = useNavigate();
+  const userFetcher = fetchUser();
+  useEffect(() => {
+    userFetcher(navigate);
+  }, []);
+  const userFetcherValues = Object.values(userFetcher).join();
+  const userData = userFetcher();
   //--UPDATE USER DATA --
   useEffect(() => {
     const handleWindowResize = () => setViewportWidth(window.innerWidth);
@@ -72,7 +78,7 @@ function Home() {
     };
 
     fetchData();
-  }, [userDataValues, update, search, sortField, userData._id]);
+  }, [userFetcherValues, update, search, sortField, userData._id]);
 
   const handleSortFieldChange = (field) => {
     setSortField(field);
@@ -181,7 +187,7 @@ function Home() {
         productCardView={productCardView}
       />
       {isLoading && <Loader />}
-      {productCardView || viewportWidth <= 1045 ? (
+      {productCardView || viewportWidth <= 936 ? (
         <ProductCards
           products={products}
           handleEditItemClick={handleEditItemClick}

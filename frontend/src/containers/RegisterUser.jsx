@@ -17,7 +17,10 @@ function RegisterUser() {
     key: uuidv4(),
     name: "",
     email: "",
+    phone: "",
     accountType: "",
+    company: "",
+    role: "",
     password: "",
     confirmPassword: "",
   };
@@ -36,6 +39,9 @@ function RegisterUser() {
     email: Yup.string()
       .email("Invalid Format (example@email.com)")
       .required("Required"),
+    phone: Yup.string()
+      .matches(/^\d{10}$/, "Invalid phone number, must be 10 digits")
+      .required("Required"),
     accountType: Yup.string().required("Required"),
     password: Yup.string()
       .min(6, "Must contain at least 6 characters")
@@ -45,6 +51,9 @@ function RegisterUser() {
       .required("Required"),
   });
 
+  const validationCheck = () => {
+    console.log(validationSchema);
+  };
   //--HANDLE SUBMIT FOR REGISTER USER--
   const onSubmit = (values) => {
     const updatedValues = { ...values };
@@ -78,6 +87,13 @@ function RegisterUser() {
       onSubmit={onSubmit}
     >
       {(formik) => {
+        const handleBlur = (e) => {
+          const { value, name } = e.target;
+          const onlyNums = value.replace(/[^\d]/g, ""); // removes non-digits
+          formik.setFieldValue(name, onlyNums, true); // The third parameter 'shouldValidate' is set to true to run validation after state update
+          console.log(formik.errors);
+          console.log(formik.touched);
+        };
         return (
           <div className="register-user-form">
             <Form className="add-item-modal-shadow-control">
@@ -97,12 +113,31 @@ function RegisterUser() {
                 name="email"
               />
               <FormikControl
+                control="input"
+                type="text"
+                label="Phone"
+                name="phone"
+                onBlur={handleBlur}
+              />
+              <FormikControl
                 control="select"
                 type="select"
                 label="Account Type"
                 name="accountType"
                 id="account"
                 options={accountTypes}
+              />
+              <FormikControl
+                control="input"
+                type="text"
+                label="Company"
+                name="company"
+              />
+              <FormikControl
+                control="input"
+                type="text"
+                label="Role"
+                name="role"
               />
               <FormikControl
                 control="input"
