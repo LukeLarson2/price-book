@@ -1,0 +1,15 @@
+.account-type-container {
+  display: block;
+  justify-content: flex-start;
+  width: 95%;
+  height: 75%;
+  overflow-y: auto;
+  margin-top: 30px;
+  margin-left: 0px;
+  padding-left: 10px;
+  padding-right: 20px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
+}

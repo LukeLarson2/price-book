@@ -12,7 +12,7 @@ const SettingsProfile = () => {
   const userData = userFetcher();
   useEffect(() => {
     userFetcher(navigate);
-  }, []);
+  }, [navigate, userFetcher]);
   return (
     <div className="profile-container">
       <div className="profile-title">
@@ -27,9 +27,9 @@ const SettingsProfile = () => {
               <h4>Email</h4>
               <p>{userData.email}</p>
             </div>
-            <div className="profile-phone">
-              <h4>Phone</h4>
-              <p>{userData.phone}</p>
+            <div className="profile-company">
+              <h4>Company</h4>
+              <p>{userData.company}</p>
             </div>
           </div>
           <div className="profile-column">
@@ -37,9 +37,9 @@ const SettingsProfile = () => {
               <h4>Account Type</h4>
               <p>{userData.accountType}</p>
             </div>
-            <div className="profile-company">
-              <h4>Company</h4>
-              <p>{userData.company}</p>
+            <div className="profile-phone">
+              <h4>Phone</h4>
+              <p>{userData.phone}</p>
             </div>
             <div className="profile-role">
               <h4>Role</h4>
