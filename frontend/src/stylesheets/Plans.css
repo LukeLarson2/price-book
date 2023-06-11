@@ -1,15 +1,140 @@
 .account-type-container {
-  display: block;
-  justify-content: flex-start;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 95%;
   height: 75%;
   overflow-y: auto;
   margin-top: 30px;
-  margin-left: 0px;
-  padding-left: 10px;
+  margin-left: 15px;
+  padding-left: 5px;
   padding-right: 20px;
+  padding-top: 5px;
   word-wrap: break-word;
   white-space: pre-wrap;
   border-radius: 4px;
   box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
+}
+.free-account-container {
+  display: flex;
+  flex-direction: column;
+}
+.free-account-title-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 10px;
+  height: 20px;
+}
+.account-type-title {
+  display: flex;
+  font-size: 20px;
+}
+.account-header {
+  margin-left: 15px;
+}
+.plan-content {
+  width: 60%;
+  height: 50px;
+}
+
+.plan-details-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #ff6600;
+  border: none;
+  width: 120px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px #515151;
+  margin-bottom: 30px;
+}
+.plan-disc-btn {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.plan-details-btn:hover {
+  background-color: #0587be;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%; /* 50% of the viewport width */
+  height: 70vh; /* 50% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff; /* Background color of the modal */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #515151;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.321); /* Black with 50% opacity */
+  z-index: 1000;
+}
+
+@media screen and (max-width: 697px) {
+  .account-type-title {
+    justify-content: center;
+  }
+  .plan-details-btn {
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  .plan-disc-btn {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 698px) and (max-width: 1166px) {
+  .account-type-title {
+    margin-right: 10px;
+    margin-left: 20px;
+  }
+  .plan-disc-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1167px) {
+  .modal-content {
+    width: 30vw;
+  }
+  .account-type-title {
+    margin-right: 10px;
+    margin-left: 20px;
+  }
+  .plan-disc-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }

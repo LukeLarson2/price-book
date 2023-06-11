@@ -1,4 +1,5 @@
 .settings-container {
+  cursor: default;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,9 +13,8 @@
 
 .settings-window {
   display: flex;
-  width: 800px;
-  height: 500px;
   border-radius: 4px;
+  width: 80%;
   background: #ffffffee;
   box-shadow: 4px 4px 7px #515151;
 }
@@ -23,7 +23,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 30%;
   border-right: 0.5px solid rgb(194, 194, 194);
 }
 
@@ -35,9 +34,6 @@
   width: 100%;
   font-size: 25px;
   border-bottom: 0.5px solid rgb(194, 194, 194);
-}
-.settings-title-icon {
-  margin-right: 10px;
 }
 .settings-sidebar-options {
   display: flex;
@@ -74,11 +70,79 @@
   background-color: #ff6600;
   color: white;
 }
-.settings-content {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 5px;
-  margin-left: 30px;
-  width: 60%;
-  height: 100%;
+
+@media screen and (max-width: 691px) {
+  .settings-sidebar {
+    width: 70px;
+  }
+  .settings-window {
+    width: 85vw;
+    height: 700px;
+  }
+  .settings-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+  }
+  .settings-option-icon {
+    margin-top: 5px;
+    margin-right: 6px;
+    margin-left: 2px;
+  }
+  .settings-title-icon {
+    /* margin-right: 10px; */
+    margin-left: 5px;
+  }
+}
+@media screen and (min-width: 691px) and (max-width: 1017px) {
+  .settings-sidebar {
+    width: 70px;
+  }
+  .settings-window {
+    width: 630px;
+    height: 530px;
+  }
+  .settings-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+  }
+  .settings-option-icon {
+    margin-top: 5px;
+    margin-right: 6px;
+    margin-left: 2px;
+  }
+  .settings-title-icon {
+    /* margin-right: 10px; */
+    margin-left: 5px;
+  }
+}
+@media screen and (min-width: 1017px) {
+  .settings-sidebar {
+    width: 200px;
+  }
+  .settings-window {
+    width: 770px;
+    height: 500px;
+  }
+  .settings-content {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+    margin-left: 30px;
+    width: 60%;
+    height: 100%;
+  }
+  .settings-option-icon {
+    margin-top: 4px;
+    margin-right: 6px;
+    margin-left: 2px;
+  }
+  .settings-title-icon {
+    margin-right: 10px;
+  }
 }

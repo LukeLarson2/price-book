@@ -1,80 +1,125 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
+import FreeAccountDetails from "./FreeAccountDetails";
+import PersonalAccountDetails from "./PersonalAccountDetails";
+import ComanyAccountDetails from "./ComanyAccountDetails";
+
+import { useMediaQuery } from "react-responsive";
 
 import "../stylesheets/Plans.css";
 
 const SettingsPlans = () => {
-  const freeAccount = `Our Free Account is perfect for individuals who are just starting out. Get a taste of what our platform has to offer with no obligations.
+  const [planView, setPlanView] = useState({
+    free: false,
+    personal: false,
+    company: false,
+  });
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
-Key Features:
-- Limited access to basic features.
-- Access to community support forums.
-- Ability to interact and network with other users.
-- Weekly newsletters and updates on new features and opportunities.
-- Includes advertisements.
+  const isMediumSmallScreen = useMediaQuery({ maxWidth: 697 });
 
-Note: The Free Account is not meant for business use and has limitations compared to our premium offerings.`;
+  const handlePlanView = (key) => {
+    setPlanView((prevPlanView) => ({
+      ...prevPlanView,
+      [key]: !prevPlanView[key],
+    }));
+    setModalContent(key);
+    setModalIsOpen(true);
+  };
 
-  const personalAccount = `The Personal Account is designed for individuals who want full access to our platform's capabilities. For a monthly or annual fee, enjoy enhanced features, perks and support.
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalContent(null);
+  };
 
-Key Features:
-- Full access to all basic and advanced features.
-- Priority email support for quick problem resolution.
-- No advertisements for an uninterrupted experience.
-- Personalized suggestions and insights based on your activity.
-- Exclusive access to premium resources, webinars and events.
-- Advanced privacy and security features.
-
-Upgrade to the Personal Account for a complete and personalized experience!`;
-  const companyAccount = `The Company Account is the ideal solution for businesses of all sizes. From startups to enterprises, enhance team collaboration, productivity, and manage all aspects of your business seamlessly.
-
-Key Features:
-- Unlimited access to all features, designed to scale with your business.
-- Priority 24/7 support including phone, email, and live chat.
-- Administrative tools for user management and access controls.
-- Advanced analytics and reporting features for data-driven decision making.
-- API integrations to connect with other platforms and services your company uses.
-- Customizable settings to fit your company's brand and needs.
-- Employee training resources and dedicated account manager.
-- Enhanced security features including multi-factor authentication, data encryption, and compliance tools.
-
-Choose the Company Account to drive your business forward and maximize your team's potential!`;
-
-  const formattedFreePlan = freeAccount.split("\n").map((line, i) => (
-    <React.Fragment key={i}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
-  const formattedPersonalPlan = personalAccount.split("\n").map((line, i) => (
-    <React.Fragment key={i}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
-  const formattedCompanyPlan = companyAccount.split("\n").map((line, i) => (
-    <React.Fragment key={i}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
+  const getModalContent = () => {
+    switch (modalContent) {
+      case "free":
+        return <FreeAccountDetails />;
+      case "personal":
+        return <PersonalAccountDetails />;
+      case "company":
+        return <ComanyAccountDetails />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div>
-      <h2>Account Types</h2>
+      <h2 className="account-header">Account Types</h2>
       <div className="account-type-container">
         <div className="free-account-container">
-          <h3>Free Account</h3>
-          <p>{formattedFreePlan}</p>
+          <div className="account-type-title">
+            <b>Free Account</b>
+          </div>
+          <div className="plan-disc-btn">
+            {!isMediumSmallScreen && (
+              <div className="plan-content">
+                Our Free Account is perfect for individuals who are just
+                starting out.
+              </div>
+            )}
+            <button
+              type="button"
+              className="plan-details-btn"
+              onClick={() => handlePlanView("free")}
+            >
+              Learn More
+            </button>
+          </div>
         </div>
         <div className="personal-account-container">
-          <h3>Personal Account</h3>
-          <p>{formattedPersonalPlan}</p>
+          <div className="account-type-title">
+            <b>Personal Account</b>{" "}
+          </div>
+          <div className="plan-disc-btn">
+            {!isMediumSmallScreen && (
+              <div className="plan-content">
+                The Personal Account is designed for individuals who want full
+                access to our platform's capabilities.
+              </div>
+            )}
+            <button
+              type="button"
+              className="plan-details-btn"
+              onClick={() => handlePlanView("personal")}
+            >
+              Learn More
+            </button>
+          </div>
         </div>
         <div className="company-account-container">
-          <h3>Company Account</h3>
-          <p>{formattedCompanyPlan}</p>
+          <div className="account-type-title">
+            <b>Company Account</b>
+          </div>
+          <div className="plan-disc-btn">
+            {!isMediumSmallScreen && (
+              <div className="plan-content">
+                The Company Account is the ideal solution for businesses of all
+                sizes.
+              </div>
+            )}
+            <button
+              type="button"
+              className="plan-details-btn"
+              onClick={() => handlePlanView("company")}
+            >
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Plan Details"
+        className="modal-content"
+        overlayClassName="overlay"
+      >
+        {getModalContent()}
+      </Modal>
     </div>
   );
 };

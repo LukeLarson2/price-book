@@ -4,6 +4,7 @@ import { BsFillGearFill } from "react-icons/bs";
 import { MdArrowBackIosNew, MdOutlineAccountBalance } from "react-icons/md";
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { useMediaQuery } from "react-responsive";
 
 import SettingsDisplay from "../components/SettingsDisplay";
 import fetchUser from "../utils/fetchUser";
@@ -14,6 +15,8 @@ const Settings = () => {
   const [selectedSetting, setSelectedSetting] = useState("profile");
   const navigate = useNavigate();
   const userFetcher = fetchUser();
+
+  const isMediumSmallScreen = useMediaQuery({ maxWidth: 1017 });
 
   useEffect(() => {
     userFetcher(navigate);
@@ -32,12 +35,13 @@ const Settings = () => {
       <div className="settings-window">
         <div className="settings-sidebar">
           <div className="settings-sidebar-title">
-            <BsFillGearFill className="settings-title-icon" /> Settings
+            <BsFillGearFill className="settings-title-icon" />
+            {!isMediumSmallScreen && "Settings"}
           </div>
           <div className="settings-sidebar-options">
             <p onClick={() => handleGoBack()} key="goBack">
               <MdArrowBackIosNew className="settings-option-icon" />
-              Go back
+              {!isMediumSmallScreen && "Go back"}
             </p>
             <p
               onClick={() => handleSettingChange("profile")}
@@ -45,7 +49,7 @@ const Settings = () => {
               key="profile"
             >
               <AiOutlineUser className="settings-option-icon" />
-              Profile
+              {!isMediumSmallScreen && "Profile"}
             </p>
             <p
               onClick={() => handleSettingChange("plans")}
@@ -53,7 +57,7 @@ const Settings = () => {
               key="plans"
             >
               <MdOutlineAccountBalance className="settings-option-icon" />
-              Explore Plans
+              {!isMediumSmallScreen && "Explore Plans"}
             </p>
             <p
               onClick={() => handleSettingChange("changePassword")}
@@ -61,7 +65,7 @@ const Settings = () => {
               key="changePassword"
             >
               <AiOutlineLock className="settings-option-icon" />
-              Change Password
+              {!isMediumSmallScreen && "Change Password"}
             </p>
             <p
               onClick={() => handleSettingChange("agreement")}
@@ -69,7 +73,7 @@ const Settings = () => {
               key="agreement"
             >
               <HiOutlineDocumentText className="settings-option-icon" />
-              User Agreement
+              {!isMediumSmallScreen && "User Agreement"}
             </p>
           </div>
         </div>
