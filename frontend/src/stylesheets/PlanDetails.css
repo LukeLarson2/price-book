@@ -1,5 +1,88 @@
-.account-details-container {
+.description-container {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  cursor: default;
+}
+.description-title {
+  display: flex;
   justify-content: flex-start;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.description-header {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+.key-features-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.features {
+  font-size: 16px;
+  padding-right: 20px;
+}
+.features li {
+  margin-bottom: 5px;
+}
+
+.footer-banner {
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+.upgrade-cancel-btn-placement {
+  display: flex;
+  justify-content: center;
+}
+
+.upgrade-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #ff6600;
+  width: 100px;
+  margin-top: 25px;
+  margin-right: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+}
+
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #ff6600;
+  background-color: #f6f6f6;
+  width: 100px;
+  margin-top: 25px;
+  margin-left: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+}
+
+.upgrade-btn:hover {
+  background-color: #0587be;
+}
+
+.cancel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.767);
 }

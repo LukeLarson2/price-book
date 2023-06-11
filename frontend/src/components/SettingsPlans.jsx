@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import FreeAccountDetails from "./FreeAccountDetails";
 import PersonalAccountDetails from "./PersonalAccountDetails";
 import ComanyAccountDetails from "./ComanyAccountDetails";
 
-import { useMediaQuery } from "react-responsive";
-
 import "../stylesheets/Plans.css";
 
 const SettingsPlans = () => {
+  useEffect(() => {
+    Modal.setAppElement("#root");
+  }, []);
+
   const [planView, setPlanView] = useState({
     free: false,
     personal: false,
@@ -16,8 +18,6 @@ const SettingsPlans = () => {
   });
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-
-  const isMediumSmallScreen = useMediaQuery({ maxWidth: 697 });
 
   const handlePlanView = (key) => {
     setPlanView((prevPlanView) => ({
@@ -36,11 +36,26 @@ const SettingsPlans = () => {
   const getModalContent = () => {
     switch (modalContent) {
       case "free":
-        return <FreeAccountDetails />;
+        return (
+          <FreeAccountDetails
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+          />
+        );
       case "personal":
-        return <PersonalAccountDetails />;
+        return (
+          <PersonalAccountDetails
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+          />
+        );
       case "company":
-        return <ComanyAccountDetails />;
+        return (
+          <ComanyAccountDetails
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+          />
+        );
       default:
         return null;
     }
@@ -55,12 +70,10 @@ const SettingsPlans = () => {
             <b>Free Account</b>
           </div>
           <div className="plan-disc-btn">
-            {!isMediumSmallScreen && (
-              <div className="plan-content">
-                Our Free Account is perfect for individuals who are just
-                starting out.
-              </div>
-            )}
+            <div className="plan-content">
+              Our Free Account is perfect for individuals who are just starting
+              out.
+            </div>
             <button
               type="button"
               className="plan-details-btn"
@@ -75,12 +88,10 @@ const SettingsPlans = () => {
             <b>Personal Account</b>{" "}
           </div>
           <div className="plan-disc-btn">
-            {!isMediumSmallScreen && (
-              <div className="plan-content">
-                The Personal Account is designed for individuals who want full
-                access to our platform's capabilities.
-              </div>
-            )}
+            <div className="plan-content">
+              The Personal Account is designed for individuals who want full
+              access to our platform.
+            </div>
             <button
               type="button"
               className="plan-details-btn"
@@ -95,12 +106,10 @@ const SettingsPlans = () => {
             <b>Company Account</b>
           </div>
           <div className="plan-disc-btn">
-            {!isMediumSmallScreen && (
-              <div className="plan-content">
-                The Company Account is the ideal solution for businesses of all
-                sizes.
-              </div>
-            )}
+            <div className="plan-content">
+              The Company Account is the ideal solution for businesses of all
+              sizes.
+            </div>
             <button
               type="button"
               className="plan-details-btn"

@@ -73,7 +73,7 @@
 
 @media screen and (max-width: 691px) {
   .settings-sidebar {
-    width: 70px;
+    width: 64px;
   }
   .settings-window {
     width: 85vw;
@@ -98,10 +98,10 @@
 }
 @media screen and (min-width: 691px) and (max-width: 1017px) {
   .settings-sidebar {
-    width: 70px;
+    width: 64px;
   }
   .settings-window {
-    width: 630px;
+    width: 615px;
     height: 530px;
   }
   .settings-content {

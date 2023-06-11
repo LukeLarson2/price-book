@@ -101,4 +101,25 @@ router
       .catch((err) => res.status(500).json(err));
   });
 
+router.route("/users/validate-password").post(async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const user = await schemas.Users.findOne({
+      userKey: userId,
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+      if (err) return res.status(500).json(err);
+
+      res.json({ isValid: result });
+    });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;

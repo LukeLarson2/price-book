@@ -12,6 +12,26 @@ const SettingsProfile = () => {
   const userFetcher = fetchUser();
   const userData = userFetcher();
 
+  const formattedPhone = (userData) => {
+    if (!userData || !userData.phone) {
+      return null;
+    }
+
+    const number = userData.phone;
+    const formattedNumber =
+      number.length === 11
+        ? `+${number[0]} (${number.substring(1, 4)}) ${number.substring(
+            4,
+            7
+          )}-${number.substring(7)}`
+        : `(${number.substring(0, 3)}) ${number.substring(
+            3,
+            6
+          )}-${number.substring(6)}`;
+
+    return formattedNumber;
+  };
+
   const isMediumSmallScreen = useMediaQuery({ maxWidth: 1017 });
   useEffect(() => {
     userFetcher(navigate);
@@ -43,7 +63,7 @@ const SettingsProfile = () => {
               </div>
               <div className="profile-user-info">
                 <h4>Phone</h4>
-                <p>{userData.phone}</p>
+                <p>{formattedPhone(userData)}</p>
               </div>
               <div className="profile-user-info">
                 <h4>Role</h4>
@@ -63,7 +83,7 @@ const SettingsProfile = () => {
             </div>
             <div className="profile-user-info">
               <h4>Phone</h4>
-              <p>{userData.phone}</p>
+              <p>{formattedPhone(userData)}</p>
             </div>
             <div className="profile-user-info">
               <h4>Account Type</h4>
