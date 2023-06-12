@@ -66,7 +66,7 @@
   .account-header {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
+    margin-top: 36px;
     margin-left: 0px;
   }
   .account-type-container {
@@ -172,8 +172,8 @@
     width: 95%;
     height: 75%;
     overflow-y: auto;
-    margin-top: 30px;
-    margin-left: 15px;
+    margin-top: 27px;
+    margin-left: 13px;
     padding-left: 5px;
     padding-right: 20px;
     padding-top: 5px;

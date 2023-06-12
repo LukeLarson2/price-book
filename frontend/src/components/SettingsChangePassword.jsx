@@ -76,18 +76,21 @@ const SettingsChangePassword = () => {
                   type="password"
                   label="Current Password"
                   name="currentPassword"
+                  className="field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="New Password"
                   name="newPassword"
+                  className="field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="Confirm Password"
                   name="confirmPassword"
+                  className="field"
                 />
                 <button type="submit" className="change-password-btn">
                   Update Password

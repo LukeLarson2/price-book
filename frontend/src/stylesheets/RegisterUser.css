@@ -1,0 +1,174 @@
+/* Hide the scrollbar track */
+::-webkit-scrollbar {
+  display: none;
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 50px;
+}
+
+/* Optionally, add hover and active styles for the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #333;
+}
+
+.register-user-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+/* -- GENERAL FORM LAYOUT -- */
+Form {
+  position: relative;
+  padding: 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px #515151;
+}
+.add-item-modal-shadow-control {
+  position: relative;
+  padding: 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 2px 2px 3px #515151;
+}
+.form-control {
+  margin-bottom: 20px;
+}
+.title-position {
+  display: flex;
+  justify-content: center;
+}
+.title {
+  border: none;
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #222222;
+}
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+  color: #555;
+}
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
+  color: #555;
+}
+/* GENERAL FORM LAYOUT */
+
+/* HOVER FIELDS */
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover,
+textarea:hover,
+select:hover {
+  background-color: #fafafa;
+  transition: background-color 0.3s ease;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  display: block;
+  width: 300px;
+  padding: 6px 17px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: rgb(243, 243, 243);
+  background-image: none;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+#account {
+  width: 210px;
+}
+/* HOVER FIELDS */
+
+/* CUSTOMIZE BUTTONS */
+.btn-placement {
+  display: flex;
+  justify-content: center;
+}
+Form button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+}
+.create-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #ff6600;
+  width: 100px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #ff6600;
+  background-color: #f3f3f3;
+  width: 100px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+/* CUSTOMIZE BUTTONS */
+
+/* FOOTER STYLING */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f5f5f5;
+}
+.footer div {
+  text-align: center;
+}
+/* FOOTER STYLING */
+
+/* ERROR MESSAGE */
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+/* ERROR MESSAGE */
+
+/* SUCCESS MESSAGE */
+.success-message {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+/* SUCCESS MESSAGE */

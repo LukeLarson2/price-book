@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 //--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
+import "../stylesheets/RegisterUser.css";
 
 function RegisterUser() {
   //--SET USE NAVIGATE--
@@ -44,7 +45,14 @@ function RegisterUser() {
       .required("Required"),
     accountType: Yup.string().required("Required"),
     password: Yup.string()
-      .min(6, "Must contain at least 6 characters")
+      .min(8, "Must contain at least 8 characters")
+      .test("number", "Must contain a number", (value) => /\d/.test(value))
+      .test("uppercase", "Must contain an uppercase letter", (value) =>
+        /[A-Z]/.test(value)
+      )
+      .test("special", "Must contain a special character", (value) =>
+        /[!@#$%^&*]/.test(value)
+      )
       .required("Required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), ""], "Passwords must match")
@@ -105,18 +113,21 @@ function RegisterUser() {
                 type="text"
                 label="Full Name"
                 name="name"
+                className="field"
               />
               <FormikControl
                 control="input"
                 type="email"
                 label="Email"
                 name="email"
+                className="field"
               />
               <FormikControl
                 control="input"
                 type="text"
                 label="Phone"
                 name="phone"
+                className="field"
                 onBlur={handleBlur}
               />
               <FormikControl
@@ -125,6 +136,7 @@ function RegisterUser() {
                 label="Account Type"
                 name="accountType"
                 id="account"
+                className="select-account"
                 options={accountTypes}
               />
               <FormikControl
@@ -132,24 +144,28 @@ function RegisterUser() {
                 type="text"
                 label="Company"
                 name="company"
+                className="field"
               />
               <FormikControl
                 control="input"
                 type="text"
                 label="Role"
                 name="role"
+                className="field"
               />
               <FormikControl
                 control="input"
                 type="password"
                 label="Password"
                 name="password"
+                className="field"
               />
               <FormikControl
                 control="input"
                 type="password"
                 label="Confirm Password"
                 name="confirmPassword"
+                className="field"
               />
               <div className="btn-placement">
                 <button
