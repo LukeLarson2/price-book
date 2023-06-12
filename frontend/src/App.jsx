@@ -15,13 +15,21 @@ function App() {
     const allowedRoutes = [
       "/user-registration",
       "/forgot-password-request",
-      "/forgot-password/",
+      new RegExp("^/forgot-password/.*$"), // This will allow all paths starting with "/forgot-password/"
     ];
     const user =
       JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
 
-    if (!user && !allowedRoutes.includes(window.location.pathname)) {
-      navigate("/login");
+    const isPathAllowed = allowedRoutes.some((route) => {
+      if (typeof route === "string") {
+        return window.location.pathname === route;
+      } else if (route instanceof RegExp) {
+        return route.test(window.location.pathname);
+      }
+    });
+
+    if (!user && !isPathAllowed) {
+      navigate(`/login/${window.location.pathname.split("/").pop()}`);
     }
   }, [navigate]);
 
@@ -32,7 +40,11 @@ function App() {
         <Route path="/user-registration" element={<RegisterUser />} />
         <Route path="/home" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/forgot-password/:resetToken"
+          element={<ForgotPassword />}
+        />
+
         <Route
           path="/forgot-password-request"
           element={<ForgotPasswordRequest />}

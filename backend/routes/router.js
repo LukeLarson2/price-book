@@ -166,7 +166,11 @@ router.route("/users/forgot-password").post(async (req, res) => {
     }
 
     // Generate your password reset token here
-    const resetToken = ""; // Replace with your token generating logic
+    const resetToken = jwt.sign(
+      { _id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" } // set the token to be expired in 1 hour
+    );
 
     // Save the token into the database (you might need to adjust this depending on your schema)
     user.resetToken = resetToken;
@@ -198,6 +202,32 @@ router.route("/users/forgot-password").post(async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
+  }
+});
+router.route("/users/reset-password").put(async (req, res) => {
+  const { resetToken, password } = req.body;
+  try {
+    const decoded = jwt.verify(resetToken, process.env.JWT_SECRET);
+
+    const user = await schemas.Users.findOne({ _id: decoded._id, resetToken });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Invalid or expired reset token" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    user.password = hashedPassword;
+    user.resetToken = undefined; // Clear the resetToken after use
+
+    user
+      .save()
+      .then(() => res.json({ message: "Password updated successfully" }))
+      .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    return res.status(500).json(err);
   }
 });
 
