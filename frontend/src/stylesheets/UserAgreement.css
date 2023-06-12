@@ -46,26 +46,25 @@
 }
 
 @media screen and (min-width: 691px) and (max-width: 1017px) {
+  h2 {
+    margin-left: -9px;
+    margin-top: 23px;
+  }
   .eula-content {
     cursor: default;
     display: block;
     justify-content: flex-start;
     width: 460px;
     height: 400px;
-    margin-top: 28px;
-    margin-left: -11px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 27px;
+    margin-left: -10px;
+    padding-left: 18px;
+    padding-right: 18px;
     overflow-y: auto;
     word-wrap: break-word;
     white-space: pre-wrap;
     border-radius: 4px;
     box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
-  }
-
-  h2 {
-    margin-left: -10px;
-    margin-top: 23px;
   }
 }
 

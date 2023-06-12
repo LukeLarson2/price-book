@@ -46,7 +46,7 @@ function ProductCards({
           <div
             key={key}
             className="product-info"
-            style={{ height: isDetailsShown[key] ? "460px" : "80px" }}
+            style={{ height: isDetailsShown[key] ? "480px" : "80px" }}
           >
             <div
               className="product-header"

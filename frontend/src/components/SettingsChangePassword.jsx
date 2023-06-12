@@ -4,6 +4,8 @@ import axios from "axios";
 import { Formik, Form } from "formik";
 import FormikControl from "./FormikControl";
 
+import "../stylesheets/SettingsChangePassword.css";
+
 const SettingsChangePassword = () => {
   const initialValues = {
     currentPassword: "",
@@ -19,9 +21,11 @@ const SettingsChangePassword = () => {
       .required("Confirm Password is required"),
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (
+    values,
+    { setFieldError, resetForm, setSubmitting, setStatus }
+  ) => {
     const { currentPassword, newPassword } = values;
-    console.log("form submitted");
     try {
       // check current password
       const currentPasswordResponse = await axios.post(
@@ -32,7 +36,7 @@ const SettingsChangePassword = () => {
       );
 
       if (!currentPasswordResponse.data.isValid) {
-        alert("Current password is incorrect");
+        setFieldError("currentPassword", "Password is incorrect");
         return;
       }
 
@@ -42,13 +46,15 @@ const SettingsChangePassword = () => {
       });
 
       if (newPasswordResponse.status === 200) {
-        console.log("Password updated successfully");
+        resetForm();
+        setStatus("Password updated successfully!");
       } else {
-        console.log("Failed to update password");
+        setStatus("Failed to update password");
       }
     } catch (error) {
-      console.error(error);
+      setStatus("An error occurred");
     }
+    setSubmitting(false);
   };
 
   return (
@@ -57,11 +63,13 @@ const SettingsChangePassword = () => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {(formik) => {
+      {({ status }) => {
         return (
-          <div className="change-password-container">
-            <Form>
-              <div className="settings-title">Change Password</div>
+          <div className="main-container">
+            <Form className="form-container">
+              <div className="settings-title">
+                <h2>Change Password</h2>
+              </div>
               <div className="update-password-container">
                 <FormikControl
                   control="input"
@@ -81,13 +89,10 @@ const SettingsChangePassword = () => {
                   label="Confirm Password"
                   name="confirmPassword"
                 />
-                <button
-                  type="submit"
-                  className="change-password-btn"
-                  disabled={!formik.isValid || formik.isSubmitting}
-                >
+                <button type="submit" className="change-password-btn">
                   Update Password
                 </button>
+                {status && <div className="form-status">{status}</div>}
               </div>
             </Form>
           </div>
