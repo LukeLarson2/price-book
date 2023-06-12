@@ -121,5 +121,28 @@ router.route("/users/validate-password").post(async (req, res) => {
     return res.status(500).json(err);
   }
 });
+router.route("/users/update-password").put(async (req, res) => {
+  const { userId, password } = req.body;
+  try {
+    const user = await schemas.Users.findOne({
+      userKey: userId,
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    user.password = hashedPassword;
+
+    user
+      .save()
+      .then(() => res.json({ message: "Password updated successfully" }))
+      .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 module.exports = router;
