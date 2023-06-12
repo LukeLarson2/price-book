@@ -124,7 +124,7 @@ const SettingsPlans = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Plan Details"
-        className="modal-content"
+        className="modal-contents"
         overlayClassName="overlay"
       >
         {getModalContent()}

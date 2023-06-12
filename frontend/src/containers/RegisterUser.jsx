@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 
 //--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
-import "../stylesheets/RegisterUser.css";
 
 function RegisterUser() {
   //--SET USE NAVIGATE--

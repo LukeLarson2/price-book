@@ -8,6 +8,8 @@ import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
+import "../stylesheets/App.css";
+
 function AddItem({ onClose, addProduct, setDetailsShown }) {
   //--CREATE NEW KEY FOR EACH PRODUCT--
 
