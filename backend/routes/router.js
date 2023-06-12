@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const schemas = require("../schemas/schemas");
+const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 router.get("/tax-by-zip", async (req, res) => {
   try {
@@ -142,6 +144,60 @@ router.route("/users/update-password").put(async (req, res) => {
       .catch((err) => res.status(500).json(err));
   } catch (err) {
     return res.status(500).json(err);
+  }
+});
+
+// Set up transporter
+const transporter = nodemailer.createTransport({
+  service: "outlook",
+  auth: {
+    user: "pricebook-no-reply@outlook.com",
+    pass: "Caloopy2022!",
+  },
+});
+// Send email
+router.route("/users/forgot-password").post(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await schemas.Users.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User does not exist" });
+    }
+
+    // Generate your password reset token here
+    const resetToken = ""; // Replace with your token generating logic
+
+    // Save the token into the database (you might need to adjust this depending on your schema)
+    user.resetToken = resetToken;
+    await user.save();
+
+    // Send email
+    const mailOptions = {
+      from: "pricebook-no-reply@outlook.com", // sender address
+      to: email, // list of receivers
+      subject: "Password Reset", // Subject line
+      html:
+        `You are receiving this because you (or someone else) have requested the reset of the password for your account.<br/><br/>` +
+        `Please click on the following link:<br/><br/>` +
+        `<a href="http://localhost:3000/forgot-password/${resetToken}" target="_blank">Reset Password</a><br/><br/>` +
+        `or paste the following link in your browser to complete the process one hour of receiving this email:<br/><br/>` +
+        `http://localhost:3000/forgot-password/${resetToken}<br/><br/>` +
+        `If you did not request this, please ignore this email and your password will remain unchanged.<br/>`,
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json(err);
+      } else {
+        console.log(info);
+        res.json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
   }
 });
 

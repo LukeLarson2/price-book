@@ -58,9 +58,6 @@ function RegisterUser() {
       .required("Required"),
   });
 
-  const validationCheck = () => {
-    console.log(validationSchema);
-  };
   //--HANDLE SUBMIT FOR REGISTER USER--
   const onSubmit = (values) => {
     const updatedValues = { ...values };
@@ -98,8 +95,6 @@ function RegisterUser() {
           const { value, name } = e.target;
           const onlyNums = value.replace(/[^\d]/g, ""); // removes non-digits
           formik.setFieldValue(name, onlyNums, true); // The third parameter 'shouldValidate' is set to true to run validation after state update
-          console.log(formik.errors);
-          console.log(formik.touched);
         };
         return (
           <div className="register-user-form">

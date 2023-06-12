@@ -49,6 +49,10 @@ function LoginForm() {
     }
   };
 
+  const handleForgotPassword = () => {
+    navigate("/forgot-password-request", { replace: true });
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -94,6 +98,12 @@ function LoginForm() {
                     Sign Up
                   </button>
                 </div>
+                <p
+                  className="forgot-password"
+                  onClick={() => handleForgotPassword()}
+                >
+                  Forgot password?
+                </p>
               </div>
             </Form>
           </div>

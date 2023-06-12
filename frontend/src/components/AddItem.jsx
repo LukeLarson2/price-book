@@ -73,10 +73,6 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
         taxes.stateTax = 0;
       } else {
         taxData.map((tax) => {
-          console.log("tax data", taxData);
-          // if (taxData.State && values.state !== taxData.State) {
-          //   values.state = taxData.State;
-          // }
           if (
             tax.JurisdictionTypeId === "STA" &&
             (tax.Rate > taxes.stateTax || !taxes.stateTax)

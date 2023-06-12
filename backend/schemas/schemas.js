@@ -9,6 +9,7 @@ const userSchema = new Schema({
   company: { type: String },
   role: { type: String },
   password: { type: String },
+  resetToken: { type: String },
   joinDate: { type: Date, default: Date.now },
 });
 

@@ -6,15 +6,21 @@ import Home from "./containers/Home";
 import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
 import Settings from "./containers/Settings";
+import ForgotPassword from "./components/ForgotPassword";
+import ForgotPasswordRequest from "./components/ForgotPasswordRequest";
 
 function App() {
   const navigate = useNavigate();
   useEffect(() => {
-    const User =
-      localStorage.getItem("userData") !== "undefined"
-        ? JSON.parse(localStorage.getItem("userData"))
-        : localStorage.clear();
-    if (!User && window.location.pathname !== "/user-registration") {
+    const allowedRoutes = [
+      "/user-registration",
+      "/forgot-password-request",
+      "/forgot-password/",
+    ];
+    const user =
+      JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
+
+    if (!user && !allowedRoutes.includes(window.location.pathname)) {
       navigate("/login");
     }
   }, [navigate]);
@@ -26,6 +32,11 @@ function App() {
         <Route path="/user-registration" element={<RegisterUser />} />
         <Route path="/home" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/forgot-password-request"
+          element={<ForgotPasswordRequest />}
+        />
       </Routes>
     </div>
   );

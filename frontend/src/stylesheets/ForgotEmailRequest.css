@@ -1,0 +1,16 @@
+.forgot-password-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.forgot-password-email-btn {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  background-color: #ff6600;
+  color: white;
+}
+.forgot-password-email-btn:hover {
+  background-color: #0587be;
+}

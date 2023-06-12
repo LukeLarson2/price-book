@@ -97,6 +97,12 @@ Form {
   font-weight: bold;
   color: #222222;
 }
+.forgot-password {
+  display: flex;
+  justify-content: center;
+  color: #0587be;
+  cursor: pointer;
+}
 label {
   font-weight: bold;
   display: flex;
