@@ -3,11 +3,12 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Modal from "./EmailSentSuccessModal";
 import { useNavigate } from "react-router-dom";
+import { BiBookBookmark } from "react-icons/bi";
 
 import FormikControl from "../components/FormikControl";
 import EmailSpinner from "./EmailSpinner";
 
-import "../stylesheets/ForgotEmailRequest.css";
+import "../stylesheets/ForgotPasswordRequest.css";
 
 function ForgotPasswordRequest() {
   const [loading, setLoading] = useState(false);
@@ -67,6 +68,10 @@ function ForgotPasswordRequest() {
       {(formik) => {
         return (
           <div className="forgot-password-form">
+            <div className="login-app-header">
+              <BiBookBookmark className="login-app-icon" />
+              <h2>Price Book</h2>
+            </div>
             {showModal && (
               <Modal
                 message="Check your email for password reset instructions"

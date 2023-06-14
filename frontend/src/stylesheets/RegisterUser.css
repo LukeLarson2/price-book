@@ -10,9 +10,22 @@
   background-position: center center;
 }
 
-.title-position {
+.register-user-modal-shadow-control {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: fit-content; /* 50% of the viewport height */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 4px;
+}
+.title-position {
+  grid-column: span 2; /* This makes the title span both columns */
+  justify-self: center; /* This will center the title within their grid area */
 }
 
 .title {
@@ -33,7 +46,14 @@ label {
 .fields-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto repeat(5, auto) 1fr auto; /* Adjust the number of auto rows as per the number of rows for your form fields */
   gap: 20px;
+  width: fit-content;
+  height: 520px;
+  padding: 28px;
+  border-radius: 4px;
+  background: #ffffffdb;
+  box-shadow: 2px 2px 3px #515151;
 }
 
 .register-user-field:hover,
@@ -50,10 +70,10 @@ label {
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
-  background-color: rgb(239, 239, 239);
+  background-color: rgb(240, 240, 240);
   background-image: none;
   border-radius: 4px;
-  border: none;
+  border: 1px solid #85858516 !important;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -62,15 +82,15 @@ label {
   width: 290px;
 }
 
-.btn-placement {
-  display: flex;
-  justify-content: center;
+.register-user-btn-placement {
+  grid-column: span 2; /* This makes the button placement span both columns */
+  justify-self: center; /* This will center the buttons within their grid area */
 }
 
 .create-user {
   color: white;
   background-color: #ff6600;
-  width: 150px;
+  width: 120px;
   height: 40px;
   cursor: pointer;
   border: none;
@@ -85,7 +105,7 @@ label {
 .register-cancel {
   color: #ff6600;
   background-color: rgb(243, 243, 243);
-  width: 150px;
+  width: 120px;
   height: 40px;
   cursor: pointer;
   border: none;

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Modal from "./EmailSentSuccessModal";
 import EmailSpinner from "./EmailSpinner";
+import { BiBookBookmark } from "react-icons/bi";
 
 import FormikControl from "./FormikControl";
 
@@ -12,8 +13,8 @@ import "../stylesheets/ForgotPassword.css";
 function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
   const { resetToken } = useParams(); // Get the reset token from the URL
 
   const initialValues = {
@@ -36,7 +37,6 @@ function ForgotPassword() {
       .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
       .required("Required"),
   });
-
   const onSubmit = async (values) => {
     setLoading(true);
     try {
@@ -52,11 +52,14 @@ function ForgotPassword() {
       );
 
       if (response.ok) {
+        setMessage(
+          "Your password has been reset. Please login with your new password."
+        );
         setShowModal(true);
-        navigate("/login");
       } else {
         const errorMessage = await response.json();
-        alert(errorMessage.message);
+        setMessage(errorMessage.message);
+        setShowModal(true);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -73,11 +76,12 @@ function ForgotPassword() {
       {(formik) => {
         return (
           <div className="reset-password-form">
+            <div className="login-app-header">
+              <BiBookBookmark className="login-app-icon" />
+              <h2>Price Book</h2>
+            </div>
             {showModal && (
-              <Modal
-                message="Your password has been reset. Please login with your new password."
-                setShowModal={setShowModal}
-              />
+              <Modal message={message} setShowModal={setShowModal} />
             )}
             <div className="reset-password-container">
               <h2 className="reset-title-position">Reset Your Password</h2>

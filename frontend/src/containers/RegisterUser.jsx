@@ -104,11 +104,11 @@ function RegisterUser() {
               <BiBookBookmark className="login-app-icon" />
               <h2>Price Book</h2>
             </div>
-            <Form className="add-item-modal-shadow-control">
-              <div className="title-position">
-                <label className="title">Create User</label>
-              </div>
+            <Form className="register-user-modal-shadow-control">
               <div class="fields-wrapper">
+                <div className="title-position">
+                  <label className="title">Register New User</label>
+                </div>
                 <FormikControl
                   control="input"
                   type="text"
@@ -168,22 +168,22 @@ function RegisterUser() {
                   name="confirmPassword"
                   className="register-user-field"
                 />
-              </div>
-              <div className="btn-placement">
-                <button
-                  className="create-user"
-                  type="submit"
-                  disabled={!formik.isValid}
-                >
-                  Submit
-                </button>
-                <button
-                  className="register-cancel"
-                  type="button"
-                  onClick={() => navigate("/login")}
-                >
-                  Cancel
-                </button>
+                <div className="register-user-btn-placement">
+                  <button
+                    className="create-user"
+                    type="submit"
+                    disabled={!formik.isValid}
+                  >
+                    Submit
+                  </button>
+                  <button
+                    className="register-cancel"
+                    type="button"
+                    onClick={() => navigate("/login")}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </Form>
           </div>
