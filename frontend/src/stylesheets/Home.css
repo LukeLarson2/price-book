@@ -1,0 +1,11 @@
+.home-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url("../assets/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  overscroll-behavior: contain;
+}

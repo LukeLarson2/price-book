@@ -95,19 +95,19 @@
 /* MEDIUM VIEWPORT DISPLAY*/
 @media screen and (min-width: 601px) and (max-width: 1166px) {
   .table-product-container {
-    margin-top: 145px;
+    margin-top: 150px;
   }
   .table-header {
-    top: 144.5px;
+    top: 150px;
   }
 }
 
 /* LARGE VIEWPORT DISPLAY*/
 @media screen and (min-width: 1167px) {
   .table-header {
-    top: 120px;
+    top: 140px;
   }
   .table-product-container {
-    margin-top: 120px;
+    margin-top: 140px;
   }
 }

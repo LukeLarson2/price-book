@@ -4,6 +4,8 @@ import { TbArrowsDiagonalMinimize, TbArrowsDiagonal } from "react-icons/tb";
 
 import { useMediaQuery } from "react-responsive";
 
+import "../stylesheets/Footer.css";
+
 function Footer({ handleAddItemClick, isDetailsShown, setDetailsShown }) {
   const isMediumSmallScreen = useMediaQuery({ maxWidth: 1166 });
   const handleCollapseAll = () => {

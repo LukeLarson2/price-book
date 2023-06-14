@@ -7,7 +7,7 @@ import EmailSpinner from "./EmailSpinner";
 
 import FormikControl from "./FormikControl";
 
-import "../stylesheets/ResetPassword.css";
+import "../stylesheets/ForgotPassword.css";
 
 function ForgotPassword() {
   const [loading, setLoading] = useState(false);

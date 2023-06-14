@@ -10,15 +10,6 @@
   background-position: center center;
 }
 
-.add-item-modal-shadow-control {
-  position: relative;
-  padding: 28px;
-  border-radius: 8px;
-  width: 600px;
-  background-color: #fafafacc;
-  box-shadow: 2px 2px 2px #515151;
-}
-
 .title-position {
   display: flex;
   justify-content: center;

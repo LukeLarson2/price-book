@@ -4,7 +4,7 @@ import FreeAccountDetails from "./FreeAccountDetails";
 import PersonalAccountDetails from "./PersonalAccountDetails";
 import ComanyAccountDetails from "./ComanyAccountDetails";
 
-import "../stylesheets/Plans.css";
+import "../stylesheets/SettingsPlans.css";
 
 const SettingsPlans = () => {
   useEffect(() => {

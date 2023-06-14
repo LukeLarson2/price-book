@@ -8,7 +8,7 @@ import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-import "../stylesheets/App.css";
+import "../stylesheets/AddItem.css";
 
 function AddItem({ onClose, addProduct, setDetailsShown }) {
   //--CREATE NEW KEY FOR EACH PRODUCT--
@@ -136,63 +136,62 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
     >
       {(formik) => {
         return (
-          <div className="modal-container" onClick={handleOuterClick}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <div className="add-item-form">
-                <div className="add-item-form">
-                  <Form className="add-item-modal-shadow-control">
-                    <div className="new-item-position">
-                      <label className="add-item-title">
-                        Add a new product
-                      </label>
-                    </div>
-                    <FormikControl
-                      control="input"
-                      type="text"
-                      label="Product"
-                      name="name"
-                    />
-                    <div className="dollar">
-                      <p className="dollar-sign">$</p>
-                      <FormikControl
-                        control="input"
-                        type="number"
-                        label="Price"
-                        name="productPrice"
-                      />
-                    </div>
-                    <FormikControl
-                      control="select"
-                      type="select"
-                      label="State"
-                      name="state"
-                      options={usStateAbbreviations}
-                      id="state"
-                    />
-                    <FormikControl
-                      control="input"
-                      type="text"
-                      label="Zip Code"
-                      name="zip"
-                      id="zip"
-                    />
-                    <div className="upload-cancel">
-                      <div className="btn-placement">
-                        <button className="upload" type="submit">
-                          Upload <AiOutlineCloudUpload />
-                        </button>
-                        <button
-                          type="button"
-                          className="cancel"
-                          onClick={onCancel}
-                        >
-                          Cancel <MdOutlineCancel />
-                        </button>
-                      </div>
-                    </div>
-                  </Form>
+          <div className="add-item-modal-container" onClick={handleOuterClick}>
+            <div
+              className="add-item-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* <div className="add-item-form"> */}
+              <Form className="add-item-form">
+                <div className="new-item-position">
+                  <label className="add-item-title">Add a new product</label>
                 </div>
-              </div>
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Product"
+                  name="name"
+                  className="add-item-field"
+                />
+                <div className="dollar">
+                  <p className="dollar-sign">$</p>
+                  <FormikControl
+                    control="input"
+                    type="number"
+                    label="Price"
+                    name="productPrice"
+                    className="add-item-field"
+                  />
+                </div>
+                <FormikControl
+                  control="select"
+                  type="select"
+                  label="State"
+                  name="state"
+                  options={usStateAbbreviations}
+                  id="state"
+                />
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Zip Code"
+                  name="zip"
+                  className="add-item-field"
+                />
+                <div className="add-item-btn-placement">
+                  <button className="add-item-upload" type="submit">
+                    Upload{" "}
+                    <AiOutlineCloudUpload className="add-item-upload-icon" />
+                  </button>
+                  <button
+                    type="button"
+                    className="add-item-cancel"
+                    onClick={onCancel}
+                  >
+                    Cancel <MdOutlineCancel className="add-item-cancel-icon" />
+                  </button>
+                </div>
+              </Form>
             </div>
           </div>
         );

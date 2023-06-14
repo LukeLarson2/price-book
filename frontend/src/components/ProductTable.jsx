@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
-import "../stylesheets/Table.css";
+import "../stylesheets/ProductTable.css";
 function ProductTable({
   products,
   handleEditItemClick,

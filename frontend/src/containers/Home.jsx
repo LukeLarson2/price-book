@@ -12,6 +12,8 @@ import ProductCards from "../components/ProductCards";
 import Footer from "../components/Footer";
 import ProductTable from "../components/ProductTable";
 
+import "../stylesheets/Home.css";
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [isDetailsShown, setDetailsShown] = useState({});

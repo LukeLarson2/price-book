@@ -65,10 +65,10 @@ const SettingsChangePassword = () => {
     >
       {({ status }) => {
         return (
-          <div className="main-container">
-            <Form className="form-container">
-              <div className="settings-title">
-                <h2>Change Password</h2>
+          <div className="change-password-main-container">
+            <Form className="change-password-form-container">
+              <div className="settings-title-container">
+                <h2 className="settings-title">Change Password</h2>
               </div>
               <div className="update-password-container">
                 <FormikControl
@@ -76,21 +76,21 @@ const SettingsChangePassword = () => {
                   type="password"
                   label="Current Password"
                   name="currentPassword"
-                  className="field"
+                  className="change-password-field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="New Password"
                   name="newPassword"
-                  className="field"
+                  className="change-password-field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="Confirm Password"
                   name="confirmPassword"
-                  className="field"
+                  className="change-password-field"
                 />
                 <button type="submit" className="change-password-btn">
                   Update Password

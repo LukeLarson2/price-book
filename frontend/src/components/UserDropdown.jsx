@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { BsFillGearFill } from "react-icons/bs";
 import { MdLogout } from "react-icons/md";
 
+import "../stylesheets/UserDropdown.css";
+
 function UserDropdown({ onClose }) {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();

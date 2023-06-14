@@ -6,6 +6,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 
 import usStateAbbreviations from "./StateAbbs";
+import "../stylesheets/EditItem.css";
 
 function EditItem({ userKey, onClose, product, updateProduct }) {
   // const [editedProduct, setEditedProduct] = useState(product);
@@ -19,7 +20,6 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
       .max(5, "Must be at least 5 digits")
       .required("Required"),
     productPrice: Yup.number()
-      .integer("Please enter a whole number")
       .moreThan(0, "Price must be greater than zero")
       .required("Required"),
   });
@@ -54,62 +54,64 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
     >
       {(formik) => {
         return (
-          <div className="modal-container">
-            <div className="modal-content">
-              <div className="add-item-form">
-                <div className="add-item-form">
-                  <Form className="add-item-modal-shadow-control">
-                    <div className="new-item-position">
-                      <label className="add-item-title">
-                        Edit "{product.name}"
-                      </label>
-                    </div>
+          <div className="edit-item-modal-container">
+            <div className="edit-item-modal-content">
+              <div className="edit-item-form">
+                <Form className="edit-item-modal-shadow-control">
+                  <div className="edit-item-position">
+                    <label className="edit-item-title">
+                      Edit "{product.name}"
+                    </label>
+                  </div>
+                  <FormikControl
+                    control="input"
+                    type="text"
+                    label="Product"
+                    name="name"
+                    className="edit-item-field"
+                  />
+                  <div className="dollar">
+                    <p className="dollar-sign">$</p>
                     <FormikControl
                       control="input"
-                      type="text"
-                      label="Product"
-                      name="name"
+                      type="number"
+                      label="Price"
+                      name="productPrice"
+                      className="edit-item-field"
                     />
-                    <div className="dollar">
-                      <p className="dollar-sign">$</p>
-                      <FormikControl
-                        control="input"
-                        type="number"
-                        label="Price"
-                        name="productPrice"
-                      />
+                  </div>
+                  <FormikControl
+                    control="select"
+                    type="select"
+                    label="State"
+                    name="state"
+                    options={usStateAbbreviations}
+                    id="state"
+                  />
+                  <FormikControl
+                    control="input"
+                    type="text"
+                    label="Zip Code"
+                    name="zip"
+                    className="edit-item-field"
+                  />
+                  <div className="edit-item-upload-cancel">
+                    <div className="edit-item-btn-placement">
+                      <button className="edit-item-upload" type="submit">
+                        Update{" "}
+                        <AiOutlineCloudUpload className="edit-item-upload-icon" />
+                      </button>
+                      <button
+                        type="button"
+                        className="edit-item-cancel"
+                        onClick={onCancel}
+                      >
+                        Cancel{" "}
+                        <MdOutlineCancel className="edit-item-cancel-icon" />
+                      </button>
                     </div>
-                    <FormikControl
-                      control="select"
-                      type="select"
-                      label="State"
-                      name="state"
-                      options={usStateAbbreviations}
-                      id="state"
-                    />
-                    <FormikControl
-                      control="input"
-                      type="text"
-                      label="Zip Code"
-                      name="zip"
-                      id="zip"
-                    />
-                    <div className="upload-cancel">
-                      <div className="btn-placement">
-                        <button className="upload" type="submit">
-                          Update <AiOutlineCloudUpload />
-                        </button>
-                        <button
-                          type="button"
-                          className="cancel"
-                          onClick={onCancel}
-                        >
-                          Cancel <MdOutlineCancel />
-                        </button>
-                      </div>
-                    </div>
-                  </Form>
-                </div>
+                  </div>
+                </Form>
               </div>
             </div>
           </div>

@@ -38,8 +38,8 @@ const SettingsProfile = () => {
   }, [navigate, userFetcher]);
   return (
     <div className="profile-container">
-      <div className="profile-title">
-        <h2>Account Profile</h2>
+      <div className="profile-title-container">
+        <h2 className="profile-title">Account Profile</h2>
         {!isMediumSmallScreen ? (
           <div className="profile-content">
             <div className="profile-column">

@@ -6,6 +6,7 @@ import { BsList } from "react-icons/bs";
 import { RiFileListLine } from "react-icons/ri";
 
 import UserDropdown from "./UserDropdown";
+import "../stylesheets/NavBar.css";
 
 function NavBar({
   name,
@@ -58,10 +59,10 @@ function NavBar({
           Price Book
         </h2>
         <div className="user-logout-container">
-          <p className="username welcome">
+          <p className="username-welcome">
             <b>Welcome,</b>
           </p>
-          <p className="username name" onClick={handleDropdownClick}>
+          <p className="username-name" onClick={handleDropdownClick}>
             <span className="name-logout-container">
               <b>{firstName}</b>
               <GoTriangleDown className="user-dropdown" />

@@ -7,7 +7,7 @@ import { BiBookBookmark } from "react-icons/bi";
 
 //--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
-import "../stylesheets/Login.css";
+import "../stylesheets/LoginForm.css";
 
 function LoginForm() {
   //--SET USE NAVIGATE--

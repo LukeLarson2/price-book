@@ -1,0 +1,26 @@
+.menu-settings {
+  display: flex;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.settings {
+  margin-top: 3px;
+  margin-left: 5px;
+}
+.menu-logout {
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.logout {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-top: 4px;
+  margin-left: 7px;
+}
+.menu-logout:hover,
+.menu-settings:hover {
+  color: #0587be;
+}
