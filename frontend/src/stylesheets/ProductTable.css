@@ -9,6 +9,25 @@
   width: 90vw;
   padding-left: 20px;
 }
+.table-header h3:hover {
+  color: #0587be;
+}
+
+.table-header .selected {
+  color: #ff6600;
+}
+.table-header h3 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  cursor: pointer;
+}
+.table-sort-by-icon {
+  margin-top: 3.5px;
+  padding-left: 5px;
+}
+
 .table-product-container {
   padding-bottom: 450px;
   background-color: #b1b1b15e;
@@ -25,7 +44,6 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 90vw;
-  transition: background-color 0.3s ease;
   font-size: 15px;
   cursor: pointer;
 }
@@ -81,8 +99,9 @@
   align-items: center;
 }
 .table-edit-item:hover,
-.table-delete-item:hover {
-  color: #050505;
+.table-delete-item:hover,
+.table-each-product .table-name b:hover {
+  color: #0587be;
 }
 
 .table-edit-item,

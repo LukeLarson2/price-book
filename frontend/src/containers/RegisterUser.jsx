@@ -105,10 +105,10 @@ function RegisterUser() {
               <h2>Price Book</h2>
             </div>
             <Form className="register-user-modal-shadow-control">
+              <div className="title-position">
+                <label className="title">Register New User</label>
+              </div>
               <div class="fields-wrapper">
-                <div className="title-position">
-                  <label className="title">Register New User</label>
-                </div>
                 <FormikControl
                   control="input"
                   type="text"

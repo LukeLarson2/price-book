@@ -15,6 +15,7 @@ function NavBar({
   onSortChange,
   setProductCardView,
   productCardView,
+  sortField,
 }) {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -87,7 +88,11 @@ function NavBar({
             onChange={onChange}
           />
           {/* <BiSortAlt2 className="sort-icon" /> */}
-          <select onChange={onSortChange} className="sort-select">
+          <select
+            value={sortField}
+            onChange={onSortChange}
+            className="sort-select"
+          >
             <option value="">Sort by...</option>
             <option value="name">Name</option>
             <option value="productPrice">Product Price</option>

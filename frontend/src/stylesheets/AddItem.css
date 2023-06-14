@@ -12,7 +12,7 @@
 
 .add-item-modal-content {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: fit-content; /* 50% of the viewport height */
@@ -59,7 +59,6 @@
   background-image: none;
   border-radius: 4px;
   border: none;
-  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 .dollar {
@@ -86,8 +85,11 @@
   background-image: none;
   border-radius: 4px;
   border: none;
-  transition: background-color 0.3s ease;
   cursor: pointer;
+}
+.add-item-field:hover,
+#state:hover {
+  background-color: #fafafa;
 }
 .add-item-btn-placement {
   display: flex;

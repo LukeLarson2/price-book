@@ -55,6 +55,7 @@
 // export default usStateAbbreviations;
 
 const usStateAbbreviations = [
+  { key: "Select State", value: "", salesTax: undefined },
   { key: "AL", value: "AL", salesTax: 0.04 },
   { key: "AK", value: "AK", salesTax: 0 },
   { key: "AZ", value: "AZ", salesTax: 0.056 },

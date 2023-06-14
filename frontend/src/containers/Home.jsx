@@ -187,6 +187,7 @@ function Home() {
         onClose={handleCloseModal}
         setProductCardView={setProductCardView}
         productCardView={productCardView}
+        sortField={sortField}
       />
       {isLoading && <Loader />}
       {productCardView || viewportWidth <= 936 ? (
@@ -204,6 +205,8 @@ function Home() {
           handleRemove={handleRemove}
           isDetailsShown={isDetailsShown}
           setDetailsShown={setDetailsShown}
+          onSortChange={(e) => handleSortFieldChange(e.target.value)}
+          sortField={sortField}
         />
       )}
       <Footer

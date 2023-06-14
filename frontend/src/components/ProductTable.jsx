@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiOutlineSortAscending } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
 import "../stylesheets/ProductTable.css";
@@ -9,6 +9,8 @@ function ProductTable({
   handleRemove,
   isDetailsShown,
   setDetailsShown,
+  onSortChange,
+  sortField,
 }) {
   useEffect(() => {
     const newDetailsShownState = products.reduce(
@@ -28,17 +30,85 @@ function ProductTable({
       setDetailsShown(newDetailsShownState);
     }
   }, [products]);
+
+  const handleHeaderClick = (value) => {
+    onSortChange({ target: { value } }); // This simulates an event object.
+  };
   return (
     <div className="table-placement">
       <div className="table-header">
-        <h3>Name</h3>
-        <h3>Price</h3>
-        <h3>City Tax</h3>
-        <h3>State Tax</h3>
-        <h3>Total Tax</h3>
-        <h3>Total Price</h3>
-        <h3>State</h3>
-        <h3>Zip Code</h3>
+        <h3
+          onClick={() => handleHeaderClick("name")}
+          className={sortField === "name" ? "selected" : ""}
+        >
+          Name{" "}
+          {sortField === "name" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("productPrice")}
+          className={sortField === "productPrice" ? "selected" : ""}
+        >
+          Price{" "}
+          {sortField === "productPrice" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("cityTax")}
+          className={sortField === "cityTax" ? "selected" : ""}
+        >
+          City Tax{" "}
+          {sortField === "cityTax" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("stateTax")}
+          className={sortField === "stateTax" ? "selected" : ""}
+        >
+          State Tax{" "}
+          {sortField === "stateTax" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("salesTax")}
+          className={sortField === "salesTax" ? "selected" : ""}
+        >
+          Total Tax{" "}
+          {sortField === "salesTax" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("totalPrice")}
+          className={sortField === "totalPrice" ? "selected" : ""}
+        >
+          Total Price{" "}
+          {sortField === "totalPrice" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("state")}
+          className={sortField === "state" ? "selected" : ""}
+        >
+          State{" "}
+          {sortField === "state" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("zip")}
+          className={sortField === "zip" ? "selected" : ""}
+        >
+          Zip Code{" "}
+          {sortField === "zip" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+        </h3>
         <h3>Edit/Delete</h3>
       </div>
       <div className="table-product-container">
