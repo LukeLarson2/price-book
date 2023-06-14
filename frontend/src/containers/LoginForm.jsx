@@ -3,9 +3,11 @@ import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { BiBookBookmark } from "react-icons/bi";
 
 //--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
+import "../stylesheets/Login.css";
 
 function LoginForm() {
   //--SET USE NAVIGATE--
@@ -62,7 +64,12 @@ function LoginForm() {
       {(formik) => {
         return (
           <div className="login-form">
-            <Form>
+            <div className="login-app-header">
+              <BiBookBookmark className="login-app-icon" />
+              <h2>Price Book</h2>
+            </div>
+            {/* <div className="login-welcome-back">Good to see you again!</div> */}
+            <Form className="login-form-container">
               <div className="title-position">
                 <label className="title">Login</label>
               </div>

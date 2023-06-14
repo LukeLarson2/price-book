@@ -4,9 +4,11 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { BiBookBookmark } from "react-icons/bi";
 
 //--INTERNAL IMPORTS--
 import FormikControl from "../components/FormikControl";
+import "../stylesheets/RegisterUser.css";
 
 function RegisterUser() {
   //--SET USE NAVIGATE--
@@ -98,69 +100,75 @@ function RegisterUser() {
         };
         return (
           <div className="register-user-form">
+            <div className="login-app-header">
+              <BiBookBookmark className="login-app-icon" />
+              <h2>Price Book</h2>
+            </div>
             <Form className="add-item-modal-shadow-control">
               <div className="title-position">
                 <label className="title">Create User</label>
               </div>
-              <FormikControl
-                control="input"
-                type="text"
-                label="Full Name"
-                name="name"
-                className="field"
-              />
-              <FormikControl
-                control="input"
-                type="email"
-                label="Email"
-                name="email"
-                className="field"
-              />
-              <FormikControl
-                control="input"
-                type="text"
-                label="Phone"
-                name="phone"
-                className="field"
-                onBlur={handleBlur}
-              />
-              <FormikControl
-                control="select"
-                type="select"
-                label="Account Type"
-                name="accountType"
-                id="account"
-                className="select-account"
-                options={accountTypes}
-              />
-              <FormikControl
-                control="input"
-                type="text"
-                label="Company"
-                name="company"
-                className="field"
-              />
-              <FormikControl
-                control="input"
-                type="text"
-                label="Role"
-                name="role"
-                className="field"
-              />
-              <FormikControl
-                control="input"
-                type="password"
-                label="Password"
-                name="password"
-                className="field"
-              />
-              <FormikControl
-                control="input"
-                type="password"
-                label="Confirm Password"
-                name="confirmPassword"
-                className="field"
-              />
+              <div class="fields-wrapper">
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Full Name"
+                  name="name"
+                  className="field"
+                />
+                <FormikControl
+                  control="input"
+                  type="email"
+                  label="Email"
+                  name="email"
+                  className="field"
+                />
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Phone"
+                  name="phone"
+                  className="field"
+                  onBlur={handleBlur}
+                />
+                <FormikControl
+                  control="select"
+                  type="select"
+                  label="Account Type"
+                  name="accountType"
+                  id="account"
+                  className="select-account"
+                  options={accountTypes}
+                />
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Company"
+                  name="company"
+                  className="field"
+                />
+                <FormikControl
+                  control="input"
+                  type="text"
+                  label="Role"
+                  name="role"
+                  className="field"
+                />
+                <FormikControl
+                  control="input"
+                  type="password"
+                  label="Password"
+                  name="password"
+                  className="field"
+                />
+                <FormikControl
+                  control="input"
+                  type="password"
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  className="field"
+                />
+              </div>
               <div className="btn-placement">
                 <button
                   className="create-user"

@@ -72,7 +72,7 @@ function ForgotPassword() {
     >
       {(formik) => {
         return (
-          <div className="forgot-password-form">
+          <div className="reset-password-form">
             {showModal && (
               <Modal
                 message="Your password has been reset. Please login with your new password."
@@ -95,7 +95,7 @@ function ForgotPassword() {
                   name="confirmPassword"
                 />
                 <button
-                  className="forgot-password-email-btn"
+                  className="reset-password-email-btn"
                   type="submit"
                   disabled={!formik.isValid || loading}
                 >

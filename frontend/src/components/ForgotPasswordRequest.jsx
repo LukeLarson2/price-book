@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Modal from "./EmailSentSuccessModal";
+import { useNavigate } from "react-router-dom";
 
 import FormikControl from "../components/FormikControl";
 import EmailSpinner from "./EmailSpinner";
@@ -11,6 +12,8 @@ import "../stylesheets/ForgotEmailRequest.css";
 function ForgotPasswordRequest() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const initialValues = {
     email: "",
@@ -51,6 +54,9 @@ function ForgotPasswordRequest() {
     }
     setLoading(false);
   };
+  const handleGoBack = () => {
+    navigate("/login", { replace: true });
+  };
 
   return (
     <Formik
@@ -67,7 +73,7 @@ function ForgotPasswordRequest() {
                 setShowModal={setShowModal}
               />
             )}
-            <Form>
+            <Form className="forgot-password-container">
               <div className="title-position">
                 <label className="title">Forgot Password</label>
               </div>
@@ -76,14 +82,15 @@ function ForgotPasswordRequest() {
                 type="email"
                 label="Email"
                 name="email"
+                placeholder="example@email.com"
               />
-              <div className="btn-placement">
+              <div className="forgot-password-btn-placement">
                 <button
                   className="forgot-password-email-btn"
                   type="submit"
                   disabled={!formik.isValid || formik.isSubmitting}
                 >
-                  Submit{" "}
+                  Submit
                   <span>
                     {loading ? (
                       <EmailSpinner className="email-sending-spinner" />
@@ -91,6 +98,13 @@ function ForgotPasswordRequest() {
                       ""
                     )}
                   </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleGoBack()}
+                  className="go-back-login-btn"
+                >
+                  Go back
                 </button>
               </div>
             </Form>

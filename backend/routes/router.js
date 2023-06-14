@@ -182,12 +182,18 @@ router.route("/users/forgot-password").post(async (req, res) => {
       to: email, // list of receivers
       subject: "Password Reset", // Subject line
       html:
-        `You are receiving this because you (or someone else) have requested the reset of the password for your account.<br/><br/>` +
-        `Please click on the following link:<br/><br/>` +
+        `Dear ${user.name},<br/><br/>` +
+        `We are writing to inform you that a request to reset your account password was received.<br/><br/>` +
+        `This could be from you, or potentially another individual.<br/><br/>` +
+        `Should you wish to proceed with this password reset, please follow the link provided below:<br/><br/>` +
         `<a href="http://localhost:3000/forgot-password/${resetToken}" target="_blank">Reset Password</a><br/><br/>` +
-        `or paste the following link in your browser to complete the process one hour of receiving this email:<br/><br/>` +
+        `If you prefer, you may also copy and paste the following URL into your internet browser:<br/><br/>` +
         `http://localhost:3000/forgot-password/${resetToken}<br/><br/>` +
-        `If you did not request this, please ignore this email and your password will remain unchanged.<br/>`,
+        `Please note, for your security, this password reset link will only remain active for one hour following receipt of this email.<br/><br/>` +
+        `If you did not initiate this password reset request, please disregard this email.<br/>` +
+        `Rest assured, your account password will remain unchanged unless the link above is activated.<br/><br/>` +
+        `Best Regards,<br/>` +
+        `Price Book Customer Support Team`,
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
