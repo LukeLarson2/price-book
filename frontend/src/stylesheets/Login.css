@@ -28,13 +28,17 @@
   padding: 2px;
   box-shadow: 1px 1px 2px #494949;
 }
-.login-app-header h2 {
+.login-app-title {
   margin: 0px;
 }
 .login-form-container {
   background-color: #fafafab8;
   height: fit-content;
   width: 330px;
+  position: relative;
+  padding: 28px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px #515151;
 }
 
 .title-position {
@@ -66,8 +70,13 @@
   background-color: #ff6600;
   width: 100%;
   margin-top: 25px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
 }
 
 .or {
@@ -91,11 +100,24 @@
   color: #ff6600;
   background-color: rgb(243, 243, 243);
   width: 100%;
-  transition: background-color 0.3s ease;
   cursor: pointer;
   margin-bottom: 5px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
 }
 
+.sign-up:hover {
+  background-color: #0587be;
+  color: white;
+}
+
+.login:hover {
+  background-color: #0587be;
+}
 .forgot-password {
   display: flex;
   justify-content: center;
@@ -115,15 +137,13 @@
   margin-bottom: 20px;
 }
 
-/* HOVER FIELDS */
-input[type="email"]:hover,
-input[type="password"]:hover {
+.login-email:hover,
+.login-password:hover {
   background-color: #fafafa;
-  transition: background-color 0.3s ease;
 }
 
-input[type="email"],
-input[type="password"] {
+.login-email,
+.login-password {
   display: block;
   width: 300px;
   padding: 6px 17px;
@@ -138,27 +158,13 @@ input[type="password"] {
   cursor: pointer;
 }
 
-/* CUSTOMIZE BUTTONS */
-Form button {
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 1px 1px 1px #515151;
-}
-
-.sign-up:hover {
-  background-color: rgba(255, 255, 255, 0.767);
-}
-
-.login:hover {
-  background-color: #0587be;
-}
-
 .label {
   font-weight: bold;
   display: flex;
   margin-bottom: 5px;
   color: #555;
+}
+
+.error {
+  color: red;
 }

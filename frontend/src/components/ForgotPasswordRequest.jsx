@@ -83,6 +83,7 @@ function ForgotPasswordRequest() {
                 label="Email"
                 name="email"
                 placeholder="example@email.com"
+                className="forgot-password-email-field"
               />
               <div className="forgot-password-btn-placement">
                 <button

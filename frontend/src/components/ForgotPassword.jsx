@@ -80,19 +80,21 @@ function ForgotPassword() {
               />
             )}
             <div className="reset-password-container">
-              <h2 className="title-position">Reset Your Password</h2>
+              <h2 className="reset-title-position">Reset Your Password</h2>
               <Form className="reset-password-form-control">
                 <FormikControl
                   control="input"
                   type="password"
                   label="New Password"
                   name="newPassword"
+                  className="reset-password-field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="Confirm Password"
                   name="confirmPassword"
+                  className="reset-password-field"
                 />
                 <button
                   className="reset-password-email-btn"

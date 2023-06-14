@@ -37,14 +37,7 @@
   background-attachment: fixed;
   overscroll-behavior: contain;
 }
-.login-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f1f1f1;
-}
-.register-user-form {
+/* .register-user-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,20 +45,20 @@
   background-image: url("../assets/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
   background-size: cover;
   background-position: center center;
-}
+} */
 .add-item-form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 /* -- GENERAL FORM LAYOUT -- */
-Form {
+/* Form {
   position: relative;
   padding: 28px;
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 4px 4px 4px #515151;
-}
+} */
 .add-item-modal-shadow-control {
   position: relative;
   padding: 28px;
@@ -73,9 +66,7 @@ Form {
   background: #ffffff;
   box-shadow: 2px 2px 3px #515151;
 }
-.form-control {
-  margin-bottom: 20px;
-}
+
 .title-position {
   display: flex;
   justify-content: center;
@@ -99,28 +90,28 @@ Form {
   font-weight: bold;
   color: #222222;
 }
-.forgot-password {
+/* .forgot-password {
   display: flex;
   justify-content: center;
   color: #0587be;
   cursor: pointer;
-}
-label {
+} */
+/* label {
   font-weight: bold;
   display: flex;
   margin-bottom: 5px;
   color: #555;
-}
-input + label {
+} */
+/* input + label {
   font-weight: bold;
   display: inline-flex;
   margin-right: 20px;
   color: #555;
-}
+} */
 /* GENERAL FORM LAYOUT */
 
 /* HOVER FIELDS */
-input[type="text"]:hover,
+/* input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
 input[type="number"]:hover,
@@ -147,11 +138,8 @@ select {
   border-radius: 4px;
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
+} */
 #state {
-  width: 100%;
-}
-#account {
   width: 100%;
 }
 .dollar {
@@ -189,31 +177,31 @@ select {
   display: flex;
   justify-content: center;
 }
-Form button {
+/* Form button {
   border: none;
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
   box-shadow: 1px 1px 1px #515151;
-}
+} */
 
-.login-signup {
+/* .login-signup {
   display: flex;
   flex-direction: column;
   align-content: space-between;
-}
+} */
 .upload-cancel {
   display: flex;
   justify-content: center;
 }
-.or {
+/* .or {
   display: flex;
   justify-content: center;
   align-items: center;
   color: grey;
-}
-.or:after,
+} */
+/* .or:after,
 .or:before {
   content: "";
   display: block;
@@ -221,7 +209,7 @@ Form button {
   width: 100%;
   height: 1px;
   margin: 0 10px;
-}
+} */
 .submit {
   color: white;
   background-color: #ff6600;
@@ -229,14 +217,14 @@ Form button {
   padding-right: 17px;
   cursor: pointer;
 }
-.login {
+/* .login {
   color: white;
   background-color: #ff6600;
   width: 100%;
   margin-top: 25px;
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
+} */
 .upload {
   display: flex;
   align-items: center;
@@ -292,7 +280,7 @@ Form button {
 .add-item-icon {
   font-size: 20px;
 }
-.create-user {
+/* .create-user {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -301,7 +289,7 @@ Form button {
   width: 100px;
   margin-top: 25px;
   cursor: pointer;
-}
+} */
 .cancel {
   display: flex;
   align-items: center;
@@ -313,22 +301,22 @@ Form button {
   margin-left: 20px;
   cursor: pointer;
 }
-.sign-up {
+/* .sign-up {
   color: #ff6600;
   background-color: rgb(243, 243, 243);
   width: 100%;
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
+} */
 .logout {
   cursor: pointer;
   transition: transform 0.3s ease;
   margin-top: 4px;
   margin-left: 7px;
 }
-.login:hover,
+/* .login:hover, */
 .upload:hover,
-.submit:hover,
+/* .submit:hover, */
 .create-user:hover,
 .add-item-btn:hover {
   background-color: #0587be;
@@ -336,8 +324,8 @@ Form button {
 .add-item-btn-small:hover {
   background-color: #ff6600;
 }
-.cancel:hover,
-.sign-up:hover,
+/* .cancel:hover, */
+/* .sign-up:hover, */
 .collapse-btn:hover,
 .expand-btn:hover {
   background-color: rgba(255, 255, 255, 0.767);
@@ -349,7 +337,7 @@ Form button {
 }
 
 /* CUSTOM CHECK BOXES */
-.checkbox-container {
+/* .checkbox-container {
   display: inline-flex;
 }
 .checkbox-container input[type="checkbox"] {
@@ -373,14 +361,14 @@ Form button {
 }
 .checkbox-container input[type="checkbox"]:checked + label::before {
   background-color: #ff6600;
-}
+} */
 
 /* CUSTOM CHECK BOXES */
 
 /* ERROR HANDLING */
-.error {
+/* .error {
   color: red;
-}
+} */
 /* ERROR HANDLING */
 
 /* NAVBAR COMPONENT CSS */

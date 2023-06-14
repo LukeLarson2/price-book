@@ -15,39 +15,68 @@
   background-color: #fafafab8;
   height: 200px;
   width: 330px;
-  box-shadow: 2px 2px 2px #494949 !important;
+  position: relative;
+  padding: 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 2px 2px 2px #515151;
 }
 .forgot-password-email-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 40px;
-  background-color: #ff6600;
   color: white;
+  background-color: #ff6600;
+  width: 150px;
+  height: 40px;
   cursor: pointer;
-  margin: 0px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+  margin-right: 25px;
 }
 .forgot-password-email-btn:hover {
   background-color: #0587be;
 }
 
 .go-back-login-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 40px;
   color: #ff6600;
   background-color: rgb(243, 243, 243);
+  width: 150px;
+  height: 40px;
   cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
 }
 .go-back-login-btn:hover {
-  background-color: rgba(255, 255, 255, 0.767);
+  background-color: #0587be;
+  color: white;
 }
-
 .forgot-password-btn-placement {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+}
+
+.forgot-password-email-field {
+  display: block;
+  width: 300px;
+  padding: 6px 17px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: rgb(243, 243, 243);
+  background-image: none;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.forgot-password-email-field:hover {
+  background-color: #fafafa;
 }

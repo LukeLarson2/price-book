@@ -66,7 +66,7 @@ function LoginForm() {
           <div className="login-form">
             <div className="login-app-header">
               <BiBookBookmark className="login-app-icon" />
-              <h2>Price Book</h2>
+              <h2 className="login-app-title">Price Book</h2>
             </div>
             {/* <div className="login-welcome-back">Good to see you again!</div> */}
             <Form className="login-form-container">
@@ -78,12 +78,14 @@ function LoginForm() {
                 type="email"
                 label="Email"
                 name="email"
+                className="login-email"
               />
               <FormikControl
                 control="input"
                 type="password"
                 label="Password"
                 name="password"
+                className="login-password"
               />
               <div className="login-signup">
                 <div className="btn-placement">

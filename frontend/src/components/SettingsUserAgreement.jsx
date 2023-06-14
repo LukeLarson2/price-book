@@ -44,7 +44,7 @@ End User License Agreement`;
 
   return (
     <div>
-      <h2>User Agreement</h2>
+      <h2 className="user-agreement-title">User Agreement</h2>
       <div className="eula-content">
         <p>{formattedAgreement}</p>
       </div>

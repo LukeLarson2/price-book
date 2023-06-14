@@ -39,7 +39,7 @@
     border-radius: 4px;
     box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
   }
-  h2 {
+  .user-agreement-title {
     display: flex;
     justify-content: center;
     margin-top: 36px;
@@ -47,7 +47,7 @@
 }
 
 @media screen and (min-width: 691px) and (max-width: 1017px) {
-  h2 {
+  .user-agreement-title {
     margin-left: -9px;
     margin-top: 23px;
   }
@@ -87,7 +87,7 @@
     border-radius: 4px;
     box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
   }
-  h2 {
+  .user-agreement-title {
     margin-left: 12px;
   }
 }

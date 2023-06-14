@@ -114,21 +114,21 @@ function RegisterUser() {
                   type="text"
                   label="Full Name"
                   name="name"
-                  className="field"
+                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"
                   type="email"
                   label="Email"
                   name="email"
-                  className="field"
+                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"
                   type="text"
                   label="Phone"
                   name="phone"
-                  className="field"
+                  className="register-user-field"
                   onBlur={handleBlur}
                 />
                 <FormikControl
@@ -137,7 +137,7 @@ function RegisterUser() {
                   label="Account Type"
                   name="accountType"
                   id="account"
-                  className="select-account"
+                  className="register-select-account"
                   options={accountTypes}
                 />
                 <FormikControl
@@ -145,28 +145,28 @@ function RegisterUser() {
                   type="text"
                   label="Company"
                   name="company"
-                  className="field"
+                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"
                   type="text"
                   label="Role"
                   name="role"
-                  className="field"
+                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="Password"
                   name="password"
-                  className="field"
+                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"
                   type="password"
                   label="Confirm Password"
                   name="confirmPassword"
-                  className="field"
+                  className="register-user-field"
                 />
               </div>
               <div className="btn-placement">
@@ -178,7 +178,7 @@ function RegisterUser() {
                   Submit
                 </button>
                 <button
-                  className="cancel"
+                  className="register-cancel"
                   type="button"
                   onClick={() => navigate("/login")}
                 >
