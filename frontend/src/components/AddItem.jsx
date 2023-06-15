@@ -61,7 +61,6 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
     };
 
     const calculatePrice = async () => {
-      let productTax = 0;
       const taxes = {
         stateTax: 0,
         cityTax: 0,
@@ -88,13 +87,12 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
           return taxes;
         });
       }
-      productTax = taxes.cityTax + taxes.stateTax;
-      const totalPrice = values.productPrice * productTax + values.productPrice;
-      values.totalPrice = totalPrice;
-      values.salesTax = productTax;
-      values.userKey = userData._id;
       values.cityTax = taxes.cityTax;
       values.stateTax = taxes.stateTax;
+      values.salesTax = values.cityTax + values.stateTax;
+      values.totalPrice =
+        values.productPrice * values.salesTax + values.productPrice;
+      values.userKey = userData._id;
       values.key = uuidv4();
 
       setDetailsShown((prevState) => ({ ...prevState, [values.key]: false }));

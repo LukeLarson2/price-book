@@ -148,7 +148,7 @@ function ProductTable({
                       isDetailsShown[key] ? "rotated" : ""
                     }`}
                   />
-                  {isDetailsShown[key] && <br></br>}
+                  {isDetailsShown[key] && <br />}
                   <b>{name}</b>
                 </div>
                 <div>${productPrice}</div>

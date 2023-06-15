@@ -12,9 +12,10 @@ import "../stylesheets/SettingsProfile.css";
 const SettingsProfile = () => {
   const navigate = useNavigate;
   const userFetcher = fetchUser();
-  const userData = userFetcher();
+  let userData = userFetcher();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const [fetchTrigger, setFetchTrigger] = useState(Date.now());
 
   const formattedPhone = (userData) => {
     if (!userData || !userData.phone) {
@@ -139,6 +140,7 @@ const SettingsProfile = () => {
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
             modalContent={modalContent}
+            triggerFetch={setFetchTrigger}
           />
         </Modal>
       </div>

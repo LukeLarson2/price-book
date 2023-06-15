@@ -123,6 +123,7 @@ router.route("/users/validate-password").post(async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
 router.route("/users/update-password").put(async (req, res) => {
   const { userId, password } = req.body;
   try {
@@ -155,6 +156,7 @@ const transporter = nodemailer.createTransport({
     pass: "Caloopy2022!",
   },
 });
+
 // Send email
 router.route("/users/forgot-password").post(async (req, res) => {
   const { email } = req.body;
@@ -210,6 +212,7 @@ router.route("/users/forgot-password").post(async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
 router.route("/users/reset-password").put(async (req, res) => {
   const { resetToken, password } = req.body;
   try {
@@ -231,6 +234,35 @@ router.route("/users/reset-password").put(async (req, res) => {
     user
       .save()
       .then(() => res.json({ message: "Password updated successfully" }))
+      .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+router.route("/users/update-profile").put(async (req, res) => {
+  const { userId, name, email, phone, company, role } = req.body;
+  try {
+    const user = await schemas.Users.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.name = name;
+    user.email = email;
+    user.phone = phone;
+    user.company = company;
+    user.role = role;
+
+    user
+      .save()
+      .then((updatedUser) =>
+        res.json({
+          message: "User profile updated successfully",
+          userData: updatedUser,
+        })
+      )
       .catch((err) => res.status(500).json(err));
   } catch (err) {
     return res.status(500).json(err);
