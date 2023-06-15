@@ -25,7 +25,7 @@ function App() {
         return window.location.pathname === route;
       } else if (route instanceof RegExp) {
         return route.test(window.location.pathname);
-      }
+      } else return false;
     });
 
     if (!user && !isPathAllowed) {

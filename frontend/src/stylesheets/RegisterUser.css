@@ -144,11 +144,10 @@
     height: 550px; /* 50% of the viewport height */
     padding: 20px;
     border-radius: 4px;
-    margin-top: 50px;
+    margin-top: -30px;
     border-radius: 4px;
     background: #ffffffdb;
     box-shadow: 2px 2px 3px #515151;
-    margin-top: -30px;
   }
   .title-position {
     display: flex; /* This makes the title span both columns */
@@ -177,7 +176,6 @@
     grid-template-rows: auto repeat(5, auto) 1fr auto; /* Adjust the number of auto rows as per the number of rows for your form fields */
     gap: 20px;
     width: fit-content;
-    height: 450px;
     padding: 28px;
   }
 

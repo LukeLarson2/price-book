@@ -11,19 +11,10 @@ const SettingsPlans = () => {
     Modal.setAppElement("#root");
   }, []);
 
-  const [planView, setPlanView] = useState({
-    free: false,
-    personal: false,
-    company: false,
-  });
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
   const handlePlanView = (key) => {
-    setPlanView((prevPlanView) => ({
-      ...prevPlanView,
-      [key]: !prevPlanView[key],
-    }));
     setModalContent(key);
     setModalIsOpen(true);
   };

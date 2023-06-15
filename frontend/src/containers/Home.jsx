@@ -32,7 +32,7 @@ function Home() {
   const userFetcher = fetchUser();
   useEffect(() => {
     userFetcher(navigate);
-  }, []);
+  }, [navigate, userFetcher]);
   const userFetcherValues = Object.values(userFetcher).join();
   const userData = userFetcher();
   //--UPDATE USER DATA --

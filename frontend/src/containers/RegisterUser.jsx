@@ -108,7 +108,7 @@ function RegisterUser() {
               <div className="title-position">
                 <label className="title">Register New User</label>
               </div>
-              <div class="fields-wrapper">
+              <div className="fields-wrapper">
                 <FormikControl
                   control="input"
                   type="text"

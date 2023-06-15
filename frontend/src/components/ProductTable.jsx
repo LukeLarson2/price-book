@@ -29,7 +29,7 @@ function ProductTable({
     ) {
       setDetailsShown(newDetailsShownState);
     }
-  }, [products]);
+  }, [products, isDetailsShown, setDetailsShown]);
 
   const handleHeaderClick = (value) => {
     onSortChange({ target: { value } }); // This simulates an event object.

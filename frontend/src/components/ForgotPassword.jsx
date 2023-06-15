@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Modal from "./EmailSentSuccessModal";

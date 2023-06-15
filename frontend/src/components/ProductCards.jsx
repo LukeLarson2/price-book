@@ -29,7 +29,7 @@ function ProductCards({
     ) {
       setDetailsShown(newDetailsShownState);
     }
-  }, [products]);
+  }, [products, isDetailsShown, setDetailsShown]);
   return (
     <div className="product-list">
       {products.map((product) => {
