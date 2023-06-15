@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router";
+import Modal from "react-modal";
 
 import fetchUser from "../utils/fetchUser";
+import EditUserDetails from "./EditUserDetails";
 
 import "../stylesheets/SettingsProfile.css";
-import { useNavigate } from "react-router";
 
 const SettingsProfile = () => {
   const navigate = useNavigate;
   const userFetcher = fetchUser();
   const userData = userFetcher();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const formattedPhone = (userData) => {
     if (!userData || !userData.phone) {
@@ -31,11 +35,26 @@ const SettingsProfile = () => {
 
     return formattedNumber;
   };
+  const handleEditUser = () => {
+    setModalIsOpen(true);
+    setModalContent(userData);
+  };
 
   const isMediumSmallScreen = useMediaQuery({ maxWidth: 1017 });
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalContent(null);
+  };
+
+  useEffect(() => {
+    Modal.setAppElement("#root");
+  }, []);
+
   useEffect(() => {
     userFetcher(navigate);
   }, [navigate, userFetcher]);
+
   return (
     <div className="profile-container">
       <div className="profile-title-container">
@@ -100,11 +119,28 @@ const SettingsProfile = () => {
           </div>
         )}
         <div className="edit-profile-btn-placement">
-          <button type="button" className="edit-profile">
+          <button
+            type="button"
+            className="edit-profile"
+            onClick={handleEditUser}
+          >
             <AiFillEdit className="edit-profile-icon" />
             Edit Profile
           </button>
         </div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Edit User Details"
+          className="edit-user-modal"
+          overlayClassName="overlay"
+        >
+          <EditUserDetails
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+            modalContent={modalContent}
+          />
+        </Modal>
       </div>
     </div>
   );

@@ -49,6 +49,33 @@
   margin-right: 8px;
 }
 
+.edit-user-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px; /* 50% of the viewport height */
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff; /* Background color of the modal */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #515151;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.804); /* Black with 50% opacity */
+  z-index: 1000;
+}
+
 /* Small and Medium screens */
 @media screen and (max-width: 691px) {
   .profile-content {

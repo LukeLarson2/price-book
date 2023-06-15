@@ -1,0 +1,82 @@
+.edit-user-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.edit-user-details-modal .open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.edit-user-details-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.edit-user-details-cancel-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #ff6600;
+  background-color: rgb(243, 243, 243);
+  width: 110px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+}
+.edit-user-details-update-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+  background-color: #ff6600;
+  width: 110px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+  margin-right: 20px;
+}
+
+.edit-user-details-cancel-btn:hover {
+  background-color: #0587be;
+  color: white;
+}
+.edit-user-details-update-btn:hover {
+  background-color: #0587be;
+}
+
+.edit-user-details-btn-placement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
