@@ -20,8 +20,15 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 100%;
+  height: 30px;
   cursor: pointer;
+  /* border-left: 1px solid #393939; */
+  border-right: 1px solid #393939;
+  padding-left: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .table-sort-by-icon {
   margin-top: 3.5px;
@@ -80,6 +87,9 @@
 }
 .table-name {
   white-space: nowrap;
+}
+.table-value {
+  padding-left: 5px;
 }
 
 .table-each-product .table-name b {

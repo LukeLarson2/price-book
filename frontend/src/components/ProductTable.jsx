@@ -151,13 +151,13 @@ function ProductTable({
                   {isDetailsShown[key] && <br />}
                   <b>{name}</b>
                 </div>
-                <div>${productPrice}</div>
-                <div>{cityTaxPercent}%</div>
-                <div>{stateTaxPercent}%</div>
-                <div>{totalTaxPercent}%</div>
-                <div>${totalPrice.toFixed(2)}</div>
-                <div>{state}</div>
-                <div>{zip}</div>
+                <div className="table-value">${productPrice}</div>
+                <div className="table-value">{cityTaxPercent}%</div>
+                <div className="table-value">{stateTaxPercent}%</div>
+                <div className="table-value">{totalTaxPercent}%</div>
+                <div className="table-value">${totalPrice.toFixed(2)}</div>
+                <div className="table-value">{state}</div>
+                <div className="table-value">{zip}</div>
                 <div className="table-edit-del-btns">
                   <AiFillEdit
                     className="table-edit-item"
