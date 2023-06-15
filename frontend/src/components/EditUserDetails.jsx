@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 import FormikControl from "./FormikControl";
+import Loader from "./Loader";
 import "../stylesheets/EditUserDetails.css";
 
 const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   if (!modalContent) {
     return null;
   }
@@ -35,6 +38,7 @@ const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
   });
 
   const onSubmit = (values) => {
+    setIsLoading(true);
     axios
       .put("/users/update-profile", {
         userId: _id,
@@ -44,12 +48,20 @@ const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
         if (res.data && res.data.userData) {
           // Update local storage with the returned data
           localStorage.setItem("userData", JSON.stringify(res.data.userData));
+          setIsLoading(false);
           setModalIsOpen(!modalIsOpen);
         }
       })
       .catch((err) => console.error(err));
   };
 
+  const handleConfirm = () => {
+    setIsConfirmationModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsConfirmationModalOpen(false);
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -98,7 +110,8 @@ const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
               />
               <div className="edit-user-details-btn-placement">
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleConfirm}
                   disabled={!formik.isValid}
                   className="edit-user-details-update-btn"
                 >
@@ -112,6 +125,29 @@ const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
                   Cancel
                 </button>
               </div>
+              {isConfirmationModalOpen && (
+                <div className="confirm-overlay">
+                  <div className="confirmation-modal">
+                    <h4 className="user-confirm-prompt">
+                      Are you sure you want to make these changes?
+                    </h4>
+                    <div className="user-comfirmation-btn-placement">
+                      <button type="submit" className="user-confirm-yes-btn">
+                        Yes
+                      </button>
+                      <button
+                        onClick={handleCancel}
+                        className="user-confirm-no-btn"
+                      >
+                        No
+                      </button>
+                    </div>
+                    <span>
+                      {isLoading ? <Loader className="update-spinner" /> : ""}
+                    </span>
+                  </div>
+                </div>
+              )}
             </Form>
           </div>
         );
