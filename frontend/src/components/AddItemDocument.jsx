@@ -43,14 +43,12 @@ const FileUpload = ({
         body: formData,
       });
       result = await response.json();
-      console.log("result", result);
     } catch (error) {
       console.error("Error with /upload fetch call:", error);
     }
 
     for (let i = 0; i < result.data.length; i++) {
       const product = result.data[i];
-      console.log("product", product);
       const fetchData = async (zipCode) => {
         try {
           const response = await fetch(
@@ -105,7 +103,6 @@ const FileUpload = ({
           product.productPrice * product.salesTax + product.productPrice;
         product.userKey = userKey;
         product.key = uuidv4();
-        console.log("product after taxes", product);
 
         setDetailsShown((prevState) => ({
           ...prevState,
@@ -134,10 +131,6 @@ const FileUpload = ({
       calculatePrice();
     }
     setIsLoading(false);
-  };
-
-  const fileChangeHandler = (event) => {
-    setFile(event.target.files[0]);
   };
 
   return (
