@@ -178,11 +178,6 @@ function Home() {
     }
   };
 
-  //--UPDATE RENDERED PRODUCTS EFFECT--
-  useEffect(() => {
-    setProducts(products);
-  }, [products]);
-
   return (
     <div className="home-container">
       <NavBar
@@ -196,6 +191,9 @@ function Home() {
         sortField={sortField}
       />
       {isLoading && <Loader />}
+      {products.length === 0 && (
+        <h2 className="no-products-to-display">No products to display</h2>
+      )}
       {productCardView || viewportWidth <= 936 ? (
         <ProductCards
           products={products}

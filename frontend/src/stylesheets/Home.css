@@ -9,3 +9,9 @@
   background-attachment: fixed;
   overscroll-behavior: contain;
 }
+
+.no-products-to-display {
+  position: absolute;
+  top: 40%;
+  color: #323232;
+}

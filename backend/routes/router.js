@@ -6,26 +6,32 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const XLSX = require("xlsx");
+const fs = require("fs");
 
 const upload = multer({ dest: "uploads/" }); // specify the path where uploaded files should be stored
 
 router.post("/upload", upload.single("file"), (req, res) => {
-  // 'file' is the name of our file input field in the form.
   try {
-    const workbook = XLSX.readFile(req.file.path); // parse the file
-    const sheetNameList = workbook.SheetNames; // get the list of all sheets in the file
+    const workbook = XLSX.readFile(req.file.path);
+    const sheetNameList = workbook.SheetNames;
     const jsonData = XLSX.utils.sheet_to_json(
       workbook.Sheets[sheetNameList[0]]
-    ); // convert the first sheet to JSON (change this if your data is on another sheet)
-    // Then you could add the logic to loop through the JSON, perform calculations and upload each product.
+    );
 
     res
       .status(200)
       .json({ message: "File processed successfully", data: jsonData });
+    fs.unlink(req.file.path, (err) => {
+      if (err) {
+        console.error("There was an error deleting the file", err);
+      }
+    });
   } catch (error) {
     res.status(500).json({ error: "Error processing file" });
   }
 });
+
+module.exports = router;
 
 module.exports = router;
 

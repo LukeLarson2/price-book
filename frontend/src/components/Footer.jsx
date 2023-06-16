@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineFileAdd } from "react-icons/ai";
 import { TbArrowsDiagonalMinimize, TbArrowsDiagonal } from "react-icons/tb";
 
 import { useMediaQuery } from "react-responsive";
@@ -45,7 +45,7 @@ function Footer({
         className="add-item-document-btn"
         onClick={handleAddItemDocumentClick}
       >
-        Add File <AiOutlinePlus className="add-item-icon" />
+        Add File <AiOutlineFileAdd className="add-item-icon" />
       </button>
       {isMediumSmallScreen ? (
         <div className="collapse-expand-container">
