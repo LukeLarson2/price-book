@@ -20,7 +20,7 @@ const Settings = () => {
 
   useEffect(() => {
     userFetcher(navigate);
-  }, []);
+  }, [navigate, userFetcher]);
 
   const handleSettingChange = (setting) => {
     setSelectedSetting(setting);

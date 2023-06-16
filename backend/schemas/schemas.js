@@ -48,10 +48,23 @@ const taxInfo = new Schema({
   Rate: { type: String },
 });
 
+const productUpload = new Schema({
+  product: { type: String },
+  price: { type: Number },
+  state: { type: String },
+  zip: { type: String },
+});
+
 const Users = mongoose.model("Users", userSchema, "users");
 const Product = mongoose.model("Product", addProduct, "products");
 const Taxes = mongoose.model("Taxes", taxInfo, "tax-by-zip");
+const ProductDoc = mongoose.model("ProductDoc", productUpload, "user-uploads");
 
-const mySchemas = { Users: Users, Products: Product, Taxes: Taxes };
+const mySchemas = {
+  Users: Users,
+  Products: Product,
+  Taxes: Taxes,
+  ProductDoc: ProductDoc,
+};
 
 module.exports = mySchemas;

@@ -6,7 +6,12 @@ import { useMediaQuery } from "react-responsive";
 
 import "../stylesheets/Footer.css";
 
-function Footer({ handleAddItemClick, isDetailsShown, setDetailsShown }) {
+function Footer({
+  handleAddItemClick,
+  isDetailsShown,
+  setDetailsShown,
+  handleAddItemDocumentClick,
+}) {
   const isMediumSmallScreen = useMediaQuery({ maxWidth: 1166 });
   const handleCollapseAll = () => {
     // Create a new object where every property is set to false
@@ -34,6 +39,13 @@ function Footer({ handleAddItemClick, isDetailsShown, setDetailsShown }) {
         onClick={handleAddItemClick}
       >
         Add Item <AiOutlinePlus className="add-item-icon" />
+      </button>
+      <button
+        type="button"
+        className="add-item-document-btn"
+        onClick={handleAddItemDocumentClick}
+      >
+        Add Document <AiOutlinePlus className="add-item-icon" />
       </button>
       {isMediumSmallScreen ? (
         <div className="collapse-expand-container">

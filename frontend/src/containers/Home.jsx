@@ -11,6 +11,7 @@ import Loader from "../components/Loader";
 import ProductCards from "../components/ProductCards";
 import Footer from "../components/Footer";
 import ProductTable from "../components/ProductTable";
+import AddItemDocument from "../components/AddItemDocument";
 
 import "../stylesheets/Home.css";
 
@@ -21,6 +22,7 @@ function Home() {
   const [update, setUpdate] = useState(null);
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
+  const [showAddItemDocument, setAddItemDocument] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -90,6 +92,9 @@ function Home() {
   const handleAddItemClick = () => {
     setShowAddItem(true);
   };
+  const handleAddItemDocumentClick = () => {
+    setAddItemDocument(true);
+  };
 
   //--EDIT PRODUCT HANDLE ITEM CLICK--
   const handleEditItemClick = (product) => {
@@ -100,6 +105,7 @@ function Home() {
   //--CLOSE MODAL CONTROL ON CLICK--
   const handleCloseModal = () => {
     setShowAddItem(false);
+    setAddItemDocument(false);
     setShowEditItem(false);
     setEditProduct(null);
   };
@@ -211,6 +217,7 @@ function Home() {
       )}
       <Footer
         handleAddItemClick={handleAddItemClick}
+        handleAddItemDocumentClick={handleAddItemDocumentClick}
         isDetailsShown={isDetailsShown}
         setDetailsShown={setDetailsShown}
       />
@@ -228,6 +235,15 @@ function Home() {
           product={editProduct}
           updateProduct={updateProduct}
           userKey={userData._id}
+        />
+      )}
+      {showAddItemDocument && (
+        <AddItemDocument
+          onClose={handleCloseModal}
+          addProduct={addProduct}
+          userKey={userData._id}
+          setDetailsShown={setDetailsShown}
+          setUpdate={setUpdate}
         />
       )}
     </div>

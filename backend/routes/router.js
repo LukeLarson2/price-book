@@ -4,6 +4,30 @@ const bcrypt = require("bcrypt");
 const schemas = require("../schemas/schemas");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const XLSX = require("xlsx");
+
+const upload = multer({ dest: "uploads/" }); // specify the path where uploaded files should be stored
+
+router.post("/upload", upload.single("file"), (req, res) => {
+  // 'file' is the name of our file input field in the form.
+  try {
+    const workbook = XLSX.readFile(req.file.path); // parse the file
+    const sheetNameList = workbook.SheetNames; // get the list of all sheets in the file
+    const jsonData = XLSX.utils.sheet_to_json(
+      workbook.Sheets[sheetNameList[0]]
+    ); // convert the first sheet to JSON (change this if your data is on another sheet)
+    // Then you could add the logic to loop through the JSON, perform calculations and upload each product.
+
+    res
+      .status(200)
+      .json({ message: "File processed successfully", data: jsonData });
+  } catch (error) {
+    res.status(500).json({ error: "Error processing file" });
+  }
+});
+
+module.exports = router;
 
 router.get("/tax-by-zip", async (req, res) => {
   try {
