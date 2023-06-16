@@ -30,16 +30,71 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 290px;
+  width: 350px;
+  height: 150px;
   padding: 28px;
   border-radius: 4px;
   background: #ffffff;
   box-shadow: 2px 2px 3px #515151;
 }
+.upload-file-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.upload-file-title {
+  margin-top: 0px;
+}
 .new-item-document-position {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   font-size: 15px;
+  width: 100%;
+  height: 50px;
+}
+.file-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #ff6600;
+  width: 95px;
+  height: 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+  margin-right: 20px;
+  margin-bottom: 0px;
+}
+.file-name-container {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  height: 35px;
+  width: 230px;
+  border-radius: 8px;
+  background-color: #eeeeee;
+  border: 1px solid #85858511;
+  overflow: hidden;
+}
+.file-name-display {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: center;
+  font-size: 13px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .add-item-document-title {
   border: none;
@@ -49,7 +104,7 @@
   color: #222222;
 }
 .add-item-document-field {
-  display: block;
+  display: none;
   width: 255px;
   padding: 6px 17px;
   font-size: 14px;
@@ -63,7 +118,7 @@
 }
 .add-item-document-btn-placement {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 20px;
   width: 100%;
 }
@@ -73,8 +128,8 @@
   align-items: center;
   color: white;
   background-color: #ff6600;
-  width: 110px;
-  height: 40px;
+  width: 100px;
+  height: 35px;
   cursor: pointer;
   border: none;
   border-radius: 8px;
@@ -82,6 +137,7 @@
   font-size: 16px;
   font-weight: bold;
   box-shadow: 1px 1px 1px #515151;
+  margin-right: 20px;
 }
 .add-item-document-cancel {
   display: flex;
@@ -89,8 +145,8 @@
   align-items: center;
   color: #ff6600;
   background-color: rgb(243, 243, 243);
-  width: 110px;
-  height: 40px;
+  width: 100px;
+  height: 35px;
   cursor: pointer;
   border: none;
   border-radius: 8px;
@@ -99,7 +155,8 @@
   font-weight: bold;
   box-shadow: 1px 1px 1px #515151;
 }
-.add-item-document-upload:hover {
+.add-item-document-upload:hover,
+.file-upload-container:hover {
   background-color: #0587be;
 }
 .add-item-document-cancel:hover {

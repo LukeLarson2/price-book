@@ -18,6 +18,7 @@ const FileUpload = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState(undefined);
+  const [fileName, setFileName] = useState("");
 
   const initalValues = {
     file: "",
@@ -156,20 +157,37 @@ const FileUpload = ({
               onClick={(e) => e.stopPropagation()} // Prevent clicks inside the content from closing the modal
             >
               <Form className="add-item-document-form">
+                <div className="upload-file-title-container">
+                  <h2 className="upload-file-title">Upload Product File</h2>
+                </div>
                 <div className="new-item-document-position">
-                  <input
-                    name="file"
-                    className="add-item-document-field"
-                    type="file"
-                    id="file"
-                    onChange={(event) => {
-                      setFile(event.currentTarget.files[0]);
-                      formik.setFieldValue(
-                        "file",
-                        event.currentTarget.files[0]
-                      );
-                    }}
-                  />
+                  <label className="file-upload-container" htmlFor="file">
+                    <input
+                      name="file"
+                      className="add-item-document-field"
+                      type="file"
+                      id="file"
+                      onChange={(event) => {
+                        setFile(event.currentTarget.files[0]);
+                        setFileName(event.currentTarget.files[0]?.name);
+                        formik.setFieldValue(
+                          "file",
+                          event.currentTarget.files[0]
+                        );
+                      }}
+                    />
+                    Select File
+                  </label>
+                  {fileName ? (
+                    <div className="file-name-container">
+                      <div className="file-name-display">{fileName}</div>
+                    </div>
+                  ) : (
+                    <div className="file-name-container">
+                      <div className="file-name-display">No file selected</div>
+                    </div>
+                  )}
+
                   <ErrorMessage name="file" component="div" />
                 </div>
                 <div className="add-item-document-btn-placement">

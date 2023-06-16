@@ -45,7 +45,7 @@ function Footer({
         className="add-item-document-btn"
         onClick={handleAddItemDocumentClick}
       >
-        Add Document <AiOutlinePlus className="add-item-icon" />
+        Add File <AiOutlinePlus className="add-item-icon" />
       </button>
       {isMediumSmallScreen ? (
         <div className="collapse-expand-container">
