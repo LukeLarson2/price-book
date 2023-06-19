@@ -1,251 +1,124 @@
-@media screen and (max-width: 691px) {
-  .register-user-form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    justify-content: flex-start;
-    height: 100vh;
-    background-image: url("../assets/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
-    background-size: cover;
-    background-position: center center;
-  }
-  .register-user-modal-shadow-control {
-    height: 420px; /* 50% of the viewport height */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 40px;
-    padding: 28px;
-    border-radius: 4px;
-    background: #ffffffdb;
-    box-shadow: 2px 2px 3px #515151;
-    /* margin-top: -90px; */
-  }
-  .title-position {
-    display: flex; /* This makes the title span both columns */
-    justify-self: center;
-    width: 100%; /* This will center the title within their grid area */
-  }
-
-  .title {
-    border: none;
-    padding-bottom: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #222222;
-  }
-
-  label {
-    font-weight: bold;
-    display: flex;
-    margin-bottom: 5px;
-    color: #555;
-  }
-
-  .fields-wrapper {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-
-  .register-user-field:hover,
-  .register-select-account:hover {
-    background-color: #fafafa;
-  }
-
-  .register-user-field,
-  .register-select-account {
-    display: block;
-    width: 255px;
-    padding: 6px 17px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: rgb(240, 240, 240);
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #85858516 !important;
-    cursor: pointer;
-  }
-
-  #account {
-    width: 290px;
-  }
-
-  .register-user-btn-placement {
-    display: flex; /* This makes the button placement span both columns */
-    justify-content: center;
-    width: 100%; /* This will center the buttons within their grid area */
-    padding-bottom: 20px;
-  }
-
-  .create-user {
-    color: white;
-    background-color: #ff6600;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 1px 1px 1px #515151;
-    margin-right: 25px;
-  }
-
-  .register-cancel {
-    color: #ff6600;
-    background-color: white;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 1px 1px 1px #515151;
-  }
-
-  .create-user:hover {
-    background-color: #0587be;
-  }
-  .register-cancel:hover {
-    background-color: #0587be;
-    color: white;
-  }
-
-  .error {
-    color: red;
-  }
+.register-user-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  justify-content: flex-start;
+  height: 100vh;
+  background-image: url("../assets/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
+  background-size: cover;
+  background-position: center center;
 }
-@media screen and (min-width: 692px) {
-  .register-user-form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    justify-content: flex-start;
-    height: 100vh;
-    background-image: url("../assets/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
-    background-size: cover;
-    background-position: center center;
-  }
-  .register-user-modal-shadow-control {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 550px; /* 50% of the viewport height */
-    padding: 20px;
-    border-radius: 4px;
-    margin-top: -30px;
-    border-radius: 4px;
-    background: #ffffffdb;
-    box-shadow: 2px 2px 3px #515151;
-  }
-  .title-position {
-    display: flex; /* This makes the title span both columns */
-    justify-self: center;
-    width: 100%; /* This will center the title within their grid area */
-  }
+.register-user-modal-shadow-control {
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  padding: 28px;
+  border-radius: 4px;
+  background: #ffffffdb;
+  box-shadow: 2px 2px 3px #515151;
+}
+.title-position {
+  display: flex; /* This makes the title span both columns */
+  justify-self: center;
+  width: 100%; /* This will center the title within their grid area */
+}
 
-  .title {
-    border: none;
-    padding-bottom: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #222222;
-  }
+.title {
+  border: none;
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #222222;
+}
 
-  label {
-    font-weight: bold;
-    display: flex;
-    margin-bottom: 5px;
-    color: #555;
-  }
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+  color: #555;
+}
 
-  .fields-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto repeat(5, auto) 1fr auto; /* Adjust the number of auto rows as per the number of rows for your form fields */
-    gap: 20px;
-    width: fit-content;
-    padding: 28px;
-  }
+.fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
 
-  .register-user-field:hover,
-  .register-select-account:hover {
-    background-color: #fafafa;
-  }
+.register-user-field:hover,
+.register-select-account:hover {
+  background-color: #fafafa;
+}
 
-  .register-user-field,
-  .register-select-account {
-    display: block;
-    width: 255px;
-    padding: 6px 17px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: rgb(240, 240, 240);
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #85858516 !important;
-    cursor: pointer;
-  }
+.register-user-field,
+.register-select-account {
+  display: block;
+  width: 255px;
+  padding: 6px 17px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: rgb(240, 240, 240);
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #85858516 !important;
+  cursor: pointer;
+}
 
-  #account {
-    width: 290px;
-  }
+#account {
+  width: 290px;
+}
 
-  .register-user-btn-placement {
-    grid-column: span 2; /* This makes the button placement span both columns */
-    justify-self: center; /* This will center the buttons within their grid area */
-  }
+.register-user-btn-placement {
+  display: flex; /* This makes the button placement span both columns */
+  justify-content: center;
+  width: 100%; /* This will center the buttons within their grid area */
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
 
-  .create-user {
-    color: white;
-    background-color: #ff6600;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 1px 1px 1px #515151;
-    margin-right: 25px;
-  }
+.create-user {
+  color: white;
+  background-color: #ff6600;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+  margin-right: 25px;
+}
 
-  .register-cancel {
-    color: #ff6600;
-    background-color: white;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 1px 1px 1px #515151;
-  }
+.register-cancel {
+  color: #ff6600;
+  background-color: white;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px #515151;
+}
 
-  .create-user:hover {
-    background-color: #0587be;
-  }
-  .register-cancel:hover {
-    background-color: #0587be;
-    color: white;
-  }
+.create-user:hover {
+  background-color: #0587be;
+}
+.register-cancel:hover {
+  background-color: #0587be;
+  color: white;
+}
 
-  .error {
-    color: red;
-  }
+.error {
+  color: red;
 }

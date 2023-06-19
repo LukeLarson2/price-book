@@ -192,7 +192,7 @@ function Home() {
       />
       {isLoading && <Loader />}
       {products.length === 0 && (
-        <h2 className="no-products-to-display">No products to display</h2>
+        <h2 className="no-products-to-display">Add product(s)</h2>
       )}
       {productCardView || viewportWidth <= 936 ? (
         <ProductCards

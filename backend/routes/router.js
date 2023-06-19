@@ -92,6 +92,18 @@ router.route("/users/register").post(async (req, res) => {
     return res.status(500).json(err);
   }
 });
+router.route("/users/exists").post(async (req, res) => {
+  try {
+    const user = await schemas.Users.findOne({ email: req.body.email });
+    if (user) {
+      return res.json({ exists: true });
+    } else {
+      return res.json({ exists: false });
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 router
   .route("/products")

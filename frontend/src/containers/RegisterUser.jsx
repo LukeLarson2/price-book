@@ -19,10 +19,10 @@ function RegisterUser() {
     key: uuidv4(),
     name: "",
     email: "",
-    phone: "",
+    phone: "None",
     accountType: "",
-    company: "",
-    role: "",
+    company: "None",
+    role: "None",
     password: "",
     confirmPassword: "",
   };
@@ -41,9 +41,6 @@ function RegisterUser() {
     email: Yup.string()
       .email("Invalid Format (example@email.com)")
       .required("Required"),
-    phone: Yup.string()
-      .matches(/^\d{10}$/, "Invalid phone number, must be 10 digits")
-      .required("Required"),
     accountType: Yup.string().required("Required"),
     password: Yup.string()
       .min(8, "Must contain at least 8 characters")
@@ -61,9 +58,12 @@ function RegisterUser() {
   });
 
   //--HANDLE SUBMIT FOR REGISTER USER--
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    values.phone = 'None'
+    values.company = 'None'
+    values.role = 'None'
     const updatedValues = { ...values };
-
+  
     // Send the data to the backend
     fetch("http://localhost:4000/users/register", {
       method: "POST",
@@ -77,14 +77,34 @@ function RegisterUser() {
           throw new Error("Network response was not ok");
         }
         return response.json();
-      })
-      .then((result) => {
-        navigate("/login", { replace: true });
+      })      
+      .then(() => {
+        // The user registration completed successfully. Now we can attempt to login.
+        fetch("http://localhost:4000/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: updatedValues.email,
+            password: updatedValues.password // you need to include the password for login
+          }),
+        })
+        .then(async(response) => {
+          if (response.ok) {
+            const userData = await response.json();
+            localStorage.setItem("userData", JSON.stringify(userData));
+            navigate("/home");
+          } else {
+            console.error("Failed to login");
+          }
+        })
       })
       .catch((error) => {
-        console.error("Error sending data to backend:", error);
+        console.error("Error:", error);
       });
-  };
+};
+  
 
   return (
     <Formik
@@ -93,11 +113,6 @@ function RegisterUser() {
       onSubmit={onSubmit}
     >
       {(formik) => {
-        const handleBlur = (e) => {
-          const { value, name } = e.target;
-          const onlyNums = value.replace(/[^\d]/g, ""); // removes non-digits
-          formik.setFieldValue(name, onlyNums, true); // The third parameter 'shouldValidate' is set to true to run validation after state update
-        };
         return (
           <div className="register-user-form">
             <div className="login-app-header">
@@ -124,14 +139,6 @@ function RegisterUser() {
                   className="register-user-field"
                 />
                 <FormikControl
-                  control="input"
-                  type="text"
-                  label="Phone"
-                  name="phone"
-                  className="register-user-field"
-                  onBlur={handleBlur}
-                />
-                <FormikControl
                   control="select"
                   type="select"
                   label="Account Type"
@@ -139,20 +146,6 @@ function RegisterUser() {
                   id="account"
                   className="register-select-account"
                   options={accountTypes}
-                />
-                <FormikControl
-                  control="input"
-                  type="text"
-                  label="Company"
-                  name="company"
-                  className="register-user-field"
-                />
-                <FormikControl
-                  control="input"
-                  type="text"
-                  label="Role"
-                  name="role"
-                  className="register-user-field"
                 />
                 <FormikControl
                   control="input"

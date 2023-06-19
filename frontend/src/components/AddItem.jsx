@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./FormikControl";
-import { AiOutlineCloudUpload } from "react-icons/ai";
+import { AiOutlineSave } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import usStateAbbreviations from "./StateAbbs";
 import axios from "axios";
@@ -178,8 +178,8 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
                 />
                 <div className="add-item-btn-placement">
                   <button className="add-item-upload" type="submit">
-                    Upload{" "}
-                    <AiOutlineCloudUpload className="add-item-upload-icon" />
+                    Save
+                    <AiOutlineSave className="add-item-upload-icon" />
                   </button>
                   <button
                     type="button"

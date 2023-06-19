@@ -22,18 +22,23 @@ const SettingsProfile = () => {
     }
 
     const number = userData.phone;
-    const formattedNumber =
-      number.length === 11
-        ? `+${number[0]} (${number.substring(1, 4)}) ${number.substring(
-            4,
-            7
-          )}-${number.substring(7)}`
-        : `(${number.substring(0, 3)}) ${number.substring(
-            3,
-            6
-          )}-${number.substring(6)}`;
+    if(number.length > 4){
 
-    return formattedNumber;
+      const formattedNumber =
+      number.length === 11
+      ? `+${number[0]} (${number.substring(1, 4)}) ${number.substring(
+        4,
+        7
+        )}-${number.substring(7)}`
+        : `(${number.substring(0, 3)}) ${number.substring(
+          3,
+          6
+          )}-${number.substring(6)}`;
+          
+          return formattedNumber;
+        } else {
+          return 'None'
+        }
   };
   const handleEditUser = () => {
     setModalIsOpen(true);

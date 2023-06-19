@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./FormikControl";
-import { AiOutlineCloudUpload } from "react-icons/ai";
+import { AiOutlineSave } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 
 import usStateAbbreviations from "./StateAbbs";
@@ -98,15 +98,15 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
                   <div className="edit-item-upload-cancel">
                     <div className="edit-item-btn-placement">
                       <button className="edit-item-upload" type="submit">
-                        Update{" "}
-                        <AiOutlineCloudUpload className="edit-item-upload-icon" />
+                        Save
+                        <AiOutlineSave className="edit-item-upload-icon" />
                       </button>
                       <button
                         type="button"
                         className="edit-item-cancel"
                         onClick={onCancel}
                       >
-                        Cancel{" "}
+                        Cancel
                         <MdOutlineCancel className="edit-item-cancel-icon" />
                       </button>
                     </div>

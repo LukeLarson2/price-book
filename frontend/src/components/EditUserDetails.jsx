@@ -33,12 +33,16 @@ const EditUserDetails = ({ modalIsOpen, setModalIsOpen, modalContent }) => {
       .email("Invalid Format (example@email.com)")
       .required("Required"),
     phone: Yup.string()
-      .matches(/^\d{10}$/, "Invalid phone number, must be 10 digits")
-      .required("Required"),
+      .matches(/^\d{10}$|^$/, "Invalid phone number, must be 10 digits or empty")
   });
 
   const onSubmit = (values) => {
     setIsLoading(true);
+    // check if phone value is an empty string and set it to "None"
+    values.phone = values.phone || "None";
+    values.company = values.company || "None";
+    values.role = values.role || "None";
+    
     axios
       .put("/users/update-profile", {
         userId: _id,

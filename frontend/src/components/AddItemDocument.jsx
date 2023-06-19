@@ -132,7 +132,7 @@ const FileUpload = ({
                   <h2 className="upload-file-title">Upload Product File</h2>
                 </div>
                 <div className="new-item-document-position">
-                  <label className="file-upload-container" htmlFor="file">
+                  <label className="file-upload-btn" htmlFor="file">
                     <input
                       name="file"
                       className="add-item-document-field"
