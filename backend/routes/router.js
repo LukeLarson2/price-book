@@ -31,10 +31,6 @@ router.post("/upload", upload.single("file"), (req, res) => {
   }
 });
 
-module.exports = router;
-
-module.exports = router;
-
 router.get("/tax-by-zip", async (req, res) => {
   try {
     const zipCode = req.query.Zip5Lo;
@@ -116,9 +112,13 @@ router
       .catch((err) => res.status(500).json(err));
   })
   .get((req, res) => {
-    const sortBy = req.query.sortBy || "";
-    schemas.Products.find({})
-      .sort(sortBy)
+    const sortBy = req.query.sortBy || "name";
+    const order = req.query.order || "asc";
+    const search = req.query.search || "";
+    const searchPattern = new RegExp("^" + search, "i");
+
+    schemas.Products.find({ name: searchPattern })
+      .sort({ [sortBy]: order === "asc" ? 1 : -1 })
       .then((products) => res.json(products))
       .catch((err) => res.status(500).json(err));
   })

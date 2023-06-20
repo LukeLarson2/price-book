@@ -130,6 +130,7 @@ const FileUpload = ({
               <Form className="add-item-document-form">
                 <div className="upload-file-title-container">
                   <h2 className="upload-file-title">Upload Product File</h2>
+                  <p className="upload-file-description">File should include columns labeled <b>Product</b>, <b>Price</b>, <b>State</b> and <b>Zip</b>.</p>
                 </div>
                 <div className="new-item-document-position">
                   <label className="file-upload-btn" htmlFor="file">

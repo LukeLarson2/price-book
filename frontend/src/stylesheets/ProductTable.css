@@ -8,6 +8,7 @@
   margin-bottom: 10px; /* Adjust as needed */
   width: 90vw;
   padding-left: 20px;
+  user-select: none;
 }
 .table-header h3:hover {
   color: #0587be;
@@ -27,6 +28,7 @@
   padding-bottom: 10px;
   margin-top: 0px;
   margin-bottom: 0px;
+  user-select: none;
 }
 .table-sort-by-icon {
   margin-top: 3.5px;
@@ -34,9 +36,12 @@
 }
 
 .table-product-container {
-  padding-bottom: 450px;
-  background-color: #b1b1b15e;
+  height: 70%; /* Add this */
+  overflow: hidden; /* Add this */
+  /* padding-bottom: 450px; */
+  background-color: #d6d6d6d5;
 }
+
 .table-product-container .scrolling-content .table-each-product {
   display: grid;
   align-items: center;
@@ -51,6 +56,7 @@
   width: 90vw;
   font-size: 15px;
   cursor: pointer;
+  user-select: none;
 }
 .table-each-product.table-each-product-details-shown {
   grid-template-rows: auto auto; /* creates two rows when details are shown */
@@ -137,4 +143,53 @@
   .table-product-container {
     margin-top: 140px;
   }
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  margin: 20px 0;
+  bottom: 10%;
+  left: 50%;
+  list-style: none;
+  cursor: default;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+.pagination__link {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+  margin: 0 4px;
+  font-size: 15px;
+  background-color: #f3f3f3;
+  font-weight: bold;
+}
+
+.pagination__link--active {
+  color: #0587be;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pagination__link:hover:not(.pagination__link--disabled) {
+  background-color: #0587be;
+  color: white;
+}
+
+.pagination__link--disabled {
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+li {
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }

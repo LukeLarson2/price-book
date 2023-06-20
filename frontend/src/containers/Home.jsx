@@ -28,6 +28,7 @@ function Home() {
   const [search, setSearch] = useState("");
   const [productCardView, setProductCardView] = useState(true);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [sortOrder, setSortOrder] = useState('asc')
 
   //--STORE USER ID FROM LOCAL STORAGE--
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/products?sortBy=${sortField}`,
+          `http://localhost:4000/products?sortBy=${sortField}&search=${search}`,
           {
             method: "GET",
             headers: {
@@ -62,13 +63,25 @@ function Home() {
         );
 
         if (response.ok) {
-          const products = await response.json();
-          const userProducts = products.filter(
+          let products = await response.json();
+          let userProducts = products.filter(
             (product) =>
               userData._id === product.userKey &&
               product.name.toLowerCase().includes(search.toLowerCase())
           );
+
           if (userProducts.length > 0) {
+            // Here we apply the sort according to the sortField and sortOrder
+            userProducts.sort((a, b) => {
+              if (sortField) {
+                if (sortOrder === 'asc') {
+                  return a[sortField] > b[sortField] ? 1 : -1;
+                } else if (sortOrder === 'desc') {
+                  return a[sortField] < b[sortField] ? 1 : -1;
+                }
+              }
+              return 0; 
+            });
             setProducts(userProducts);
           }
           setIsLoading(false);
@@ -82,11 +95,14 @@ function Home() {
     };
 
     fetchData();
-  }, [userFetcherValues, update, search, sortField, userData._id]);
+  }, [userFetcherValues, update, search, sortField, sortOrder, userData._id]);
+
 
   const handleSortFieldChange = (field) => {
     setSortField(field);
   };
+
+  
 
   //--ADD PRODUCT MODAL ONCLICK HANDLE--
   const handleAddItemClick = () => {
@@ -205,12 +221,15 @@ function Home() {
       ) : (
         <ProductTable
           products={products}
+          setProducts={setProducts}
           handleEditItemClick={handleEditItemClick}
           handleRemove={handleRemove}
           isDetailsShown={isDetailsShown}
           setDetailsShown={setDetailsShown}
           onSortChange={(e) => handleSortFieldChange(e.target.value)}
           sortField={sortField}
+          setSortOrder={setSortOrder}
+          sortOrder={sortOrder}
         />
       )}
       <Footer

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { AiFillEdit, AiOutlineSortAscending } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from 'react-paginate';
+import { AiFillEdit, AiOutlineSortAscending, AiOutlineSortDescending } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
 import "../stylesheets/ProductTable.css";
@@ -11,7 +12,24 @@ function ProductTable({
   setDetailsShown,
   onSortChange,
   sortField,
+  sortOrder,
+  setSortOrder
 }) {
+  
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemHeight = 80; // This is an estimate of the height of an item. Adjust it to your needs.
+  const [itemsPerPage, setItemsPerPage] = useState(Math.floor(window.innerHeight / itemHeight));
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(Math.floor(window.innerHeight / itemHeight));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   useEffect(() => {
     const newDetailsShownState = products.reduce(
       (acc, product) => {
@@ -32,151 +50,199 @@ function ProductTable({
   }, [products, isDetailsShown, setDetailsShown]);
 
   const handleHeaderClick = (value) => {
-    onSortChange({ target: { value } }); // This simulates an event object.
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Update the sortOrder when the header is clicked
+    onSortChange({ target: { value } }, sortOrder); // Pass sortOrder to the parent component
   };
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+  };
+
+  const offset = currentPage * itemsPerPage;
+
+  const currentPageData = products
+    .slice(offset, offset + itemsPerPage)
+    .map((product) => {
+      const totalPrice = product.totalPrice;
+    const {
+      key,
+      name,
+      productPrice,
+      state,
+      zip,
+      salesTax,
+      cityTax,
+      stateTax,
+    } = product;
+    const cityTaxPercent = (cityTax * 100).toFixed(2);
+    const stateTaxPercent = (stateTax * 100).toFixed(2);
+    const totalTaxPercent = (salesTax * 100).toFixed(2);
+
+    return (
+      <div
+        className={`table-each-product ${
+          isDetailsShown[key] ? "table-each-product-details-shown" : ""
+        }`}
+        key={key}
+        onClick={() =>
+          setDetailsShown({
+            ...isDetailsShown,
+            [key]: !isDetailsShown[key],
+          })
+        }
+      >
+        <div className="table-name">
+          <GoTriangleRight
+            className={`table-toggle-details ${
+              isDetailsShown[key] ? "rotated" : ""
+            }`}
+          />
+          {isDetailsShown[key] && <br />}
+          <b>{name}</b>
+        </div>
+        <div className="table-value">${productPrice}</div>
+        <div className="table-value">{cityTaxPercent}%</div>
+        <div className="table-value">{stateTaxPercent}%</div>
+        <div className="table-value">{totalTaxPercent}%</div>
+        <div className="table-value">${totalPrice.toFixed(2)}</div>
+        <div className="table-value">{state}</div>
+        <div className="table-value">{zip}</div>
+        <div className="table-edit-del-btns">
+          <AiFillEdit
+            className="table-edit-item"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleEditItemClick(product);
+            }}
+          />
+          <FiTrash2
+            className="table-delete-item"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemove(key);
+            }}
+          />
+        </div>
+      </div>
+    )})
+
+  const pageCount = Math.ceil(products.length / itemsPerPage);
   return (
     <div className="table-placement">
       <div className="table-header">
-        <h3
+      <h3
           onClick={() => handleHeaderClick("name")}
           className={sortField === "name" ? "selected" : ""}
         >
-          Name{" "}
-          {sortField === "name" && (
+          Name
+          {sortField === "name" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "name" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("productPrice")}
           className={sortField === "productPrice" ? "selected" : ""}
         >
-          Price{" "}
-          {sortField === "productPrice" && (
+          Price
+          {sortField === "productPrice" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "productPrice" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("cityTax")}
           className={sortField === "cityTax" ? "selected" : ""}
         >
-          City Tax{" "}
-          {sortField === "cityTax" && (
+          City Tax
+          {sortField === "cityTax" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "cityTax" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("stateTax")}
           className={sortField === "stateTax" ? "selected" : ""}
         >
-          State Tax{" "}
-          {sortField === "stateTax" && (
+          State Tax
+          {sortField === "stateTax" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "stateTax" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("salesTax")}
           className={sortField === "salesTax" ? "selected" : ""}
         >
-          Total Tax{" "}
-          {sortField === "salesTax" && (
+          Combined Tax
+          {sortField === "salesTax" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "salesTax" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("totalPrice")}
           className={sortField === "totalPrice" ? "selected" : ""}
         >
-          Total Price{" "}
-          {sortField === "totalPrice" && (
+          Total Price
+          {sortField === "totalPrice" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "totalPrice" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("state")}
           className={sortField === "state" ? "selected" : ""}
         >
-          State{" "}
-          {sortField === "state" && (
+          State
+          {sortField === "state" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "state" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3
           onClick={() => handleHeaderClick("zip")}
           className={sortField === "zip" ? "selected" : ""}
         >
-          Zip Code{" "}
-          {sortField === "zip" && (
+          Zip
+          {sortField === "zip" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "zip" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
         <h3>Edit/Delete</h3>
       </div>
       <div className="table-product-container">
         <div className="scrolling-content">
-          {products.map((product) => {
-            const totalPrice = product.totalPrice;
-            const {
-              key,
-              name,
-              productPrice,
-              state,
-              zip,
-              salesTax,
-              cityTax,
-              stateTax,
-            } = product;
-            const cityTaxPercent = (cityTax * 100).toFixed(2);
-            const stateTaxPercent = (stateTax * 100).toFixed(2);
-            const totalTaxPercent = (salesTax * 100).toFixed(2);
-
-            return (
-              <div
-                className={`table-each-product ${
-                  isDetailsShown[key] ? "table-each-product-details-shown" : ""
-                }`}
-                key={key}
-                onClick={() =>
-                  setDetailsShown({
-                    ...isDetailsShown,
-                    [key]: !isDetailsShown[key],
-                  })
-                }
-              >
-                <div className="table-name">
-                  <GoTriangleRight
-                    className={`table-toggle-details ${
-                      isDetailsShown[key] ? "rotated" : ""
-                    }`}
-                  />
-                  {isDetailsShown[key] && <br />}
-                  <b>{name}</b>
-                </div>
-                <div className="table-value">${productPrice}</div>
-                <div className="table-value">{cityTaxPercent}%</div>
-                <div className="table-value">{stateTaxPercent}%</div>
-                <div className="table-value">{totalTaxPercent}%</div>
-                <div className="table-value">${totalPrice.toFixed(2)}</div>
-                <div className="table-value">{state}</div>
-                <div className="table-value">{zip}</div>
-                <div className="table-edit-del-btns">
-                  <AiFillEdit
-                    className="table-edit-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleEditItemClick(product);
-                    }}
-                  />
-                  <FiTrash2
-                    className="table-delete-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemove(key);
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })}
+        <div className="table-placement">
+      {currentPageData}
+      <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        previousLinkClassName={"pagination__link"}
+        nextLinkClassName={"pagination__link"}
+        disabledClassName={"pagination__link--disabled"}
+        activeClassName={"pagination__link--active"}
+      />
+    </div>
         </div>
       </div>
     </div>

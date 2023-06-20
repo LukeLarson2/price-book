@@ -31,20 +31,30 @@
   align-items: center;
   position: relative;
   width: 350px;
-  height: 150px;
+  height: 250px;
   padding: 28px;
   border-radius: 4px;
   background: #ffffff;
   box-shadow: 2px 2px 3px #515151;
+  text-align: center;
 }
 .upload-file-title-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 100%;
   margin-bottom: 0px;
   margin-top: 0px;
+}
+.upload-file-description {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.upload-file-title-container ul li {
+  font-weight: lighter !important;
+  cursor: default !important;
 }
 .upload-file-title {
   margin-top: 0px;
@@ -124,6 +134,7 @@
   justify-content: center;
   margin-top: 20px;
   width: 100%;
+  margin-bottom: 20px;
 }
 .add-item-document-upload {
   display: flex;
