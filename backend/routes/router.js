@@ -11,6 +11,57 @@ const fs = require("fs");
 
 const upload = multer({ dest: "uploads/" }); // specify the path where uploaded files should be stored
 
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+router.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (req, res) => {
+    const sig = req.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+    } catch (err) {
+      res.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object;
+
+      // Complete the customer's order here, e.g. by updating the database
+      const customerEmail = session.customer_details.email;
+      const accountType =
+        session.object.amount_subtotal <= 599
+          ? "Individual Plan"
+          : "Commercial Plan"; // Individual Plan or Commercial Plan
+
+      schemas.Users.findOneAndUpdate(
+        { email: customerEmail },
+        { accountType },
+        { new: true }
+      )
+        .then(() => {
+          res.json({ received: true });
+        })
+        .catch((err) => {
+          console.error(err);
+          res
+            .status(500)
+            .json({ error: "An error occurred while updating the user" });
+        });
+    } else {
+      // Unexpected event type
+      return res.status(400).end();
+    }
+
+    // Return a response to acknowledge receipt of the event
+    res.json({ received: true });
+  }
+);
+
 router.post("/create-checkout-session-commercial", async (req, res) => {
   const YOUR_DOMAIN = "http://localhost:3000"; // Replace with your domain
 
@@ -32,6 +83,7 @@ router.post("/create-checkout-session-commercial", async (req, res) => {
     res.status(500).json({ error: "Failed to create checkout session" });
   }
 });
+
 router.post("/create-checkout-session-individual", async (req, res) => {
   const YOUR_DOMAIN = "http://localhost:3000"; // Replace with your domain
 
