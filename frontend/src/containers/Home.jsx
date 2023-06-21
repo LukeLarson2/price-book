@@ -210,7 +210,7 @@ function Home() {
       {products.length === 0 && (
         <h2 className="no-products-to-display">Add product(s)</h2>
       )}
-      {productCardView || viewportWidth <= 936 ? (
+      {!productCardView || viewportWidth <= 936 ? (
         <ProductCards
           products={products}
           handleEditItemClick={handleEditItemClick}

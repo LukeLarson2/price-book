@@ -8,6 +8,7 @@
   margin-bottom: 20px;
   position: fixed;
   z-index: 999;
+  user-select: none;
 }
 .app-user {
   display: flex;
@@ -44,7 +45,6 @@
   margin-right: 20px;
   margin-bottom: 0px;
   margin-top: 0px;
-  /* margin-bottom: -10px; */
 }
 .username-name {
   display: flex;
@@ -114,7 +114,7 @@
   background-color: #f5f5f5;
   padding-top: 10px;
   padding-bottom: 11px;
-  padding-left: 30px;
+  padding-left: 20px;
   padding-right: 30px;
 }
 .view-toggle-btn-container {

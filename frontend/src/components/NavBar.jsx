@@ -98,7 +98,8 @@ function NavBar({
             <option value="productPrice">Product Price</option>
             <option value="cityTax">City Tax</option>
             <option value="stateTax">State Tax</option>
-            <option value="salesTax">Total Tax</option>
+            <option value="combinedTax">Combined Tax</option>
+            <option value="totalTax">Total Tax</option>
             <option value="totalPrice">Total Price</option>
             <option value="state">State</option>
             <option value="zip">Zip code</option>

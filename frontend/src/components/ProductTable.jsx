@@ -69,13 +69,14 @@ function ProductTable({
       productPrice,
       state,
       zip,
-      salesTax,
+      combinedTax,
+      totalTax,
       cityTax,
       stateTax,
     } = product;
     const cityTaxPercent = (cityTax * 100).toFixed(2);
     const stateTaxPercent = (stateTax * 100).toFixed(2);
-    const totalTaxPercent = (salesTax * 100).toFixed(2);
+    const combinedTaxPercent = (combinedTax * 100).toFixed(2);
 
     return (
       <div
@@ -102,7 +103,8 @@ function ProductTable({
         <div className="table-value">${productPrice}</div>
         <div className="table-value">{cityTaxPercent}%</div>
         <div className="table-value">{stateTaxPercent}%</div>
-        <div className="table-value">{totalTaxPercent}%</div>
+        <div className="table-value">{combinedTaxPercent}%</div>
+        <div className="table-value">${totalTax.toFixed(2)}</div>
         <div className="table-value">${totalPrice.toFixed(2)}</div>
         <div className="table-value">{state}</div>
         <div className="table-value">{zip}</div>
@@ -178,14 +180,26 @@ function ProductTable({
           )}
         </h3>
         <h3
-          onClick={() => handleHeaderClick("salesTax")}
-          className={sortField === "salesTax" ? "selected" : ""}
+          onClick={() => handleHeaderClick("combinedTax")}
+          className={sortField === "combinedTax" ? "selected" : ""}
         >
           Combined Tax
-          {sortField === "salesTax" && sortOrder === 'asc' && (
+          {sortField === "combinedTax" && sortOrder === 'asc' && (
             <AiOutlineSortAscending className="table-sort-by-icon" />
           )}
-          {sortField === "salesTax" && sortOrder === 'desc' && (
+          {sortField === "combinedTax" && sortOrder === 'desc' && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("totalTax")}
+          className={sortField === "totalTax" ? "selected" : ""}
+        >
+          Total Tax
+          {sortField === "totalTax" && sortOrder === 'asc' && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "totalTax" && sortOrder === 'desc' && (
             <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
@@ -225,7 +239,7 @@ function ProductTable({
             <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
-        <h3>Edit/Delete</h3>
+        <h3 className="edit-delete-header">Edit/Delete</h3>
       </div>
       <div className="table-product-container">
         <div className="scrolling-content">

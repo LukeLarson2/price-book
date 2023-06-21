@@ -21,6 +21,8 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
     productPrice: 0,
     cityTax: 0,
     stateTax: 0,
+    combinedTax:0,
+    totalTax:0,
     totalPrice: 0,
     userKey: "",
     key: "",
@@ -89,9 +91,9 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
       }
       values.cityTax = taxes.cityTax;
       values.stateTax = taxes.stateTax;
-      values.salesTax = values.cityTax + values.stateTax;
-      values.totalPrice =
-        values.productPrice * values.salesTax + values.productPrice;
+      values.combinedTax = values.cityTax + values.stateTax;
+      values.totalTax = values.productPrice * values.combinedTax;
+      values.totalPrice = values.totalTax + values.productPrice;
       values.userKey = userData._id;
       values.key = uuidv4();
 

@@ -2,13 +2,19 @@
   cursor: default;
   display: grid;
   align-items: start;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   background-color: #ffffff;
   position: sticky;
   margin-bottom: 10px; /* Adjust as needed */
   width: 90vw;
   padding-left: 20px;
   user-select: none;
+}
+
+@media screen and (max-width: 1501px) {
+  .table-header {
+    height: 70px !important;
+  }
 }
 .table-header h3:hover {
   color: #0587be;
@@ -26,6 +32,7 @@
   padding-left: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-right: 5px;
   margin-top: 0px;
   margin-bottom: 0px;
   user-select: none;
@@ -33,6 +40,9 @@
 .table-sort-by-icon {
   margin-top: 3.5px;
   padding-left: 5px;
+}
+.edit-delete-header {
+  margin-right: 5px;
 }
 
 .table-product-container {
@@ -46,7 +56,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: repeat(
-    9,
+    10,
     1fr
   ); /* The number of columns should match with the header */
   border-bottom: 1px solid #ddd; /* Add border to separate each row */

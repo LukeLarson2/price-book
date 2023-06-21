@@ -8,6 +8,7 @@
   background-image: url("../assets/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
   background-size: cover;
   background-position: center center;
+  user-select: none;
 }
 .register-user-modal-shadow-control {
   height: 520px;

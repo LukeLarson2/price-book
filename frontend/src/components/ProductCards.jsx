@@ -32,23 +32,28 @@ function ProductCards({
   }, [products, isDetailsShown, setDetailsShown]);
   return (
     <div className="product-list">
-      {products.map((product) => {
-        const totalPrice = product.totalPrice;
-        const {
-          key,
-          name,
-          productPrice,
-          state,
-          zip,
-          salesTax,
-          cityTax,
-          stateTax,
-        } = product;
+      {products
+    .map((product) => {
+      const totalPrice = product.totalPrice;
+    const {
+      key,
+      name,
+      productPrice,
+      state,
+      zip,
+      combinedTax,
+      totalTax,
+      cityTax,
+      stateTax,
+    } = product;
+    const cityTaxPercent = (cityTax * 100).toFixed(2);
+    const stateTaxPercent = (stateTax * 100).toFixed(2);
+    const combinedTaxPercent = (combinedTax * 100).toFixed(2);
         return (
           <div
             key={key}
             className="product-info"
-            style={{ height: isDetailsShown[key] ? "470px" : "80px" }}
+            style={{ height: isDetailsShown[key] ? "fit-content" : "80px" }}
           >
             <div
               className="product-header"
@@ -90,13 +95,16 @@ function ProductCards({
                   Product Price: <b>${productPrice}</b>{" "}
                 </p>
                 <p>
-                  City Tax: <b>{(cityTax * 100).toFixed(2)}%</b>{" "}
+                  City Tax: <b>{cityTaxPercent}%</b>{" "}
                 </p>
                 <p>
-                  State Tax: <b>{(stateTax * 100).toFixed(2)}%</b>{" "}
+                  State Tax: <b>{stateTaxPercent}%</b>{" "}
                 </p>
                 <p>
-                  Total Tax: <b>{(salesTax * 100).toFixed(2)}%</b>{" "}
+                  Combined Tax: <b>{combinedTaxPercent}%</b>{" "}
+                </p>
+                <p>
+                  Total Tax: <b>${totalTax.toFixed(2)}</b>{" "}
                 </p>
                 <p>
                   Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}

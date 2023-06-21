@@ -9,6 +9,7 @@
   background-size: cover;
   background-attachment: fixed;
   overscroll-behavior: contain;
+  user-select: none;
 }
 
 .settings-window {

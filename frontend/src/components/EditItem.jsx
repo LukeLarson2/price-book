@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import { AiOutlineSave } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
+import {v4 as uuidv4} from 'uuid'
 
 import usStateAbbreviations from "./StateAbbs";
 import "../stylesheets/EditItem.css";
@@ -26,21 +27,69 @@ function EditItem({ userKey, onClose, product, updateProduct }) {
 
   //--FORM SUBMISSION--
   const onSubmit = async (values) => {
-    const stateTax = usStateAbbreviations.find(
-      (stateInfo) => stateInfo.value === values.state
-    );
-    const totalPrice =
-      values.productPrice * stateTax.salesTax + values.productPrice;
-    values.totalPrice = totalPrice;
-    values.salesTax = stateTax.salesTax;
-    values.userKey = userKey;
-    const updatedValues = {
-      ...values,
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    const fetchData = async (zipCode) => {
+        try {
+            const response = await fetch(
+                `http://localhost:4000/tax-by-zip?Zip5Lo=${zipCode}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            const taxData = await response.json();
+            return taxData;
+        } catch (error) {
+            console.error("Error fetching tax data:", error);
+        }
     };
-    // await setEditedProduct(updatedValues);
-    await updateProduct(updatedValues);
-    onClose();
-  };
+
+    const calculatePrice = async () => {
+        const taxes = {
+            stateTax: 0,
+            cityTax: 0,
+        };
+
+        const taxData = await fetchData(values.zip);
+        if (!taxData || taxData.length === 0) {
+            taxes.cityTax = 0;
+            taxes.stateTax = 0;
+        } else {
+            taxData.map((tax) => {
+                if (
+                    tax.JurisdictionTypeId === "STA" &&
+                    (tax.Rate > taxes.stateTax || !taxes.stateTax)
+                ) {
+                    return (taxes.stateTax = Number.parseFloat(tax.Rate));
+                } else if (
+                    (tax.JurisdictionTypeId === "CTY" ||
+                        tax.JurisdictionTypeId === "CIT") &&
+                    (tax.Rate > taxes.cityTax || !taxes.cityTax)
+                ) {
+                    return (taxes.cityTax = Number.parseFloat(tax.Rate));
+                }
+                return taxes;
+            });
+        }
+        values.cityTax = taxes.cityTax;
+        values.stateTax = taxes.stateTax;
+        values.combinedTax = values.cityTax + values.stateTax;
+        values.totalTax = values.productPrice * values.combinedTax;
+        values.totalPrice = values.totalTax + values.productPrice;
+        values.userKey = userData._id;
+        
+        await updateProduct(values);
+        values.key = uuidv4()
+        console.log(values)
+        onClose();
+    };
+
+    calculatePrice();
+}
+  
 
   const onCancel = () => {
     onClose();
