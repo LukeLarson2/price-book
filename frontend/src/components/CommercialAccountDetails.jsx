@@ -1,12 +1,15 @@
 import React from "react";
 
-const ComanyAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
+const CommercialAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
   const handleCloseModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
   return (
     <div className="description-container">
-      <div className="description-title">Company Plan</div>
+      <div className="description-title">Commercial Plan</div>
+      <div className="description-header">
+        $49.99/month
+      </div>
       <div className="description-header">
         From startups to enterprises, enhance team collaboration, productivity,
         and manage all aspects of your business seamlessly
@@ -31,13 +34,15 @@ const ComanyAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
         </li>
       </ul>
       <div className="footer-banner">
-        Choose the Company Account to drive your business forward and maximize
+        Choose the Commercial Account to drive your business forward and maximize
         your team's potential!
       </div>
       <div className="upgrade-cancel-btn-placement">
-        <button type="button" className="upgrade-btn">
+      <form action="/create-checkout-session-commercial" method="POST">
+        <button type="submit" className="upgrade-btn">
           Upgrade
         </button>
+        </form>
         <button
           type="button"
           className="cancel-btn"
@@ -50,4 +55,4 @@ const ComanyAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
   );
 };
 
-export default ComanyAccountDetails;
+export default CommercialAccountDetails;

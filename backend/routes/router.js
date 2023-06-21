@@ -1,4 +1,5 @@
 const express = require("express");
+const stripe = require("stripe")(process.env.STRIPE_TEST_KEY);
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const schemas = require("../schemas/schemas");
@@ -9,6 +10,49 @@ const XLSX = require("xlsx");
 const fs = require("fs");
 
 const upload = multer({ dest: "uploads/" }); // specify the path where uploaded files should be stored
+
+router.post("/create-checkout-session-commercial", async (req, res) => {
+  const YOUR_DOMAIN = "http://localhost:3000"; // Replace with your domain
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price: process.env.PRICE_ID_2,
+          quantity: 1,
+        },
+      ],
+      mode: "subscription",
+      success_url: `${YOUR_DOMAIN}?success=true`,
+      cancel_url: `${YOUR_DOMAIN}/settings`,
+    });
+
+    res.redirect(303, session.url);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create checkout session" });
+  }
+});
+router.post("/create-checkout-session-individual", async (req, res) => {
+  const YOUR_DOMAIN = "http://localhost:3000"; // Replace with your domain
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price: process.env.PRICE_ID_1,
+          quantity: 1,
+        },
+      ],
+      mode: "subscription",
+      success_url: `${YOUR_DOMAIN}?success=true`,
+      cancel_url: `${YOUR_DOMAIN}/settings`,
+    });
+
+    res.redirect(303, session.url);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create checkout session" });
+  }
+});
 
 router.post("/upload", upload.single("file"), (req, res) => {
   try {

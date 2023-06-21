@@ -20,20 +20,12 @@ function RegisterUser() {
     name: "",
     email: "",
     phone: "None",
-    accountType: "",
+    accountType: "Free Trial",
     company: "None",
     role: "None",
     password: "",
     confirmPassword: "",
   };
-
-  //--ACCOUNT TYPES FOR SELECT LIST--
-  const accountTypes = [
-    { key: "Select account type", value: "" },
-    { key: "Free Trial", value: "Free Trial" },
-    { key: "Personal", value: "Personal" },
-    { key: "Commercial", value: "Commercial" },
-  ];
 
   //--VALIDATION--
   const validationSchema = Yup.object({
@@ -41,7 +33,6 @@ function RegisterUser() {
     email: Yup.string()
       .email("Invalid Format (example@email.com)")
       .required("Required"),
-    accountType: Yup.string().required("Required"),
     password: Yup.string()
       .min(8, "Must contain at least 8 characters")
       .test("number", "Must contain a number", (value) => /\d/.test(value))
@@ -137,15 +128,6 @@ function RegisterUser() {
                   label="Email"
                   name="email"
                   className="register-user-field"
-                />
-                <FormikControl
-                  control="select"
-                  type="select"
-                  label="Account Type"
-                  name="accountType"
-                  id="account"
-                  className="register-select-account"
-                  options={accountTypes}
                 />
                 <FormikControl
                   control="input"

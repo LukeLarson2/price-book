@@ -1,12 +1,15 @@
 import React from "react";
 
-const PersonalAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
+const IndividualAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
   const handleCloseModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
   return (
     <div className="description-container">
-      <div className="description-title">Personal Plan</div>
+      <div className="description-title">Individual Plan</div>
+      <div className="description-header">
+      $5.99/month
+      </div>
       <div className="description-header">
         Enjoy enhanced features like additional perks and support
       </div>
@@ -20,13 +23,15 @@ const PersonalAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
         <li>Advanced privacy and security features</li>
       </ul>
       <div className="footer-banner">
-        Upgrade to the Personal Account for a complete and personalized
+        Upgrade to the Individual Account for a complete and personalized
         experience!
       </div>
       <div className="upgrade-cancel-btn-placement">
-        <button type="button" className="upgrade-btn">
+      <form action="/create-checkout-session-individual" method="POST">
+        <button type="submit" className="upgrade-btn">
           Upgrade
         </button>
+        </form>
         <button
           type="button"
           className="cancel-btn"
@@ -39,4 +44,4 @@ const PersonalAccountDetails = ({ modalIsOpen, setModalIsOpen }) => {
   );
 };
 
-export default PersonalAccountDetails;
+export default IndividualAccountDetails;

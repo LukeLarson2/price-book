@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import FreeAccountDetails from "./FreeAccountDetails";
-import PersonalAccountDetails from "./PersonalAccountDetails";
-import ComanyAccountDetails from "./ComanyAccountDetails";
+import IndividualAccountDetails from "./IndividualAccountDetails";
+import CommercialAccountDetails from "./CommercialAccountDetails";
 
 import "../stylesheets/SettingsPlans.css";
 
@@ -33,16 +33,16 @@ const SettingsPlans = () => {
             setModalIsOpen={setModalIsOpen}
           />
         );
-      case "personal":
+      case "individual":
         return (
-          <PersonalAccountDetails
+          <IndividualAccountDetails
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
           />
         );
-      case "company":
+      case "commercial":
         return (
-          <ComanyAccountDetails
+          <CommercialAccountDetails
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
           />
@@ -74,37 +74,37 @@ const SettingsPlans = () => {
             </button>
           </div>
         </div>
-        <div className="personal-account-container">
+        <div className="individual-account-container">
           <div className="account-type-title">
-            <b>Personal Account</b>{" "}
+            <b>Individual Account</b>{" "}
           </div>
           <div className="plan-disc-btn">
             <div className="plan-content">
-              The Personal Account is designed for individuals who want full
+              The Individual Account is designed for individuals who want full
               access to our platform.
             </div>
             <button
               type="button"
               className="plan-details-btn"
-              onClick={() => handlePlanView("personal")}
+              onClick={() => handlePlanView("individual")}
             >
               Learn More
             </button>
           </div>
         </div>
-        <div className="company-account-container">
+        <div className="commercial-account-container">
           <div className="account-type-title">
-            <b>Company Account</b>
+            <b>Commercial Account</b>
           </div>
           <div className="plan-disc-btn">
             <div className="plan-content">
-              The Company Account is the ideal solution for businesses of all
+              The Commercial Account is the ideal solution for businesses of all
               sizes.
             </div>
             <button
               type="button"
               className="plan-details-btn"
-              onClick={() => handlePlanView("company")}
+              onClick={() => handlePlanView("commercial")}
             >
               Learn More
             </button>
