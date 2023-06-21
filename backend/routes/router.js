@@ -16,49 +16,51 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 router.post(
   "/webhook",
   express.raw({ type: "application/json" }),
-  (req, res) => {
-    const sig = req.headers["stripe-signature"];
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
 
     let event;
 
     try {
-      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     } catch (err) {
-      res.status(400).send(`Webhook Error: ${err.message}`);
+      response.status(400).send(`Webhook Error: ${err.message}`);
       return;
     }
+    console.log("something");
+    // Handle the event
+    switch (event.type) {
+      case "payment_intent.succeeded":
+        const paymentIntentSucceeded = event.data.object;
+        const customerEmail = paymentIntentSucceeded.customer_details.email;
+        const accountType =
+          paymentIntentSucceeded.object.amount_subtotal <= 599
+            ? "Individual Plan"
+            : "Commercial Plan"; // Individual Plan or Commercial Plan
+        console.log(paymentIntentSucceeded);
 
-    if (event.type === "checkout.session.completed") {
-      const session = event.data.object;
-
-      // Complete the customer's order here, e.g. by updating the database
-      const customerEmail = session.customer_details.email;
-      const accountType =
-        session.object.amount_subtotal <= 599
-          ? "Individual Plan"
-          : "Commercial Plan"; // Individual Plan or Commercial Plan
-
-      schemas.Users.findOneAndUpdate(
-        { email: customerEmail },
-        { accountType },
-        { new: true }
-      )
-        .then(() => {
-          res.json({ received: true });
-        })
-        .catch((err) => {
-          console.error(err);
-          res
-            .status(500)
-            .json({ error: "An error occurred while updating the user" });
-        });
-    } else {
-      // Unexpected event type
-      return res.status(400).end();
+        schemas.Users.findOneAndUpdate(
+          { email: customerEmail },
+          { accountType },
+          { new: true }
+        )
+          .then(() => {
+            response.json({ received: true });
+          })
+          .catch((err) => {
+            console.error(err);
+            response
+              .status(500)
+              .json({ error: "An error occurred while updating the user" });
+          });
+        break;
+      // ... handle other event types
+      default:
+        console.log(`Unhandled event type ${event.type}`);
     }
 
-    // Return a response to acknowledge receipt of the event
-    res.json({ received: true });
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
   }
 );
 
@@ -96,7 +98,7 @@ router.post("/create-checkout-session-individual", async (req, res) => {
         },
       ],
       mode: "subscription",
-      success_url: `${YOUR_DOMAIN}?success=true`,
+      success_url: `${YOUR_DOMAIN}/settings`,
       cancel_url: `${YOUR_DOMAIN}/settings`,
     });
 
