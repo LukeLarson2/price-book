@@ -1,0 +1,68 @@
+[
+  {
+      "product": "Office Lease",
+      "price": 2000,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Utilities",
+      "price": 200,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Internet and Phone Services",
+      "price": 150,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Office Supplies",
+      "price": 100,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Website Design and Maintenance",
+      "price": 2000,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Marketing and Advertising",
+      "price": 1000,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Insurance",
+      "price": 300,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Employee Salaries",
+      "price": 3000,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Accounting Services",
+      "price": 500,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Legal Fees",
+      "price": 1000,
+      "state": "WA",
+      "zip": 98513
+  },
+  {
+      "product": "Licensing and Permits",
+      "price": 500,
+      "state": "WA",
+      "zip": 98513
+  }
+]
