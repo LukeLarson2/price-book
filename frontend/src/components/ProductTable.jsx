@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { AiFillEdit, AiOutlineSortAscending, AiOutlineSortDescending } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
+
 import "../stylesheets/ProductTable.css";
 function ProductTable({
   products,
@@ -30,6 +31,7 @@ function ProductTable({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   useEffect(() => {
     const newDetailsShownState = products.reduce(
       (acc, product) => {

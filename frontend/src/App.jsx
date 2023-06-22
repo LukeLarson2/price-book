@@ -7,8 +7,7 @@ import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
 import Settings from "./containers/Settings";
 import ForgotPassword from "./components/ForgotPassword";
-import ForgotPasswordRequest from "./components/ForgotPasswordRequest";
-import Stripe from "./components/Stripe";
+import ForgotPasswordRequest from "./components/ForgotPasswordRequest"
 
 function App() {
   const navigate = useNavigate();
@@ -50,7 +49,6 @@ function App() {
           path="/forgot-password-request"
           element={<ForgotPasswordRequest />}
         />
-        <Route path='/checkout' element={<Stripe/>}/>
       </Routes>
     </div>
   );

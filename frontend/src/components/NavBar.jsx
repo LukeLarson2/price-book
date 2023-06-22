@@ -16,6 +16,7 @@ function NavBar({
   setProductCardView,
   productCardView,
   sortField,
+  products
 }) {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -73,6 +74,7 @@ function NavBar({
             <UserDropdown
               onClose={() => setDropdownOpen(!isDropdownOpen)}
               className="user-dropdown-menu"
+              products={products}
             />
           )}
         </div>

@@ -205,6 +205,7 @@ function Home() {
         setProductCardView={setProductCardView}
         productCardView={productCardView}
         sortField={sortField}
+        products={products}
       />
       {isLoading && <Loader />}
       {products.length === 0 && (
