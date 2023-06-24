@@ -2,11 +2,11 @@ import React from "react";
 
 const SettingsPersonalize = ({ backgroundImage, setBackgroundImage }) => {
   const defaultImages = {
-    ["Wood Desk"]: "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg",
-    ["Bench Accounting"]: "/bench-accounting-xxeAftHHq6E-unsplash.jpg",
-    ["Photography"]: "/christopher-gower-vjMgqUkS8q8-unsplash.jpg",
-    ["Bronze"]: "/jess-bailey-q10VITrVYUM-unsplash.jpg",
-    ["Gold"]: "/leone-venter-VieM9BdZKFo-unsplash.jpg",
+    woodDesk: "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg",
+    benchAccounting: "/bench-accounting-xxeAftHHq6E-unsplash.jpg",
+    photography: "/christopher-gower-vjMgqUkS8q8-unsplash.jpg",
+    bronzePen: "/jess-bailey-q10VITrVYUM-unsplash.jpg",
+    goldPen: "/leone-venter-VieM9BdZKFo-unsplash.jpg",
   };
 
   const handleBackgroundChange = (key) => () => {
@@ -16,22 +16,19 @@ const SettingsPersonalize = ({ backgroundImage, setBackgroundImage }) => {
 
   return (
     <div>
-      <button type="button" onClick={handleBackgroundChange("Wood Desk")}>
+      <button type="button" onClick={handleBackgroundChange("woodDesk")}>
         Wood Desk
       </button>
-      <button
-        type="button"
-        onClick={handleBackgroundChange("Bench Accounting")}
-      >
+      <button type="button" onClick={handleBackgroundChange("benchAccounting")}>
         Bench Accounting
       </button>
-      <button type="button" onClick={handleBackgroundChange("Photography")}>
+      <button type="button" onClick={handleBackgroundChange("photography")}>
         Photography
       </button>
-      <button type="button" onClick={handleBackgroundChange("Bronze")}>
+      <button type="button" onClick={handleBackgroundChange("bronzePen")}>
         Bronze
       </button>
-      <button type="button" onClick={handleBackgroundChange("Gold")}>
+      <button type="button" onClick={handleBackgroundChange("goldPen")}>
         Gold
       </button>
     </div>
