@@ -15,7 +15,7 @@ import AddItemDocument from "../components/AddItemDocument";
 
 import "../stylesheets/Home.css";
 
-function Home() {
+function Home({ backgroundImage }) {
   const [products, setProducts] = useState([]);
   const [isDetailsShown, setDetailsShown] = useState({});
   const [sortField, setSortField] = useState("");
@@ -28,7 +28,7 @@ function Home() {
   const [search, setSearch] = useState("");
   const [productCardView, setProductCardView] = useState(true);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  const [sortOrder, setSortOrder] = useState('asc')
+  const [sortOrder, setSortOrder] = useState("asc");
 
   //--STORE USER ID FROM LOCAL STORAGE--
   const navigate = useNavigate();
@@ -74,13 +74,13 @@ function Home() {
             // Here we apply the sort according to the sortField and sortOrder
             userProducts.sort((a, b) => {
               if (sortField) {
-                if (sortOrder === 'asc') {
+                if (sortOrder === "asc") {
                   return a[sortField] > b[sortField] ? 1 : -1;
-                } else if (sortOrder === 'desc') {
+                } else if (sortOrder === "desc") {
                   return a[sortField] < b[sortField] ? 1 : -1;
                 }
               }
-              return 0; 
+              return 0;
             });
             setProducts(userProducts);
           }
@@ -97,12 +97,9 @@ function Home() {
     fetchData();
   }, [userFetcherValues, update, search, sortField, sortOrder, userData._id]);
 
-
   const handleSortFieldChange = (field) => {
     setSortField(field);
   };
-
-  
 
   //--ADD PRODUCT MODAL ONCLICK HANDLE--
   const handleAddItemClick = () => {
@@ -195,7 +192,10 @@ function Home() {
   };
 
   return (
-    <div className="home-container">
+    <div
+      className="home-container"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <NavBar
         name={userData.name}
         value={search}

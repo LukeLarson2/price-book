@@ -16,7 +16,7 @@ function NavBar({
   setProductCardView,
   productCardView,
   sortField,
-  products
+  products,
 }) {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);

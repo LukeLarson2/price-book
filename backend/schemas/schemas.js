@@ -8,6 +8,8 @@ const userSchema = new Schema({
   accountType: { type: String },
   company: { type: String },
   role: { type: String },
+  backgroundImage: { type: String },
+  profileImage: { type: String },
   password: { type: String },
   resetToken: { type: String },
   joinDate: { type: Date, default: Date.now },

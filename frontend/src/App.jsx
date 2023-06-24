@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./stylesheets/App.css";
@@ -7,10 +7,14 @@ import LoginForm from "./containers/LoginForm";
 import RegisterUser from "./containers/RegisterUser";
 import Settings from "./containers/Settings";
 import ForgotPassword from "./components/ForgotPassword";
-import ForgotPasswordRequest from "./components/ForgotPasswordRequest"
+import ForgotPasswordRequest from "./components/ForgotPasswordRequest";
 
 function App() {
   const navigate = useNavigate();
+
+  const [backgroundImage, setBackgroundImage] = useState(
+    "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg"
+  );
   useEffect(() => {
     const allowedRoutes = [
       "/user-registration",
@@ -38,8 +42,19 @@ function App() {
       <Routes>
         <Route path="/*" element={<LoginForm />} />
         <Route path="/user-registration" element={<RegisterUser />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/home"
+          element={<Home backgroundImage={backgroundImage} />}
+        />
+        <Route
+          path="/settings"
+          element={
+            <Settings
+              backgroundImage={backgroundImage}
+              setBackgroundImage={setBackgroundImage}
+            />
+          }
+        />
         <Route
           path="/forgot-password/:resetToken"
           element={<ForgotPassword />}

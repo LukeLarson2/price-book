@@ -4,6 +4,7 @@ import { BsFillGearFill } from "react-icons/bs";
 import { MdArrowBackIosNew, MdOutlineAccountBalance } from "react-icons/md";
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { BiImageAlt } from "react-icons/bi";
 import { useMediaQuery } from "react-responsive";
 
 import SettingsDisplay from "../components/SettingsDisplay";
@@ -11,7 +12,7 @@ import fetchUser from "../utils/fetchUser";
 
 import "../stylesheets/Settings.css";
 
-const Settings = () => {
+const Settings = ({ backgroundImage, setBackgroundImage }) => {
   const [selectedSetting, setSelectedSetting] = useState("profile");
   const navigate = useNavigate();
   const userFetcher = fetchUser();
@@ -52,6 +53,14 @@ const Settings = () => {
               {!isMediumSmallScreen && "Profile"}
             </p>
             <p
+              onClick={() => handleSettingChange("personalize")}
+              className={selectedSetting === "personalize" ? "selected" : ""}
+              key="personalize"
+            >
+              <BiImageAlt className="settings-option-icon" />
+              {!isMediumSmallScreen && "Personalize"}
+            </p>
+            <p
               onClick={() => handleSettingChange("plans")}
               className={selectedSetting === "plans" ? "selected" : ""}
               key="plans"
@@ -78,7 +87,11 @@ const Settings = () => {
           </div>
         </div>
         <div className="settings-content">
-          <SettingsDisplay control={selectedSetting} />
+          <SettingsDisplay
+            control={selectedSetting}
+            backgroundImage={backgroundImage}
+            setBackgroundImage={setBackgroundImage}
+          />
         </div>
       </div>
     </div>
