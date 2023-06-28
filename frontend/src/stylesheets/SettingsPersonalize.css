@@ -54,7 +54,18 @@
 .thumbnail-selected {
   background-color: #ff6600;
 }
-
+.personalize-save-btn-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.personalize-save-btn-icon {
+  font-size: 16px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
 .perzonalize-save-changes-btn {
   display: flex;
   align-items: center;
@@ -62,7 +73,7 @@
   color: white;
   background-color: #ff6600;
   border: none;
-  width: 110px;
+  width: 140px;
   height: 30px;
   cursor: pointer;
   border-radius: 8px;
@@ -116,6 +127,19 @@
 
 .personalize-modal-message {
   margin-top: 5px;
+}
+
+.personalize-close-btn-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.personalize-close-icon {
+  font-size: 15px;
+  margin-right: 4px;
+  margin-bottom: 2px;
 }
 
 .personalize-modal-overlay {

@@ -46,7 +46,7 @@
 }
 
 .table-product-container {
-  height: 70%; /* Add this */
+  height: 80%; /* Add this */
   overflow: hidden; /* Add this */
   /* padding-bottom: 450px; */
   background-color: #d6d6d6d5;

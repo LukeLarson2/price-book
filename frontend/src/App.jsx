@@ -18,8 +18,8 @@ function App() {
       new RegExp("^/forgot-password/.*$"), // This will allow all paths starting with "/forgot-password/"
     ];
     const user =
-    JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
-    
+      JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
+
     const isPathAllowed = allowedRoutes.some((route) => {
       if (typeof route === "string") {
         return window.location.pathname === route;
@@ -27,12 +27,12 @@ function App() {
         return route.test(window.location.pathname);
       } else return false;
     });
-    
+
     if (!user && !isPathAllowed) {
       navigate(`/login/${window.location.pathname.split("/").pop()}`);
     }
   }, [navigate]);
-  
+
   const defaultImages = [
     {
       name: "woodDesk",
@@ -51,28 +51,28 @@ function App() {
       src: "/jess-bailey-q10VITrVYUM-unsplash.jpg",
     },
     {
-      name: "goldPen",
-      src: "/leone-venter-VieM9BdZKFo-unsplash.jpg",
+      name: "darkDesk",
+      src: "/andyone--WW8jBak7bo-unsplash.jpg",
+    },
+    {
+      name: "messDesk",
+      src: "/lauren-mancke-aOC7TSLb1o8-unsplash.jpg",
+    },
+    {
+      name: "tropicLeaf",
+      src: "/leone-venter-pVt9j3iWtPM-unsplash.jpg",
     },
   ];
 
-  
   return (
     <div>
       <Routes>
         <Route path="/*" element={<LoginForm />} />
         <Route path="/user-registration" element={<RegisterUser />} />
-        <Route
-          path="/home"
-          element={<Home defaultImages={defaultImages} />}
-        />
+        <Route path="/home" element={<Home defaultImages={defaultImages} />} />
         <Route
           path="/settings"
-          element={
-            <Settings
-              defaultImages={defaultImages}
-            />
-          }
+          element={<Settings defaultImages={defaultImages} />}
         />
         <Route
           path="/forgot-password/:resetToken"

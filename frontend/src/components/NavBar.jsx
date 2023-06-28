@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { BiBookBookmark } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineCloseCircle } from "react-icons/ai";
 import { GoTriangleDown } from "react-icons/go";
 import { BsList } from "react-icons/bs";
 import { RiFileListLine } from "react-icons/ri";
@@ -193,7 +193,7 @@ function NavBar({
         >
           <div className="user-icon-content">
             <div className="user-current-icon-container">
-              <h2 className="user-icon-title">Select Icon</h2>
+              <h2 className="user-icon-title">Select Your Icon</h2>
               <UserIconDisplay
                 className="user-current-icon"
                 control={selectedIcon}
@@ -213,6 +213,16 @@ function NavBar({
                   />
                 </div>
               ))}
+              <button
+                type="button"
+                className="user-icon-cancel"
+                onClick={() => closeModal()}
+              >
+                <div className="user-icon-close-btn-content">
+                  <AiOutlineCloseCircle className="user-icon-close-icon" />
+                  Close
+                </div>
+              </button>
             </div>
           </div>
         </Modal>
