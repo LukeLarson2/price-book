@@ -49,7 +49,7 @@
   height: 80%; /* Add this */
   overflow: hidden; /* Add this */
   /* padding-bottom: 450px; */
-  background-color: #d6d6d6d5;
+  background-color: #d6d6d6ea;
 }
 
 .table-product-container .scrolling-content .table-each-product {
