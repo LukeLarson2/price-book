@@ -199,6 +199,20 @@ router.route("/users/exists").post(async (req, res) => {
   }
 });
 
+router.route("/users/:id").get(async (req, res) => {
+  try {
+    const user = await schemas.Users.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "No user found with this ID" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 router
   .route("/products")
   .post((req, res) => {
@@ -352,6 +366,68 @@ router.route("/users/forgot-password").post(async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
+router.route("/users/update-background").put(async (req, res) => {
+  const { userId, backgroundImage } = req.body;
+
+  try {
+    const user = await schemas.Users.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.backgroundImage = backgroundImage;
+
+    user
+      .save()
+      .then(() => res.json({ message: "Background image has been changed" }))
+      .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+router
+  .route("/users/upload-background-image")
+  .post(upload.single("backgroundImage"), async (req, res) => {
+    const { userId } = req.body;
+    const file = req.file;
+    try {
+      const user = await schemas.Users.findOne({ _id: userId });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Check if the old backgroundImage exists and try to remove it
+      if (user.backgroundImage) {
+        fs.unlink(user.backgroundImage, (err) => {
+          if (err) {
+            console.error(`Failed to remove old background image: ${err}`);
+          } else {
+            console.log("Old background image was removed.");
+          }
+        });
+      }
+
+      // Replace backslashes with forward slashes
+      const formattedPath = file.path.replace(/\\/g, "/");
+      user.backgroundImage = formattedPath;
+
+      user
+        .save()
+        .then(() =>
+          res.json({
+            message: "Uploaded new background image",
+            imagePath: formattedPath, // return formatted path
+          })
+        )
+        .catch((err) => res.status(500).json(err));
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  });
 
 router.route("/users/reset-password").put(async (req, res) => {
   const { resetToken, password } = req.body;

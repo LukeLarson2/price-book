@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./stylesheets/App.css";
@@ -11,10 +11,6 @@ import ForgotPasswordRequest from "./components/ForgotPasswordRequest";
 
 function App() {
   const navigate = useNavigate();
-
-  const [backgroundImage, setBackgroundImage] = useState(
-    "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg"
-  );
   useEffect(() => {
     const allowedRoutes = [
       "/user-registration",
@@ -22,8 +18,8 @@ function App() {
       new RegExp("^/forgot-password/.*$"), // This will allow all paths starting with "/forgot-password/"
     ];
     const user =
-      JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
-
+    JSON.parse(localStorage.getItem("userData")) || localStorage.clear();
+    
     const isPathAllowed = allowedRoutes.some((route) => {
       if (typeof route === "string") {
         return window.location.pathname === route;
@@ -31,12 +27,36 @@ function App() {
         return route.test(window.location.pathname);
       } else return false;
     });
-
+    
     if (!user && !isPathAllowed) {
       navigate(`/login/${window.location.pathname.split("/").pop()}`);
     }
   }, [navigate]);
+  
+  const defaultImages = [
+    {
+      name: "woodDesk",
+      src: "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg",
+    },
+    {
+      name: "benchAccounting",
+      src: "/bench-accounting-xxeAftHHq6E-unsplash.jpg",
+    },
+    {
+      name: "photography",
+      src: "/christopher-gower-vjMgqUkS8q8-unsplash.jpg",
+    },
+    {
+      name: "bronzePen",
+      src: "/jess-bailey-q10VITrVYUM-unsplash.jpg",
+    },
+    {
+      name: "goldPen",
+      src: "/leone-venter-VieM9BdZKFo-unsplash.jpg",
+    },
+  ];
 
+  
   return (
     <div>
       <Routes>
@@ -44,14 +64,13 @@ function App() {
         <Route path="/user-registration" element={<RegisterUser />} />
         <Route
           path="/home"
-          element={<Home backgroundImage={backgroundImage} />}
+          element={<Home defaultImages={defaultImages} />}
         />
         <Route
           path="/settings"
           element={
             <Settings
-              backgroundImage={backgroundImage}
-              setBackgroundImage={setBackgroundImage}
+              defaultImages={defaultImages}
             />
           }
         />

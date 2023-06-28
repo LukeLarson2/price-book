@@ -12,7 +12,7 @@ import fetchUser from "../utils/fetchUser";
 
 import "../stylesheets/Settings.css";
 
-const Settings = ({ backgroundImage, setBackgroundImage }) => {
+const Settings = ({defaultImages }) => {
   const [selectedSetting, setSelectedSetting] = useState("profile");
   const navigate = useNavigate();
   const userFetcher = fetchUser();
@@ -89,8 +89,7 @@ const Settings = ({ backgroundImage, setBackgroundImage }) => {
         <div className="settings-content">
           <SettingsDisplay
             control={selectedSetting}
-            backgroundImage={backgroundImage}
-            setBackgroundImage={setBackgroundImage}
+            defaultImages={defaultImages}
           />
         </div>
       </div>

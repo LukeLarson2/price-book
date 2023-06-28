@@ -15,7 +15,8 @@ import AddItemDocument from "../components/AddItemDocument";
 
 import "../stylesheets/Home.css";
 
-function Home({ backgroundImage }) {
+function Home({ defaultImages }) {
+  const [backgroundImage, setBackgroundImage] = useState('')
   const [products, setProducts] = useState([]);
   const [isDetailsShown, setDetailsShown] = useState({});
   const [sortField, setSortField] = useState("");
@@ -37,7 +38,8 @@ function Home({ backgroundImage }) {
     userFetcher(navigate);
   }, [navigate, userFetcher]);
   const userFetcherValues = Object.values(userFetcher).join();
-  const userData = userFetcher();
+
+  const [userData, setUserData] = useState(userFetcher())
   //--UPDATE USER DATA --
   useEffect(() => {
     const handleWindowResize = () => setViewportWidth(window.innerWidth);
@@ -190,11 +192,58 @@ function Home({ backgroundImage }) {
       console.error("Error deleting product:", error);
     }
   };
-
+  
+  
+  
+  useEffect(() => {
+    const fetchUserDataFromBackend = async () => {
+      // Retrieve the user ID from local storage
+      const userInfo = JSON.parse(localStorage.getItem('userData'))
+      if (!userInfo) {
+        throw new Error('No user ID found in local storage');
+      }
+    
+      // Send a GET request to the backend server to retrieve the user data
+      const response = await fetch(`http://localhost:4000/users/${userInfo._id}`);
+    
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data from backend');
+      }
+    
+      // Parse the response data as JSON
+      const userData = await response.json();
+    
+      return userData;
+    };
+    const fetchData = async () => {
+      // Fetch user data from the backend and update userData state
+      const fetchedUserData = await fetchUserDataFromBackend();
+      setUserData(fetchedUserData);
+    };
+  
+    fetchData();
+  }, [update]); // this depends on what triggers a user data update on your backend
+  
+  useEffect(() => {
+    if (userData) {
+      let newBackgroundImage;
+      if(userData.backgroundImage.includes('uploads/')){
+        newBackgroundImage = `url(http://localhost:4000/${userData.backgroundImage}`
+      } else {
+        newBackgroundImage = `url(http://localhost:3000${userData.backgroundImage}`
+      }  
+      setBackgroundImage(newBackgroundImage);
+    }
+  }, [setBackgroundImage, userData]);
+  
+  
+  
   return (
     <div
       className="home-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: backgroundImage,
+      }}
     >
       <NavBar
         name={userData.name}

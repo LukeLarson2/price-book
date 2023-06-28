@@ -53,6 +53,7 @@ function RegisterUser() {
     values.phone = 'None'
     values.company = 'None'
     values.role = 'None'
+    values.backgroundImage= "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg"
     const updatedValues = { ...values };
   
     // Send the data to the backend
