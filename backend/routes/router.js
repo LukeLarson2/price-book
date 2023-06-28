@@ -213,6 +213,25 @@ router.route("/users/:id").get(async (req, res) => {
   }
 });
 
+// API endpoint to handle user icon update
+router.route("/users/:id/icon").put(async (req, res) => {
+  try {
+    const user = await schemas.Users.findByIdAndUpdate(
+      req.params.id,
+      { profileImage: req.body.profileImage },
+      { new: true } // This option is to return the updated document
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "No user found with this ID" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 router
   .route("/products")
   .post((req, res) => {

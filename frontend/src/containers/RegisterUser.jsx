@@ -50,12 +50,13 @@ function RegisterUser() {
 
   //--HANDLE SUBMIT FOR REGISTER USER--
   const onSubmit = async (values) => {
-    values.phone = 'None'
-    values.company = 'None'
-    values.role = 'None'
-    values.backgroundImage= "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg"
+    values.phone = "None";
+    values.company = "None";
+    values.role = "None";
+    values.backgroundImage = "/andrej-lisakov-3A4XZUopCJA-unsplash2.jpg";
+    values.profileImage = "basic";
     const updatedValues = { ...values };
-  
+
     // Send the data to the backend
     fetch("http://localhost:4000/users/register", {
       method: "POST",
@@ -69,7 +70,7 @@ function RegisterUser() {
           throw new Error("Network response was not ok");
         }
         return response.json();
-      })      
+      })
       .then(() => {
         // The user registration completed successfully. Now we can attempt to login.
         fetch("http://localhost:4000/users/login", {
@@ -79,10 +80,9 @@ function RegisterUser() {
           },
           body: JSON.stringify({
             email: updatedValues.email,
-            password: updatedValues.password // you need to include the password for login
+            password: updatedValues.password, // you need to include the password for login
           }),
-        })
-        .then(async(response) => {
+        }).then(async (response) => {
           if (response.ok) {
             const userData = await response.json();
             localStorage.setItem("userData", JSON.stringify(userData));
@@ -90,13 +90,12 @@ function RegisterUser() {
           } else {
             console.error("Failed to login");
           }
-        })
+        });
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-};
-  
+  };
 
   return (
     <Formik

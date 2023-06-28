@@ -5,13 +5,15 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { GoTriangleDown } from "react-icons/go";
 import { BsList } from "react-icons/bs";
 import { RiFileListLine } from "react-icons/ri";
-import { FaUserAlt } from "react-icons/fa";
 
+import UserIconDisplay from "./UserIconDisplay";
 import UserDropdown from "./UserDropdown";
 import "../stylesheets/NavBar.css";
 
 function NavBar({
   name,
+  profileImage,
+  id,
   value,
   onChange,
   onSortChange,
@@ -23,6 +25,7 @@ function NavBar({
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState(profileImage);
 
   useEffect(() => {
     const handleWindowResize = () => setViewportWidth(window.innerWidth);
@@ -33,13 +36,49 @@ function NavBar({
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []); // Empty array ensures effect runs only on mount and unmount
 
+  useEffect(() => {
+    setSelectedIcon(profileImage);
+  }, [profileImage]);
+  const userIconOptions = [
+    { name: "Basic", value: "basic" },
+    { name: "Astronaut", value: "astro" },
+    { name: "Student", value: "grad" },
+    { name: "Doctor", value: "doctor" },
+    { name: "Ninja", value: "ninja" },
+    { name: "Nurse", value: "nurse" },
+    { name: "Agent", value: "agent" },
+    { name: "Formal", value: "tie" },
+  ];
+
+  const handleIconSelect = async (icon) => {
+    try {
+      const response = await fetch(`/users/${id}/icon`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profileImage: icon }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const updatedUser = await response.json();
+
+      // update the state with the new icon
+      setSelectedIcon(updatedUser.profileImage);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const handleDropdownClick = (e) => {
     e.stopPropagation();
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const handleUserIconClick = (e) => {
-    e.stopPropagation();
+  const handleUserIconClick = () => {
     setModalOpen(true);
   };
 
@@ -73,7 +112,11 @@ function NavBar({
           Price Book
         </h2>
         <div className="user-welcome-block">
-          <FaUserAlt className="user-icon" onClick={handleUserIconClick} />
+          <UserIconDisplay
+            control={selectedIcon}
+            className="user-icon"
+            onClick={handleUserIconClick}
+          />
           <div className="user-logout-container">
             <p className="username-welcome">
               <b>Welcome,</b>
@@ -148,7 +191,30 @@ function NavBar({
           overlayClassName={"user-icon-modal-overlay"}
           className={"user-icon-modal"}
         >
-          <FaUserAlt size="2em" />
+          <div className="user-icon-content">
+            <div className="user-current-icon-container">
+              <h2 className="user-icon-title">Select Icon</h2>
+              <UserIconDisplay
+                className="user-current-icon"
+                control={selectedIcon}
+                key="current-user"
+              />
+            </div>
+            <div className="user-icon-choices-container">
+              {userIconOptions.map((option) => (
+                <div
+                  key={option.value}
+                  onClick={() => handleIconSelect(option.value)}
+                >
+                  <UserIconDisplay
+                    className="icon-options"
+                    control={option.value}
+                    size="2em"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </Modal>
       </div>
     </div>

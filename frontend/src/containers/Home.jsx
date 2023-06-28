@@ -16,7 +16,7 @@ import AddItemDocument from "../components/AddItemDocument";
 import "../stylesheets/Home.css";
 
 function Home({ defaultImages }) {
-  const [backgroundImage, setBackgroundImage] = useState('')
+  const [backgroundImage, setBackgroundImage] = useState("");
   const [products, setProducts] = useState([]);
   const [isDetailsShown, setDetailsShown] = useState({});
   const [sortField, setSortField] = useState("");
@@ -39,7 +39,7 @@ function Home({ defaultImages }) {
   }, [navigate, userFetcher]);
   const userFetcherValues = Object.values(userFetcher).join();
 
-  const [userData, setUserData] = useState(userFetcher())
+  const [userData, setUserData] = useState(userFetcher());
   //--UPDATE USER DATA --
   useEffect(() => {
     const handleWindowResize = () => setViewportWidth(window.innerWidth);
@@ -192,27 +192,27 @@ function Home({ defaultImages }) {
       console.error("Error deleting product:", error);
     }
   };
-  
-  
-  
+
   useEffect(() => {
     const fetchUserDataFromBackend = async () => {
       // Retrieve the user ID from local storage
-      const userInfo = JSON.parse(localStorage.getItem('userData'))
+      const userInfo = JSON.parse(localStorage.getItem("userData"));
       if (!userInfo) {
-        throw new Error('No user ID found in local storage');
+        throw new Error("No user ID found in local storage");
       }
-    
+
       // Send a GET request to the backend server to retrieve the user data
-      const response = await fetch(`http://localhost:4000/users/${userInfo._id}`);
-    
+      const response = await fetch(
+        `http://localhost:4000/users/${userInfo._id}`
+      );
+
       if (!response.ok) {
-        throw new Error('Failed to fetch user data from backend');
+        throw new Error("Failed to fetch user data from backend");
       }
-    
+
       // Parse the response data as JSON
       const userData = await response.json();
-    
+
       return userData;
     };
     const fetchData = async () => {
@@ -220,24 +220,22 @@ function Home({ defaultImages }) {
       const fetchedUserData = await fetchUserDataFromBackend();
       setUserData(fetchedUserData);
     };
-  
+
     fetchData();
   }, [update]); // this depends on what triggers a user data update on your backend
-  
+
   useEffect(() => {
     if (userData) {
       let newBackgroundImage;
-      if(userData.backgroundImage.includes('uploads/')){
-        newBackgroundImage = `url(http://localhost:4000/${userData.backgroundImage}`
+      if (userData.backgroundImage.includes("uploads/")) {
+        newBackgroundImage = `url(http://localhost:4000/${userData.backgroundImage}`;
       } else {
-        newBackgroundImage = `url(http://localhost:3000${userData.backgroundImage}`
-      }  
+        newBackgroundImage = `url(http://localhost:3000${userData.backgroundImage}`;
+      }
       setBackgroundImage(newBackgroundImage);
     }
   }, [setBackgroundImage, userData]);
-  
-  
-  
+
   return (
     <div
       className="home-container"
@@ -247,6 +245,8 @@ function Home({ defaultImages }) {
     >
       <NavBar
         name={userData.name}
+        profileImage={userData.profileImage}
+        id={userData._id}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onSortChange={(e) => handleSortFieldChange(e.target.value)}

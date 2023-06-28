@@ -69,20 +69,23 @@
 .user-icon {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 15px;
   height: fit-content;
+  width: 30px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
-
 .user-icon-modal {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
   background-color: white;
   border-radius: 4px;
   box-shadow: 1px 1px 1px #555;
   height: 300px;
   width: 200px;
+  user-select: none;
 }
 .user-icon-modal-overlay {
   position: fixed;
@@ -94,6 +97,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.user-icon-content {
+  height: 300px;
+}
+.user-icon-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 300px;
+}
+.user-icon-title {
+  margin: 0px;
+}
+.user-current-icon {
+  margin-top: 10px;
+  font-size: 60px;
+  margin-bottom: 0px;
+}
+.icon-options {
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 5px;
+}
+.icon-options:hover {
+  background-color: #0587be;
+  color: white;
+}
+.user-current-icon-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.user-icon-choices-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .search-container {
