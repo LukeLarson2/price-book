@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
 import { BiBookBookmark } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { GoTriangleDown } from "react-icons/go";
 import { BsList } from "react-icons/bs";
 import { RiFileListLine } from "react-icons/ri";
+import { FaUserAlt } from "react-icons/fa";
 
 import UserDropdown from "./UserDropdown";
 import "../stylesheets/NavBar.css";
@@ -20,6 +22,7 @@ function NavBar({
 }) {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const handleWindowResize = () => setViewportWidth(window.innerWidth);
@@ -33,6 +36,15 @@ function NavBar({
   const handleDropdownClick = (e) => {
     e.stopPropagation();
     setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleUserIconClick = (e) => {
+    e.stopPropagation();
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   const handleTitleClick = () => {
@@ -60,23 +72,26 @@ function NavBar({
           <BiBookBookmark className="book-icon" />
           Price Book
         </h2>
-        <div className="user-logout-container">
-          <p className="username-welcome">
-            <b>Welcome,</b>
-          </p>
-          <p className="username-name" onClick={handleDropdownClick}>
-            <span className="name-logout-container">
-              <b>{firstName}</b>
-              <GoTriangleDown className="user-dropdown" />
-            </span>
-          </p>
-          {isDropdownOpen && (
-            <UserDropdown
-              onClose={() => setDropdownOpen(!isDropdownOpen)}
-              className="user-dropdown-menu"
-              products={products}
-            />
-          )}
+        <div className="user-welcome-block">
+          <FaUserAlt className="user-icon" onClick={handleUserIconClick} />
+          <div className="user-logout-container">
+            <p className="username-welcome">
+              <b>Welcome,</b>
+            </p>
+            <p className="username-name" onClick={handleDropdownClick}>
+              <span className="name-logout-container">
+                <b>{firstName}</b>
+                <GoTriangleDown className="user-dropdown" />
+              </span>
+            </p>
+            {isDropdownOpen && (
+              <UserDropdown
+                onClose={() => setDropdownOpen(!isDropdownOpen)}
+                className="user-dropdown-menu"
+                products={products}
+              />
+            )}
+          </div>
         </div>
       </div>
       <div className="search-container">
@@ -126,6 +141,15 @@ function NavBar({
             </div>
           )}
         </div>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          contentLabel="User Modal"
+          overlayClassName={"user-icon-modal-overlay"}
+          className={"user-icon-modal"}
+        >
+          <FaUserAlt size="2em" />
+        </Modal>
       </div>
     </div>
   );
