@@ -66,15 +66,21 @@
   cursor: pointer;
   z-index: 10;
 }
+.name-logout-container:hover {
+  color: #059bd2;
+}
 .user-icon {
   display: flex;
   align-items: center;
-  margin-right: 15px;
+  margin-right: 11px;
   height: fit-content;
-  width: 30px;
+  width: 35px;
   margin-bottom: 5px;
   cursor: pointer;
   z-index: 11;
+}
+.user-icon:hover {
+  color: #059bd2;
 }
 .user-icon-modal {
   display: flex;
@@ -123,6 +129,19 @@
   cursor: pointer;
   border-radius: 2px;
   padding: 5px;
+  height: 30px;
+  width: 30px;
+}
+.icon-selected {
+  background-color: #ff6600;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 5px;
+  height: 30px;
+  width: 30px;
+  cursor: default;
 }
 .icon-options:hover {
   background-color: #0587be;
@@ -145,6 +164,7 @@
   margin-top: 0px;
   height: 120px;
   width: 170px;
+  padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
   box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
@@ -213,6 +233,7 @@
   padding-bottom: 11px;
   padding-left: 20px;
   padding-right: 30px;
+  cursor: pointer;
 }
 .view-toggle-btn-container {
   display: flex;

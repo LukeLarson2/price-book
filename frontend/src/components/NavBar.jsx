@@ -207,7 +207,11 @@ function NavBar({
                   onClick={() => handleIconSelect(option.value)}
                 >
                   <UserIconDisplay
-                    className="icon-options"
+                    className={
+                      option.value === selectedIcon
+                        ? "icon-selected"
+                        : "icon-options"
+                    }
                     control={option.value}
                     size="2em"
                   />
