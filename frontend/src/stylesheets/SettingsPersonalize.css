@@ -324,4 +324,9 @@
     width: 140px;
     height: 30px;
   }
+  .personalize-title {
+    margin-top: 20px;
+    margin-left: 15px;
+    font-weight: bold;
+  }
 }
