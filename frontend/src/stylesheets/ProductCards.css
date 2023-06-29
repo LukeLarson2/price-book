@@ -28,6 +28,7 @@
   border-top-right-radius: 5px;
   width: 100%;
   height: 80px;
+  cursor: pointer;
 }
 .product-title {
   display: flex;
@@ -40,6 +41,7 @@
   height: 100%;
   width: 70%;
   align-items: center;
+  cursor: pointer;
 }
 .product-title b {
   overflow: hidden;
@@ -52,6 +54,7 @@
   margin-right: 5px;
   margin-left: 5px;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 .toggle-product-details.rotated {
   transform: rotate(90deg);
@@ -91,7 +94,6 @@
   justify-content: center;
   align-content: center;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 .edit-item {
   margin-right: 7px;
@@ -99,7 +101,6 @@
   justify-content: center;
   align-content: center;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 .edit-item:hover,
 .delete-item:hover {

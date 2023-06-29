@@ -272,7 +272,7 @@ li {
   justify-content: space-evenly;
   align-items: center;
   color: #ff6600;
-  background-color: rgb(243, 243, 243);
+  background-color: white;
   width: 70px;
   height: 35px;
   cursor: pointer;
@@ -286,7 +286,7 @@ li {
 }
 
 .confirm-delete-btn:hover {
-  background-color: #0587be;
+  background-color: #e61b00;
 }
 
 .cancel-delete-btn:hover {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go";
@@ -12,6 +12,9 @@ function ProductCards({
   isDetailsShown,
   setDetailsShown,
 }) {
+  const [deleteKey, setDeleteKey] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     const newDetailsShownState = products.reduce(
       (acc, product) => {
@@ -30,25 +33,36 @@ function ProductCards({
       setDetailsShown(newDetailsShownState);
     }
   }, [products, isDetailsShown, setDetailsShown]);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+  const confirmRemove = () => {
+    handleRemove(deleteKey.key);
+    closeModal();
+  };
   return (
     <div className="product-list">
-      {products
-    .map((product) => {
-      const totalPrice = product.totalPrice;
-    const {
-      key,
-      name,
-      productPrice,
-      state,
-      zip,
-      combinedTax,
-      totalTax,
-      cityTax,
-      stateTax,
-    } = product;
-    const cityTaxPercent = (cityTax * 100).toFixed(2);
-    const stateTaxPercent = (stateTax * 100).toFixed(2);
-    const combinedTaxPercent = (combinedTax * 100).toFixed(2);
+      {products.map((product) => {
+        const totalPrice = product.totalPrice;
+        const {
+          key,
+          name,
+          productPrice,
+          state,
+          zip,
+          combinedTax,
+          totalTax,
+          cityTax,
+          stateTax,
+        } = product;
+        const cityTaxPercent = (cityTax * 100).toFixed(2);
+        const stateTaxPercent = (stateTax * 100).toFixed(2);
+        const combinedTaxPercent = (combinedTax * 100).toFixed(2);
         return (
           <div
             key={key}
@@ -84,7 +98,8 @@ function ProductCards({
                   className="delete-item"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleRemove(key);
+                    setDeleteKey({ key: key, name: name });
+                    openModal();
                   }}
                 />
               </div>
@@ -120,6 +135,26 @@ function ProductCards({
           </div>
         );
       })}
+      {showModal && (
+        <div className="delete-modal-overlay">
+          <div className="delete-modal">
+            <div className="delete-modal-content">
+              <h2 className="delete-modal-title">Delete Confirmation</h2>
+              <p className="delete-modal-text">
+                {`Are you sure you want to delete the "${deleteKey.name}" item?`}
+              </p>
+              <div className="delete-modal-btn-placement">
+                <button className="confirm-delete-btn" onClick={confirmRemove}>
+                  Yes
+                </button>
+                <button className="cancel-delete-btn" onClick={closeModal}>
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

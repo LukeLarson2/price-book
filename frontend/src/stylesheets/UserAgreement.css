@@ -37,7 +37,7 @@
     word-wrap: break-word;
     white-space: pre-wrap;
     border-radius: 4px;
-    box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb;
+    /* box-shadow: inset 2px 2px 3px #e3e3e3, inset -2px -2px 3px #ebebeb; */
   }
   .user-agreement-title {
     display: flex;
