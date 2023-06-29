@@ -218,7 +218,7 @@ li {
   font-weight: bold;
 }
 
-li:hover {
+.table-placement li:hover {
   color: #0587be;
 }
 .delete-modal-overlay {
