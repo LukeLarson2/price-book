@@ -170,7 +170,6 @@
 }
 
 .pagination__link {
-  border: 1px solid #ddd;
   border-radius: 4px;
   padding: 8px 16px;
   text-decoration: none;
@@ -179,9 +178,9 @@
   font-size: 15px;
   background-color: #f3f3f3;
   font-weight: bold;
+  box-shadow: 1px 1px 4px #555;
 }
 .pagination__link-next {
-  border: 1px solid #ddd;
   border-radius: 4px;
   padding: 8px 29px;
   text-decoration: none;
@@ -190,6 +189,7 @@
   font-size: 15px;
   background-color: #f3f3f3;
   font-weight: bold;
+  box-shadow: 1px 1px 4px #555;
 }
 
 .pagination__link--active,
