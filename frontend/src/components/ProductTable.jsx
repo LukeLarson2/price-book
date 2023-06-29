@@ -276,7 +276,7 @@ function ProductTable({
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
               previousLinkClassName={"pagination__link"}
-              nextLinkClassName={"pagination__link"}
+              nextLinkClassName={"pagination__link-next"}
               disabledClassName={"pagination__link--disabled"}
               activeClassName={"pagination__link--active"}
             />
