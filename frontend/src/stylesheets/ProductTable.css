@@ -46,9 +46,8 @@
 }
 
 .table-product-container {
-  height: 80%; /* Add this */
-  overflow: hidden; /* Add this */
-  /* padding-bottom: 450px; */
+  height: 75%;
+  overflow: hidden;
   background-color: #d6d6d6ea;
 }
 
@@ -59,7 +58,7 @@
     10,
     1fr
   ); /* The number of columns should match with the header */
-  border-bottom: 1px solid #ddd; /* Add border to separate each row */
+  border-bottom: 1px solid #ddd;
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -124,7 +123,8 @@
 }
 .table-edit-item:hover,
 .table-delete-item:hover,
-.table-each-product .table-name b:hover {
+.table-each-product .table-name b:hover,
+.table-value:hover {
   color: #0587be;
 }
 

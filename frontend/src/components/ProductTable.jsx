@@ -6,15 +6,13 @@ import {
   AiOutlineSortDescending,
 } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
-import { GoTriangleRight } from "react-icons/go";
 
 import "../stylesheets/ProductTable.css";
+import ProductDetailModal from "./ProductDetailModal";
 function ProductTable({
   products,
   handleEditItemClick,
   handleRemove,
-  isDetailsShown,
-  setDetailsShown,
   onSortChange,
   sortField,
   sortOrder,
@@ -23,41 +21,26 @@ function ProductTable({
   const [deleteKey, setDeleteKey] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemHeight = 80; // This is an estimate of the height of an item. Adjust it to your needs.
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [itemsPerPage, setItemsPerPage] = useState(
-    Math.floor(window.innerHeight / itemHeight)
+    Math.floor(window.innerHeight / 70)
   );
-
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(Math.floor(window.innerHeight / itemHeight));
+      setItemsPerPage(Math.floor(window.innerHeight / 70));
     };
-
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  useEffect(() => {
-    const newDetailsShownState = products.reduce(
-      (acc, product) => {
-        if (acc[product.key] === undefined) {
-          acc[product.key] = false;
-        }
-        return acc;
-      },
-      { ...isDetailsShown }
-    );
-
-    // check if the state is different
-    if (
-      JSON.stringify(newDetailsShownState) !== JSON.stringify(isDetailsShown)
-    ) {
-      setDetailsShown(newDetailsShownState);
-    }
-  }, [products, isDetailsShown, setDetailsShown]);
-
+  const openProductDetailModal = (product) => {
+    setSelectedProduct(product);
+  };
+  const closeProductDetailModal = () => {
+    setSelectedProduct(null);
+  };
   const openModal = () => {
     setShowModal(true);
   };
@@ -102,24 +85,12 @@ function ProductTable({
 
       return (
         <div
-          className={`table-each-product ${
-            isDetailsShown[key] ? "table-each-product-details-shown" : ""
-          }`}
+          className="table-each-product"
           key={key}
-          onClick={() =>
-            setDetailsShown({
-              ...isDetailsShown,
-              [key]: !isDetailsShown[key],
-            })
-          }
+          onClick={() => openProductDetailModal(product)}
         >
           <div className="table-name">
-            <GoTriangleRight
-              className={`table-toggle-details ${
-                isDetailsShown[key] ? "rotated" : ""
-              }`}
-            />
-            {isDetailsShown[key] && <br />}
+            {/* <GoTriangleRight className="table-toggle-details" /> */}
             <b>{name}</b>
           </div>
           <div className="table-value">${productPrice}</div>
@@ -303,6 +274,12 @@ function ProductTable({
                 </div>
               </div>
             </div>
+          )}
+          {selectedProduct && (
+            <ProductDetailModal
+              product={selectedProduct}
+              onClose={closeProductDetailModal}
+            />
           )}
         </div>
       </div>

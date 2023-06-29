@@ -274,8 +274,6 @@ function Home({ defaultImages }) {
           setProducts={setProducts}
           handleEditItemClick={handleEditItemClick}
           handleRemove={handleRemove}
-          isDetailsShown={isDetailsShown}
-          setDetailsShown={setDetailsShown}
           onSortChange={(e) => handleSortFieldChange(e.target.value)}
           sortField={sortField}
           setSortOrder={setSortOrder}
