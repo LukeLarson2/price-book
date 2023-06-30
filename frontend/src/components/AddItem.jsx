@@ -21,8 +21,8 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
     productPrice: 0,
     cityTax: 0,
     stateTax: 0,
-    combinedTax:0,
-    totalTax:0,
+    combinedTax: 0,
+    totalTax: 0,
     totalPrice: 0,
     userKey: "",
     key: "",
@@ -141,7 +141,6 @@ function AddItem({ onClose, addProduct, setDetailsShown }) {
               className="add-item-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* <div className="add-item-form"> */}
               <Form className="add-item-form">
                 <div className="new-item-position">
                   <label className="add-item-title">Add a new product</label>
