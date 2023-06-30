@@ -29,7 +29,13 @@ function ProductDetailModal({ product, onClose }) {
             <strong>Name:</strong> {name}
           </p>
           <p>
-            <strong>Price:</strong> {productPrice}
+            <strong>Price:</strong> ${productPrice}
+          </p>
+          <p>
+            <strong>State:</strong> {state}
+          </p>
+          <p>
+            <strong>Zip:</strong> {zip}
           </p>
           <p>
             <strong>City Tax:</strong> {cityTaxPercent}%
@@ -46,17 +52,11 @@ function ProductDetailModal({ product, onClose }) {
           <p>
             <strong>Total Price:</strong> ${totalPriceDollar}
           </p>
-          <p>
-            <strong>State:</strong> {state}
-          </p>
-          <p>
-            <strong>Zip:</strong> {zip}
-          </p>
         </div>
         <div className="product-detail-btn-placement">
           <button className="product-detail-btn" onClick={onClose}>
-            <AiOutlineCloseCircle className="product-detail-close-icon" />
             Close
+            <AiOutlineCloseCircle className="product-detail-close-icon" />
           </button>
         </div>
       </div>

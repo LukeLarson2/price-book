@@ -23,11 +23,11 @@ function ProductTable({
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [itemsPerPage, setItemsPerPage] = useState(
-    Math.floor(window.innerHeight / 70)
+    Math.floor(window.innerHeight / 68)
   );
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(Math.floor(window.innerHeight / 70));
+      setItemsPerPage(Math.floor(window.innerHeight / 68));
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -94,13 +94,13 @@ function ProductTable({
             <b>{name}</b>
           </div>
           <div className="table-value">${productPrice}</div>
+          <div className="table-value">{state}</div>
+          <div className="table-value">{zip}</div>
           <div className="table-value">{cityTaxPercent}%</div>
           <div className="table-value">{stateTaxPercent}%</div>
           <div className="table-value">{combinedTaxPercent}%</div>
           <div className="table-value">${totalTax.toFixed(2)}</div>
           <div className="table-value">${totalPrice.toFixed(2)}</div>
-          <div className="table-value">{state}</div>
-          <div className="table-value">{zip}</div>
           <div className="table-edit-del-btns">
             <AiFillEdit
               className="table-edit-item"
@@ -147,6 +147,30 @@ function ProductTable({
             <AiOutlineSortAscending className="table-sort-by-icon" />
           )}
           {sortField === "productPrice" && sortOrder === "desc" && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("state")}
+          className={sortField === "state" ? "selected" : ""}
+        >
+          State
+          {sortField === "state" && sortOrder === "asc" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "state" && sortOrder === "desc" && (
+            <AiOutlineSortDescending className="table-sort-by-icon" />
+          )}
+        </h3>
+        <h3
+          onClick={() => handleHeaderClick("zip")}
+          className={sortField === "zip" ? "selected" : ""}
+        >
+          Zip
+          {sortField === "zip" && sortOrder === "asc" && (
+            <AiOutlineSortAscending className="table-sort-by-icon" />
+          )}
+          {sortField === "zip" && sortOrder === "desc" && (
             <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
@@ -207,30 +231,6 @@ function ProductTable({
             <AiOutlineSortAscending className="table-sort-by-icon" />
           )}
           {sortField === "totalPrice" && sortOrder === "desc" && (
-            <AiOutlineSortDescending className="table-sort-by-icon" />
-          )}
-        </h3>
-        <h3
-          onClick={() => handleHeaderClick("state")}
-          className={sortField === "state" ? "selected" : ""}
-        >
-          State
-          {sortField === "state" && sortOrder === "asc" && (
-            <AiOutlineSortAscending className="table-sort-by-icon" />
-          )}
-          {sortField === "state" && sortOrder === "desc" && (
-            <AiOutlineSortDescending className="table-sort-by-icon" />
-          )}
-        </h3>
-        <h3
-          onClick={() => handleHeaderClick("zip")}
-          className={sortField === "zip" ? "selected" : ""}
-        >
-          Zip
-          {sortField === "zip" && sortOrder === "asc" && (
-            <AiOutlineSortAscending className="table-sort-by-icon" />
-          )}
-          {sortField === "zip" && sortOrder === "desc" && (
             <AiOutlineSortDescending className="table-sort-by-icon" />
           )}
         </h3>
