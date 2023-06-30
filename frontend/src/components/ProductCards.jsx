@@ -110,6 +110,12 @@ function ProductCards({
                   Product Price: <b>${productPrice}</b>{" "}
                 </p>
                 <p>
+                  State: <b>{state}</b>{" "}
+                </p>
+                <p>
+                  Zip Code: <b>{zip}</b>
+                </p>
+                <p>
                   City Tax: <b>{cityTaxPercent}%</b>{" "}
                 </p>
                 <p>
@@ -123,12 +129,6 @@ function ProductCards({
                 </p>
                 <p>
                   Total Cost: <b>${totalPrice.toFixed(2)}</b>{" "}
-                </p>
-                <p>
-                  State: <b>{state}</b>{" "}
-                </p>
-                <p>
-                  Zip Code: <b>{zip}</b>
                 </p>
               </div>
             )}
