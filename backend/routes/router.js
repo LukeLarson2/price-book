@@ -504,4 +504,71 @@ router.route("/users/update-profile").put(async (req, res) => {
   }
 });
 
+router.route("/users/avatax-call").post(async (req, res) => {
+  const { product } = req.body;
+  const { userKey, name, productPrice, state, zip, client } = product;
+  const street = req.body.street ? req.body.street : "";
+  const city = req.body.city ? req.body.city : "";
+  try {
+    const user = await schemas.Users.findOne({ _id: userKey });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const currentDate = new Date();
+
+    const getCurrentDate = () => {
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Months are 0-based in JS
+      const day = String(currentDate.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    };
+
+    const getDateTimeStamp = () => {
+      const hours = String(currentDate.getHours()).padStart(2, "0");
+      const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+      const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+
+      return `${getCurrentDate()}-${hours}${minutes}${seconds}`;
+    };
+
+    const taxDocument = {
+      type: "SalesOrder",
+      companyCode: process.env.COMPANY.CODE,
+      date: getCurrentDate(), // dynamic date
+      customerCode: userKey, // general string cannot be empty
+      purchaseOrderNo: getDateTimeStamp(), // order number based on date-time stamp
+      addresses: {
+        SingleLocation: {
+          line1: street,
+          city: city,
+          region: state,
+          country: "US",
+          postalCode: zip, // required at minimum
+        },
+      },
+      lines: [
+        {
+          number: "1",
+          quantity: 1,
+          amount: productPrice, // dynamic price input
+          taxCode: "P0000000", // generic tax code, fill dynamically with array
+          description: name, // product name filled
+        },
+      ],
+      commit: true,
+      currencyCode: "USD",
+      description: "Yarn", // product name filled
+    };
+
+    return client.createTransaction({ model: taxDocument }).then((result) => {
+      // response tax document
+      console.log(result);
+    });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
